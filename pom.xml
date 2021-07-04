@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+
+
+	<!-- =============================================================== -->
+	<!-- Information on the project -->
+	<!-- =============================================================== -->
+
 	<groupId>com.safetynet</groupId>
 	<artifactId>SafetyNetAlerts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- ===================================================================== -->
+	<!-- ===== general information ===== -->
+	<!-- ===================================================================== -->
 	<name>SafetyNetAlerts</name>
 	<description>SafetyNet Alerts project for Emergency Alert Services</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+
+		<!-- ===================================================================== -->
+		<!-- Actuator endpoints let you monitor and interact with your application -->
+		<!-- ===================================================================== -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+		<!-- ===================================================================== -->
+		<!-- Starter Web used for building web application - RESTful applications 
+			using Spring MVC and includes Tomcat as the default embedded container -->
+		<!-- ===================================================================== -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- ===================================================================== -->
+		<!-- LOMBOK annotations used to reduce boilerplate code for model/data 
+			objects -->
+		<!-- ===================================================================== -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- ===================================================================== -->
+		<!-- Tests imports - JUnit4, Spring Test, AssertJ, Hamcrest, Mockito, JSONassert 
+			& JSONPath -->
+		<!-- ===================================================================== -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- ===================================================================== -->
+		<!-- Jacoco - Java Code Coverage -->
+		<!-- ===================================================================== -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.5</version>
+		</dependency>
+
+		<!-- ===================================================================== -->
+		<!-- FindBugs - tool for static code analysis of Java programs -->
+		<!-- ===================================================================== -->
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.2</version>
+		</dependency>
 	</dependencies>
 
+	<!-- ======================================================= -->
+	<!-- BUILD -->
+	<!-- ======================================================= -->
 	<build>
 		<plugins>
 			<plugin>
@@ -52,7 +104,118 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- ===================================================================== -->
+			<!-- Maven failsafe - used during the integration-test and verify phases 
+				of the build lifecycle to execute the integration tests of an application -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- ===================================================================== -->
+			<!-- Jacoco Maven - used to access to the JaCoCo runtime agent which records 
+				execution coverage data and also creates code coverage reports from the execution 
+				data recorded by the JaCoCo runtime agent. -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
+	<!-- ======================================================= -->
+	<!-- REPORTING -->
+	<!-- ======================================================= -->
+	<reporting>
+		<plugins>
+
+			<!-- ===================================================================== -->
+			<!-- generate reports information about the project. -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependencies</report>
+							<report>scm</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- ===================================================================== -->
+			<!-- During the test phase of the build lifecycle to execute the unit 
+				tests of an application -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M4</version>
+			</plugin>
+
+			<!-- ===================================================================== -->
+			<!-- generates a report regarding the code style used by the developers -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- ===================================================================== -->
+			<!-- static analysis to inspect Java bytecode for occurrences of bug patterns -->
+			<!-- ===================================================================== -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.0.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
