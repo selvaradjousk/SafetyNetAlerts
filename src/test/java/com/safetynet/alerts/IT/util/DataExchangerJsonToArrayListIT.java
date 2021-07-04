@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.safetynet.alerts.model.FireStation;
+import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.DataExchangerJsonToArrayList;
 
@@ -28,11 +30,35 @@ public class DataExchangerJsonToArrayListIT {
     		+ "When get Person List"
     		+ "then return expected number of entries in the list")
     @Test
-    public void whenGetPersonList_thenReturnExpectedPersonList() {
+    public void testgetPersonListFromJsonSourceFile() {
         List<Person> listOfPersons = dataExchangerJsonToArrayList.getPersonList();
 
         assertNotNull(listOfPersons);
         assertEquals(23, listOfPersons.size());
+    }
+    
+    @DisplayName("ReadingJsonInputFile for Firestation"
+    		+ " - Given input Json File to read"
+    		+ "When get FireStation List"
+    		+ "then return expected number of entries in the list")
+    @Test
+    public void testgetFirestationListFromJsonSourceFile() {
+        List<FireStation> listOfFireStations = dataExchangerJsonToArrayList.getFireStationList();
+
+        assertNotNull(listOfFireStations);
+        assertEquals(13, listOfFireStations.size());
+    }
+
+    @DisplayName("ReadingJsonInputFile for MedicalRecord"
+    		+ " - Given input Json File to read"
+    		+ "When get MedicalRecord List"
+    		+ "then return expected number of entries in the list")
+    @Test
+    public void testgetMedicalRecordListFromJsonSourceFile() {
+        List<MedicalRecord> listOfMedicalRecords = dataExchangerJsonToArrayList.getMedicalRecordList();
+
+        assertNotNull(listOfMedicalRecords);
+        assertEquals(23, listOfMedicalRecords.size());
     }
 
 }
