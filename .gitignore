@@ -1,33 +1,46 @@
 HELP.md
+
+##############################
+## Maven
+##############################
 target/
+
+##############################
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+##############################
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+##############################
 ### STS ###
+##############################
 .apt_generated
 .classpath
 .factorypath
-.project
-.settings
+@@ -13,13 +23,17 @@ target/
 .springBeans
 .sts4-cache
 
+##############################
 ### IntelliJ IDEA ###
+##############################
 .idea
 *.iws
 *.iml
 *.ipr
 
+##############################
 ### NetBeans ###
+##############################
 /nbproject/private/
 /nbbuild/
 /dist/
-/nbdist/
-/.nb-gradle/
-build/
+@@ -29,5 +43,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+##############################
 ### VS Code ###
+##############################
 .vscode/
