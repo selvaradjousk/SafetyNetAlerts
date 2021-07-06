@@ -1,8 +1,11 @@
 package com.safetynet.alerts.util;
 
+import org.springframework.stereotype.Component;
+
 import com.safetynet.alerts.dto.PersonEndpointDTO;
 import com.safetynet.alerts.model.Person;
 
+@Component
 public class DataExchangerModelToDTO {
 
     public PersonEndpointDTO transferToPersonEndpointDTO(final Person person) {
