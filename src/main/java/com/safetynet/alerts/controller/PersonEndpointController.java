@@ -34,5 +34,4 @@ public class PersonEndpointController {
 
 		return new ResponseEntity<>(personDTO, HttpStatus.OK);
 	}
-
 }
