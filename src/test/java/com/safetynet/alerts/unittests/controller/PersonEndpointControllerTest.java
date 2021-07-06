@@ -22,6 +22,7 @@ import com.safetynet.alerts.controller.PersonEndpointController;
 import com.safetynet.alerts.dto.PersonEndpointDTO;
 import com.safetynet.alerts.service.PersonEndpointService;
 
+@DisplayName("Person Endpoint Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(PersonEndpointController.class)
 public class PersonEndpointControllerTest {
@@ -68,6 +69,22 @@ public class PersonEndpointControllerTest {
         verify(personEndpointService)
         .getPersonById(anyString(), anyString());
         verify(personEndpointService, times(1))
+        .getPersonById(anyString(), anyString());
+    }
+
+    @Test
+    @DisplayName("GET PERSON"
+    		+ " - Given INVALID PERSON-ID - without lastname,"
+    		+ " when GET request (/person?firstName=Test FirstName&lastName=),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testGetPersonRequestWithIdWithoutLastname() throws Exception {
+    	
+    	mockMvc.perform(MockMvcRequestBuilders
+        		.get("/person?firstName=Test FirstName&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personEndpointService, times(0))
         .getPersonById(anyString(), anyString());
     }
 }
