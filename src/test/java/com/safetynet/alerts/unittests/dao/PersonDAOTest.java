@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.PersonDAO;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.util.DataExchangerJsonToArrayList;
+import com.safetynet.alerts.util.DataFileReader;
 
 @DisplayName("Person DAO - Unit Tests")
 @ExtendWith(MockitoExtension.class)
@@ -30,7 +30,7 @@ public class PersonDAOTest {
     private ObjectMapper objectMapper;
 
     @Mock
-    private DataExchangerJsonToArrayList dataExchangerJsonToArrayList;
+    private DataFileReader dataExchangerJsonToArrayList;
 
     private static Person person1;
     private static Person person2;

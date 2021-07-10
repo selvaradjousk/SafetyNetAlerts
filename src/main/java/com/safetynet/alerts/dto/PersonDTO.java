@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonEndpointDTO {
+public class PersonDTO {
     private String firstName;
     private String lastName;
     private String address;

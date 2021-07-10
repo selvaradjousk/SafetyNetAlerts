@@ -18,29 +18,29 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetynet.alerts.controller.PersonEndpointController;
-import com.safetynet.alerts.dto.PersonEndpointDTO;
-import com.safetynet.alerts.service.PersonEndpointService;
+import com.safetynet.alerts.controller.PersonController;
+import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.service.PersonService;
 
 @DisplayName("Person Endpoint Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(PersonEndpointController.class)
+@WebMvcTest(PersonController.class)
 public class PersonEndpointControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private PersonEndpointService personEndpointService;
+    private PersonService personEndpointService;
 
     private ObjectMapper objectMapper;
 
-    private PersonEndpointDTO personEndpointDTO;
+    private PersonDTO personEndpointDTO;
 
     @BeforeEach
     public void setUp() {
         objectMapper = new ObjectMapper();
-        personEndpointDTO = PersonEndpointDTO.builder()
+        personEndpointDTO = PersonDTO.builder()
         		.firstName("Test FirstName")
         		.lastName("Test Last Name")
         		.address("1509 Culver St")

@@ -18,7 +18,7 @@ import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
 
 @Component
-public class DataExchangerJsonToArrayList {
+public class DataFileReader {
 
     private final List<Person> personList = new ArrayList<>();
 

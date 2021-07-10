@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.util.DataExchangerJsonToArrayList;
+import com.safetynet.alerts.util.DataFileReader;
 
 @DisplayName("IT - Reading JsonFile To ArrayList")
 @ExtendWith(SpringExtension.class)
@@ -23,7 +23,7 @@ import com.safetynet.alerts.util.DataExchangerJsonToArrayList;
 public class DataExchangerJsonToArrayListIT {
 
     @Autowired
-    private DataExchangerJsonToArrayList dataExchangerJsonToArrayList;
+    private DataFileReader dataExchangerJsonToArrayList;
 
     @DisplayName("ReadingJsonInputFile for PERSON"
     		+ " - Given input Json File to read"

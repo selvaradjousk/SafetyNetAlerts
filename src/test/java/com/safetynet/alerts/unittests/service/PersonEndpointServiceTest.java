@@ -18,11 +18,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.PersonDAO;
-import com.safetynet.alerts.dto.PersonEndpointDTO;
+import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.PersonEndpointService;
-import com.safetynet.alerts.util.DataExchangerModelFromDTO;
-import com.safetynet.alerts.util.DataExchangerModelToDTO;
+import com.safetynet.alerts.service.PersonService;
+import com.safetynet.alerts.util.PersonMapper;
 
 
 @DisplayName("Person Service - Unit Tests")
@@ -33,13 +32,10 @@ public class PersonEndpointServiceTest {
     private PersonDAO personDaoMock;
 
     @Mock
-    private DataExchangerModelToDTO dataExchangerModelToDTO;
-
-    @Mock
-    private DataExchangerModelFromDTO dataExchangerModelFromDTO;
+    private PersonMapper personMapper;
 
     @InjectMocks
-    private PersonEndpointService personEndpointService;
+    private PersonService personEndpointService;
 
     private static Person testPerson1;
     private static Person testPerson2;
@@ -47,7 +43,7 @@ public class PersonEndpointServiceTest {
     private static Person testPerson4;
     private static Person testPerson5;
 
-    private static PersonEndpointDTO personDTO;
+    private static PersonDTO personDTO;
 
     private static List<Person> personList;
     

@@ -6,29 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dao.PersonDAO;
-import com.safetynet.alerts.dto.PersonEndpointDTO;
+import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.util.DataExchangerModelToDTO;
+import com.safetynet.alerts.util.PersonMapper;
 
 @Service
-public class PersonEndpointService {
+public class PersonService {
 
 	private PersonDAO personDAO;
 
-	private DataExchangerModelToDTO dataExchangerModelToDTO;
+	private PersonMapper personMapper;
 	
     @Autowired
-    public PersonEndpointService(
+    public PersonService(
     		final PersonDAO personDAO,
-    		final DataExchangerModelToDTO dataExchangerModelToDTO) {
+    		final PersonMapper personMapper) {
         this.personDAO = personDAO;
-        this.dataExchangerModelToDTO = dataExchangerModelToDTO;
+        this.personMapper = personMapper;
     }
 	
-    public PersonEndpointDTO getPersonById(String firstName, String lastName) {
+    public PersonDTO getPersonById(String firstName, String lastName) {
 
         Person person = personDAO.getPersonByName(firstName, lastName);
-        return dataExchangerModelToDTO.transferToPersonEndpointDTO(person);
+        return personMapper.toPersonDTO(person);
     }
     
     public List<Person> getAllPersonList() {

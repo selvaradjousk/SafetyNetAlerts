@@ -10,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.util.DataExchangerJsonToArrayList;
-import com.safetynet.alerts.util.DataExchangerModelToDTO;
+import com.safetynet.alerts.util.DataFileReader;
+import com.safetynet.alerts.util.PersonMapper;
 
 @Repository
 public class PersonDAO {
 
-	private DataExchangerModelToDTO dataExchangerModelToDTO;
+	private PersonMapper personMapper;
 	
 	private Map<String, Person> personsMap = new HashMap<>();
 	
     @Autowired
-    public PersonDAO(DataExchangerJsonToArrayList jsonDataArrayList) {
+    public PersonDAO(DataFileReader jsonDataArrayList) {
         jsonDataArrayList.getPersonList().forEach(person -> personsMap.put(person.getFirstName()
                 + person.getLastName(), person));
     }
