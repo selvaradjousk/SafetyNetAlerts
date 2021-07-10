@@ -163,21 +163,70 @@ public class PersonServiceTest {
     }
     
     
+    // ***********************************************************************************
+
+    @DisplayName("Test GET PERSON BY IDENTITY")
+    @Nested
+    class TestGetPersonById {  
+    	
+        @BeforeEach
+        public void init() {
+            when(personDaoMock
+            		.getPersonByName(anyString(), anyString()))
+            .thenReturn(testPerson1);
+            
+            when(personMapper
+            		.toPersonDTO(any(Person.class)))
+            .thenReturn(personDTO);
+        }
+
+    
     @Test
-    public void testGetPersonByIdentity() {
-        when(personDaoMock
-        		.getPersonByName(anyString(), anyString()))
-        .thenReturn(testPerson1);
-        
-        when(personMapper
-        		.toPersonDTO(any(Person.class)))
-        .thenReturn(personDTO);
+    @DisplayName("Check <Validate> match to test value "
+    		+ " - Given a Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then all steps are executed in correct order and number of expected times")
+    public void testGetPersonByIdentityExecutionOrder() {
+
+        personService
+        		.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName());
+
+        InOrder inOrder = inOrder(personDaoMock, personMapper);
+        inOrder.verify(personDaoMock).getPersonByName(anyString(), anyString());
+        inOrder.verify(personMapper).toPersonDTO(any(Person.class));
+    }
+    
+    
+    @Test
+    @DisplayName("Check <NotNull>"
+    		+ " - Given a Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then the value should not be null")
+    public void testGetPersonByIdentityNotNullCheck() {
 
         PersonDTO personById = personService
         		.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName());
 
         assertNotNull(personById);
+    }
+    
+    
+    
+    @Test
+    @DisplayName("Check <Validate> match to test value "
+    		+ " - Given a Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then should match the test value")
+    public void testGetPersonByIdentityMatchTestValueCheck() {
+
+        PersonDTO personById = personService
+        		.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName());
+
         assertEquals(personDTO, personById);
     }
+  }
+    
+    
+    
 } 
 
