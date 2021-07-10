@@ -141,4 +141,28 @@ public class PersonDAOTest {
 
         assertNull(personFound);
     }
+    
+    
+    @Test
+    @DisplayName("SAVE PERSON")
+    public void testSavePerson() {
+    	objectMapper = new ObjectMapper();
+        person3 = Person.builder()
+        		.firstName("Test3 FirstName")
+        		.lastName("Test3 Last Name")
+        		.address("Test3 Address")
+        		.city("Test3 City")
+        		.zip(33333)
+        		.phone("333-333-333")
+        		.email("test3email@email.com")
+        		.build();
+
+        Person personSaved = personDAO
+        		.savePerson(person3);
+
+        assertEquals(person3, personSaved);
+        assertEquals(person3.getAddress(), personSaved.getAddress());
+        assertEquals(person3.getEmail(), personSaved.getEmail());
+    }
+    
 }
