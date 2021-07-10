@@ -248,7 +248,19 @@ public class PersonServiceTest {
     		+ " when ADD PERSON action request,"
     		+ " then Person added should be added and same as test record")
     public void testAddNewPersonReturnResultMatch() {
-
+        when(personDaoMock.getPersonByName(anyString(), anyString()))
+        .thenReturn(null);
+        when(personMapper
+        		.toPerson(any(PersonDTO.class)))
+        .thenReturn(testPerson1);
+        when(personDaoMock
+        		.savePerson(testPerson1))
+        .thenReturn(testPerson1);
+        
+        when(personMapper
+        		.toPersonDTO(any(Person.class)))
+        .thenReturn(personDTO); 
+        
         PersonDTO personSaved = personService
         		.addNewPerson(personDTO);
 
