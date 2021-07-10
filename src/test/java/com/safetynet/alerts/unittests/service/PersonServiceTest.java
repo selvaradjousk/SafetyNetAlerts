@@ -2,10 +2,12 @@ package com.safetynet.alerts.unittests.service;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -136,6 +138,21 @@ public class PersonServiceTest {
 
         assertEquals(personList, result);
         verify(personDaoMock).getPersonList();
+    }
+    
+    
+    @Test
+    @DisplayName("GET PERSONLIST"
+    		+ " - Given with no list of persons,"
+    		+ " when getPersonList,"
+    		+ " then return throw DataNotFoundException")
+    public void testGetPersonListwithEmptyList() {
+        when(personDaoMock
+        		.getPersonList())
+        .thenReturn(Collections.emptyList());
+
+        assertThrows(Exception.class, ()
+        		-> personService.getAllPersonList());
     }
 
 }
