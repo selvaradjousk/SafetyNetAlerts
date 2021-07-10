@@ -11,7 +11,7 @@ import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.PersonMapper;
 
 @Service
-public class PersonService {
+public class PersonService implements IPersonService {
 
 	private PersonDAO personDAO;
 
@@ -25,13 +25,15 @@ public class PersonService {
         this.personMapper = personMapper;
     }
 	
-    public PersonDTO getPersonById(String firstName, String lastName) {
+    @Override
+	public PersonDTO getPersonById(String firstName, String lastName) {
 
         Person person = personDAO.getPersonByName(firstName, lastName);
         return personMapper.toPersonDTO(person);
     }
     
-    public List<Person> getAllPersonList() {
+    @Override
+	public List<Person> getAllPersonList() {
         List<Person> listOfPerson = personDAO.getPersonList();
        return listOfPerson;
    }

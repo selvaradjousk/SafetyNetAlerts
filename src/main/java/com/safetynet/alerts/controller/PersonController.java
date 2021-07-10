@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
-import com.safetynet.alerts.service.PersonService;
+import com.safetynet.alerts.service.IPersonService;
 
 @RestController
 public class PersonController {
 
-	private final PersonService personEndpointService;
+	private final IPersonService personEndpointService;
 
 	@Autowired
-	public PersonController(final PersonService personEndpointService) {
+	public PersonController(final IPersonService personEndpointService) {
 		this.personEndpointService = personEndpointService;
 	}
 
