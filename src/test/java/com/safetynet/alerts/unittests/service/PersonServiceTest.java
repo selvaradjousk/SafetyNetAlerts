@@ -128,7 +128,7 @@ public class PersonServiceTest {
     		+ " - Given a list of persons,"
     		+ " when getPersonList,"
     		+ " then return expected Person list")
-    public void testGetPersonList() {
+    public void testGetPersonList() throws Exception {
         when(personDaoMock
         		.getPersonList())
         .thenReturn(personList);

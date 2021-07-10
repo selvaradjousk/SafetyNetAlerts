@@ -33,8 +33,12 @@ public class PersonService implements IPersonService {
     }
     
     @Override
-	public List<Person> getAllPersonList() {
+	public List<Person> getAllPersonList() throws Exception {
         List<Person> listOfPerson = personDAO.getPersonList();
+        
+		if (listOfPerson.isEmpty()) {
+			throw new Exception("Person List is Empty");
+        }
        return listOfPerson;
    }
 

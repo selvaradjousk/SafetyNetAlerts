@@ -9,6 +9,6 @@ public interface IPersonService {
 
 	PersonDTO getPersonById(String firstName, String lastName);
 
-	List<Person> getAllPersonList();
+	List<Person> getAllPersonList() throws Exception;
 
 }
