@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.safetynet.alerts.dao.IPersonDAO;
 import com.safetynet.alerts.dao.PersonDAO;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.DataFileReader;
@@ -24,7 +25,7 @@ import com.safetynet.alerts.util.DataFileReader;
 @ExtendWith(MockitoExtension.class)
 public class PersonDAOTest {
 
-    private PersonDAO personDAO;
+    private IPersonDAO personDAO;
     
     @Mock
     private ObjectMapper objectMapper;

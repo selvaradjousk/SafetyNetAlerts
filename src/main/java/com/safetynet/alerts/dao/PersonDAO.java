@@ -14,22 +14,24 @@ import com.safetynet.alerts.util.DataFileReader;
 import com.safetynet.alerts.util.PersonMapper;
 
 @Repository
-public class PersonDAO {
+public class PersonDAO implements IPersonDAO {
 
 	private PersonMapper personMapper;
 	
 	private Map<String, Person> personsMap = new HashMap<>();
 	
     @Autowired
-    public PersonDAO(DataFileReader jsonDataArrayList) {
-        jsonDataArrayList.getPersonList().forEach(person -> personsMap.put(person.getFirstName()
+    public PersonDAO(DataFileReader dataFileReader) {
+        dataFileReader.getPersonList().forEach(person -> personsMap.put(person.getFirstName()
                 + person.getLastName(), person));
     }
 
+	@Override
 	public Person getPersonByName(String firstName, String lastName) {
         return personsMap.get(firstName + lastName);
     }
 	
+	@Override
 	public List<Person> getPersonList() {
         Collection personList = personsMap.values();
         return new ArrayList<>(personList);

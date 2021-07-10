@@ -1,8 +1,12 @@
 package com.safetynet.alerts.unittests.service;
 
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -12,8 +16,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -155,5 +161,23 @@ public class PersonServiceTest {
         assertThrows(DataNotFoundException.class, ()
         		-> personService.getAllPersonList());
     }
+    
+    
+    @Test
+    public void testGetPersonByIdentity() {
+        when(personDaoMock
+        		.getPersonByName(anyString(), anyString()))
+        .thenReturn(testPerson1);
+        
+        when(personMapper
+        		.toPersonDTO(any(Person.class)))
+        .thenReturn(personDTO);
 
-}
+        PersonDTO personById = personService
+        		.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName());
+
+        assertNotNull(personById);
+        assertEquals(personDTO, personById);
+    }
+} 
+

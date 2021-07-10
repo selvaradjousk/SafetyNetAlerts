@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetynet.alerts.dao.PersonDAO;
+import com.safetynet.alerts.dao.IPersonDAO;
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
@@ -14,13 +14,13 @@ import com.safetynet.alerts.util.PersonMapper;
 @Service
 public class PersonService implements IPersonService {
 
-	private PersonDAO personDAO;
+	private IPersonDAO personDAO;
 
 	private PersonMapper personMapper;
 	
     @Autowired
     public PersonService(
-    		final PersonDAO personDAO,
+    		final IPersonDAO personDAO,
     		final PersonMapper personMapper) {
         this.personDAO = personDAO;
         this.personMapper = personMapper;
