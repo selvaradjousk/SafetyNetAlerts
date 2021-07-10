@@ -112,4 +112,50 @@ public class PersonControllerTest {
         verify(personService, times(1))
         .addNewPerson(any(PersonDTO.class));
     }
+    
+    @Test
+    @DisplayName("ADD PERSON (without person Id)"
+    		+ " - Given add a person without person Id,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddPersonRequestWithoutValidId() throws Exception {
+        objectMapper = new ObjectMapper();
+        personDTO = PersonDTO.builder()
+        		.firstName("")
+        		.lastName("")
+        		.address("1509 Culver St")
+        		.city("Culver")
+        		.zip(97451)
+        		.phone("111-111-1111")
+        		.email("testemail@email.com")
+        		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(personDTO)))
+                .andExpect(status()
+               		.isBadRequest());
+
+        verify(personService, times(0))
+        .addNewPerson(any(PersonDTO.class));
+    }
+    
+    @Test
+    @DisplayName("ADD PERSON (empty request body)"
+    		+ " - Given add a person with an empty request body,"
+    		+ " when POST request,"
+    		+ " then return Status: 400 Bad Request)")
+    public void testAddPersonRequestWithEmptyRequestBody() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(""))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .addNewPerson(any(PersonDTO.class));
+    }
+
 }
