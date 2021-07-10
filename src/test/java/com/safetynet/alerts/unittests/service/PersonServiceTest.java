@@ -242,32 +242,71 @@ public class PersonServiceTest {
     
     
     
+    // ***********************************************************************************
+
+    @DisplayName("Test ADD New PERSON")
+    @Nested
+    class TestAddNewPerson {  
+    	
+        @BeforeEach
+        public void init() {
+            when(personDaoMock.getPersonByName(anyString(), anyString()))
+            .thenReturn(null);
+            when(personMapper
+            		.toPerson(any(PersonDTO.class)))
+            .thenReturn(testPerson1);
+            when(personDaoMock
+            		.savePerson(testPerson1))
+            .thenReturn(testPerson1);
+            
+            when(personMapper
+            		.toPersonDTO(any(Person.class)))
+            .thenReturn(personDTO);        	
+    }
+
     @Test
-    @DisplayName("Test ADD PERSON "
+    @DisplayName("Check <Execution Order>"
+    		+ " - Given a new Person,"
+    		+ " when ADDPERSON action request,"
+    		+ " then all steps are executed in correct order and number of expected times")
+    public void testAddNewPersonExecutionOrderCheck() {
+
+    	personService
+        		.addNewPerson(personDTO);
+
+        InOrder inOrder = inOrder(personDaoMock, personMapper, personMapper);
+        inOrder.verify(personDaoMock).getPersonByName(anyString(), anyString());
+        inOrder.verify(personMapper).toPerson(any(PersonDTO.class));
+        inOrder.verify(personDaoMock).savePerson(any(Person.class));
+        inOrder.verify(personMapper).toPersonDTO(any(Person.class));
+    }
+    
+    @Test
+    @DisplayName("Check <NotNull>"
+    		+ " - Given a new Person,"
+    		+ " when ADDPERSON action request,"
+    		+ " then Person should not be null")
+    public void testAddNewPersonNotNullCheck() {
+
+        PersonDTO personSaved = personService
+        		.addNewPerson(personDTO);
+
+        assertNotNull(personSaved);
+    }
+    
+    @Test
+    @DisplayName("Check <Validate> match of both same record instance "
     		+ " - Given a new Person,"
     		+ " when ADD PERSON action request,"
     		+ " then Person added should be added and same as test record")
     public void testAddNewPersonReturnResultMatch() {
-        when(personDaoMock.getPersonByName(anyString(), anyString()))
-        .thenReturn(null);
-        when(personMapper
-        		.toPerson(any(PersonDTO.class)))
-        .thenReturn(testPerson1);
-        when(personDaoMock
-        		.savePerson(testPerson1))
-        .thenReturn(testPerson1);
-        
-        when(personMapper
-        		.toPersonDTO(any(Person.class)))
-        .thenReturn(personDTO); 
-        
+
         PersonDTO personSaved = personService
         		.addNewPerson(personDTO);
 
         assertThat(personSaved).usingRecursiveComparison().isEqualTo(testPerson1);
-        verify(personDaoMock).savePerson(any(Person.class));
-        
     }
+  }
     
 } 
 
