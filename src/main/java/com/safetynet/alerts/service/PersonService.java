@@ -48,9 +48,13 @@ public class PersonService implements IPersonService {
        return listOfPerson;
    }
 
-	public PersonDTO addNewPerson(PersonDTO newPerson) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public PersonDTO addNewPerson(final PersonDTO newPerson) {
+	personDAO.getPersonByName(newPerson.getFirstName(), newPerson.getLastName());
+
+        Person personToSave = personMapper.toPerson(newPerson);
+        Person personSaved = personDAO.savePerson(personToSave);
+
+        return personMapper.toPersonDTO(personSaved);
+    }
 
 }
