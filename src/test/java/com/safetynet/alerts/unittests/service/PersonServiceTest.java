@@ -3,6 +3,7 @@ package com.safetynet.alerts.unittests.service;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -238,6 +239,23 @@ public class PersonServiceTest {
         assertThrows(DataNotFoundException.class, ()
         		-> personService.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName()));
     }  
+    
+    
+    
+    @Test
+    @DisplayName("Test ADD PERSON "
+    		+ " - Given a new Person,"
+    		+ " when ADD PERSON action request,"
+    		+ " then Person added should be added and same as test record")
+    public void testAddNewPersonReturnResultMatch() {
+
+        PersonDTO personSaved = personService
+        		.addNewPerson(personDTO);
+
+        assertThat(personSaved).usingRecursiveComparison().isEqualTo(testPerson1);
+        verify(personDaoMock).savePerson(any(Person.class));
+        
+    }
     
 } 
 

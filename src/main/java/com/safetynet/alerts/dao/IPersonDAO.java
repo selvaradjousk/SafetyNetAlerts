@@ -9,5 +9,7 @@ public interface IPersonDAO {
 	Person getPersonByName(String firstName, String lastName);
 
 	List<Person> getPersonList();
+	
+	Person savePerson(Person pers);
 
 }
