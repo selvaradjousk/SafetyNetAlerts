@@ -227,6 +227,17 @@ public class PersonServiceTest {
   }
     
     
+    @Test
+    @DisplayName("Test GET PERSON BY IDENTITY EXCEPTION"
+    		+ " - Given a Invalid Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then return Data Not Found Exception")
+    public void testGetByIdentityForInvalidId() {
+        when(personDaoMock.getPersonByName(anyString(), anyString())).thenReturn(null);
+
+        assertThrows(DataNotFoundException.class, ()
+        		-> personService.getPersonById(testPerson1.getFirstName(), testPerson1.getLastName()));
+    }  
     
 } 
 

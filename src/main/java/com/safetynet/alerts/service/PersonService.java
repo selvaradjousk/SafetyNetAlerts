@@ -30,6 +30,11 @@ public class PersonService implements IPersonService {
 	public PersonDTO getPersonById(String firstName, String lastName) {
 
         Person person = personDAO.getPersonByName(firstName, lastName);
+        
+		if (person == null) {
+			throw new DataNotFoundException("Person with this ID is not Found");
+		}
+		
         return personMapper.toPersonDTO(person);
     }
     
