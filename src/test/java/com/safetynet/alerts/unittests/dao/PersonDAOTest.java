@@ -144,7 +144,10 @@ public class PersonDAOTest {
     
     
     @Test
-    @DisplayName("SAVE PERSON")
+    @DisplayName("SAVE PERSON"
+    		+ " - Given a Person entry value,"
+    		+ " when SAVE action request,"
+    		+ " then Person entry should be saved")
     public void testSavePerson() {
     	objectMapper = new ObjectMapper();
         person3 = Person.builder()

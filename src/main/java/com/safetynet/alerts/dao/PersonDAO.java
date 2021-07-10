@@ -39,9 +39,9 @@ public class PersonDAO implements IPersonDAO {
     }
 
 	public Person savePerson(final Person person) {
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
+        personsMap.put(person.getFirstName() + person.getLastName(), person);
+
+        return personsMap.get(person.getFirstName() + person.getLastName());
+    }
 	
 }
