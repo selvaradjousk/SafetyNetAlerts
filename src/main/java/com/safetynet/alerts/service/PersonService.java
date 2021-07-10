@@ -65,4 +65,9 @@ public class PersonService implements IPersonService {
         return personMapper.toPersonDTO(personSaved);
     }
 
+	public PersonDTO updateExistingPerson(final PersonDTO existingPerson) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

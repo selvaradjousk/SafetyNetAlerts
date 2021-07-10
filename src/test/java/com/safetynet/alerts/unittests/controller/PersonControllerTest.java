@@ -1,7 +1,8 @@
 package com.safetynet.alerts.unittests.controller;
 
-import static org.mockito.ArgumentMatchers.anyString;
+import static com.safetynet.alerts.testingtoolsconfig.DataPreparation.displayAsJsonString;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -156,6 +157,29 @@ public class PersonControllerTest {
 
         verify(personService, times(0))
         .addNewPerson(any(PersonDTO.class));
+    }
+    
+    @Test
+    @DisplayName("UPDATE PERSON"
+    		+ " - Given update a Person with VALID PERSON-ID,"
+    		+ " when PUT request,"
+    		+ " then return - Status: 200 OK")
+    public void testUpdatePersonRequestWithValidPersonId() throws Exception {
+        when(personService
+        		.updateExistingPerson(any(PersonDTO.class)))
+        .thenReturn(any(PersonDTO.class));
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(personDTO)))
+                .andExpect(status()
+                		.isOk());
+
+        verify(personService)
+        .updateExistingPerson(any(PersonDTO.class));
+        verify(personService, times(1))
+        .updateExistingPerson(any(PersonDTO.class));
     }
 
 }
