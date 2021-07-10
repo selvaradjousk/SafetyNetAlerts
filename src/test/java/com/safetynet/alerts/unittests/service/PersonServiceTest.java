@@ -28,6 +28,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.PersonDAO;
 import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.PersonService;
@@ -307,6 +308,21 @@ public class PersonServiceTest {
         assertThat(personSaved).usingRecursiveComparison().isEqualTo(testPerson1);
     }
   }
+    
+    @Test
+    @DisplayName("ERROR ADD NEW PERSON for existing Person data"
+    		+ " - Given a existing Person,"
+    		+ " when ADDPERSON action request,"
+    		+ " then Person entry should respond"
+    		+ " with Data Already Registered Exception")
+    public void testAddPersonForExistingPersonData() {
+        when(personDaoMock
+        		.getPersonByName(anyString(), anyString()))
+        .thenReturn(testPerson1);
+
+        assertThrows(DataAlreadyRegisteredException.class, ()
+        		-> personService.addNewPerson(personDTO));
+    }    
     
 } 
 

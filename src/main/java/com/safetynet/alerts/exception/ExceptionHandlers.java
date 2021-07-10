@@ -29,4 +29,12 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
+    
+    @ExceptionHandler(DataAlreadyRegisteredException.class)
+    public ResponseEntity handleConflict(final DataAlreadyRegisteredException ex, final WebRequest request) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails (LocalDateTime.now(), ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<> (exceptionDetails, HttpStatus.CONFLICT);
+    }
 }

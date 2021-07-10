@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dao.IPersonDAO;
 import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.PersonMapper;
@@ -49,7 +50,14 @@ public class PersonService implements IPersonService {
    }
 
     public PersonDTO addNewPerson(final PersonDTO newPerson) {
-	personDAO.getPersonByName(newPerson.getFirstName(), newPerson.getLastName());
+        
+    	Person personAlreadyExists
+        = personDAO
+        .getPersonByName(newPerson.getFirstName(), newPerson.getLastName());
+
+		if (personAlreadyExists != null) {
+			throw new DataAlreadyRegisteredException("Person already registered");
+        }
 
         Person personToSave = personMapper.toPerson(newPerson);
         Person personSaved = personDAO.savePerson(personToSave);
