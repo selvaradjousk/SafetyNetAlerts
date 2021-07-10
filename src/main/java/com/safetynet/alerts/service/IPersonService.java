@@ -10,5 +10,7 @@ public interface IPersonService {
 	PersonDTO getPersonById(String firstName, String lastName);
 
 	List<Person> getAllPersonList();
+	
+    PersonDTO addNewPerson(PersonDTO newPerson);
 
 }

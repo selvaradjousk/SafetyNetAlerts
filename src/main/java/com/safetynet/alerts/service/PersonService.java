@@ -48,4 +48,9 @@ public class PersonService implements IPersonService {
        return listOfPerson;
    }
 
+	public PersonDTO addNewPerson(PersonDTO newPerson) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

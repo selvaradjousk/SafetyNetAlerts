@@ -1,6 +1,7 @@
 package com.safetynet.alerts.unittests.controller;
 
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -86,5 +88,28 @@ public class PersonControllerTest {
 
         verify(personService, times(0))
         .getPersonById(anyString(), anyString());
+    }
+    
+    @Test
+    @DisplayName("ADD PERSON"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then return Status: 201 Created")
+    public void testAddPersonRequestWithValidId() throws Exception {
+    	when(personService
+    			.addNewPerson(any(PersonDTO.class)))
+    	.thenReturn(any(PersonDTO.class));
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(personDTO)))
+                .andExpect(status()
+                		.isCreated());
+
+        verify(personService)
+        .addNewPerson(any(PersonDTO.class));
+        verify(personService, times(1))
+        .addNewPerson(any(PersonDTO.class));
     }
 }
