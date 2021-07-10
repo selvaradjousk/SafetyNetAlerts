@@ -21,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.PersonDAO;
 import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.PersonService;
 import com.safetynet.alerts.util.PersonMapper;
@@ -128,7 +129,7 @@ public class PersonServiceTest {
     		+ " - Given a list of persons,"
     		+ " when getPersonList,"
     		+ " then return expected Person list")
-    public void testGetPersonList() throws Exception {
+    public void testGetPersonList() {
         when(personDaoMock
         		.getPersonList())
         .thenReturn(personList);
@@ -151,7 +152,7 @@ public class PersonServiceTest {
         		.getPersonList())
         .thenReturn(Collections.emptyList());
 
-        assertThrows(Exception.class, ()
+        assertThrows(DataNotFoundException.class, ()
         		-> personService.getAllPersonList());
     }
 

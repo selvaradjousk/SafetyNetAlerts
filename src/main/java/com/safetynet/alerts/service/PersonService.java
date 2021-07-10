@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dao.PersonDAO;
 import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.PersonMapper;
 
@@ -33,11 +34,11 @@ public class PersonService implements IPersonService {
     }
     
     @Override
-	public List<Person> getAllPersonList() throws Exception {
+	public List<Person> getAllPersonList() {
         List<Person> listOfPerson = personDAO.getPersonList();
         
 		if (listOfPerson.isEmpty()) {
-			throw new Exception("Person List is Empty");
+			throw new DataNotFoundException("Person List is Empty");
         }
        return listOfPerson;
    }
