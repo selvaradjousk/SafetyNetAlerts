@@ -2,6 +2,7 @@ package com.safetynet.alerts.unittests.dao;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -112,5 +113,32 @@ public class PersonDAOTest {
 
         assertEquals((Arrays.asList(person1, person2, person3, person4, person5)).size(), (personList).size());
         assertTrue((Arrays.asList(person1, person2, person3, person4, person5)).containsAll(personList));
+    }
+    
+    @Test
+    @DisplayName("GET PERSON BY IDENTITY"
+    		+ " - Given a Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then return expected Person")
+    public void testGetPersonByIdentity() {
+        Person personFound = personDAO
+        		.getPersonByName("Test1 FirstName", "Test1 Last Name");
+
+        assertEquals(person1, personFound);
+    }
+
+    
+    
+    
+    @Test
+    @DisplayName("GET PERSON BY IDENTITY"
+    		+ " - Given a Invalid Person Id,"
+    		+ " when findByIdentity action requested,"
+    		+ " then return null")
+    public void testGetByIdentityForInvalidId() {
+        Person personFound = personDAO
+        		.getPersonByName("Test10 FirstName", "Test10 LastName");
+
+        assertNull(personFound);
     }
 }
