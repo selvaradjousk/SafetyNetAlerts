@@ -25,22 +25,22 @@ import com.safetynet.alerts.service.PersonService;
 @DisplayName("Person Endpoint Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(PersonController.class)
-public class PersonEndpointControllerTest {
+public class PersonControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private PersonService personEndpointService;
+    private PersonService personService;
 
     private ObjectMapper objectMapper;
 
-    private PersonDTO personEndpointDTO;
+    private PersonDTO personDTO;
 
     @BeforeEach
     public void setUp() {
         objectMapper = new ObjectMapper();
-        personEndpointDTO = PersonDTO.builder()
+        personDTO = PersonDTO.builder()
         		.firstName("Test FirstName")
         		.lastName("Test Last Name")
         		.address("1509 Culver St")
@@ -57,18 +57,18 @@ public class PersonEndpointControllerTest {
     		+ " when GET request (/person?firstName=Test FirstName&lastName=Test Last Name),"
     		+ " then return - Status: OK 200")
     public void testGetPersonRequestWithValidId() throws Exception {
-        when(personEndpointService
+        when(personService
         		.getPersonById(anyString(), anyString()))
-        .thenReturn(personEndpointDTO);
+        .thenReturn(personDTO);
 
         mockMvc.perform(MockMvcRequestBuilders
         		.get("/person?firstName=Test FirstName&lastName=Test Last Name"))
                 .andExpect(status()
                 		.isOk());
 
-        verify(personEndpointService)
+        verify(personService)
         .getPersonById(anyString(), anyString());
-        verify(personEndpointService, times(1))
+        verify(personService, times(1))
         .getPersonById(anyString(), anyString());
     }
 
@@ -84,7 +84,7 @@ public class PersonEndpointControllerTest {
                 .andExpect(status()
                 		.isBadRequest());
 
-        verify(personEndpointService, times(0))
+        verify(personService, times(0))
         .getPersonById(anyString(), anyString());
     }
 }

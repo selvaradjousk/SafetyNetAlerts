@@ -20,10 +20,10 @@ import com.safetynet.alerts.util.DataFileReader;
 @DisplayName("IT - Reading JsonFile To ArrayList")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class DataExchangerJsonToArrayListIT {
+public class DataFileReaderIT {
 
     @Autowired
-    private DataFileReader dataExchangerJsonToArrayList;
+    private DataFileReader dataFileReader;
 
     @DisplayName("ReadingJsonInputFile for PERSON"
     		+ " - Given input Json File to read"
@@ -31,7 +31,7 @@ public class DataExchangerJsonToArrayListIT {
     		+ "then return expected number of entries in the list")
     @Test
     public void testgetPersonListFromJsonSourceFile() {
-        List<Person> listOfPersons = dataExchangerJsonToArrayList.getPersonList();
+        List<Person> listOfPersons = dataFileReader.getPersonList();
 
         assertNotNull(listOfPersons);
         assertEquals(23, listOfPersons.size());
@@ -43,7 +43,7 @@ public class DataExchangerJsonToArrayListIT {
     		+ "then return expected number of entries in the list")
     @Test
     public void testgetFirestationListFromJsonSourceFile() {
-        List<FireStation> listOfFireStations = dataExchangerJsonToArrayList.getFireStationList();
+        List<FireStation> listOfFireStations = dataFileReader.getFireStationList();
 
         assertNotNull(listOfFireStations);
         assertEquals(13, listOfFireStations.size());
@@ -55,7 +55,7 @@ public class DataExchangerJsonToArrayListIT {
     		+ "then return expected number of entries in the list")
     @Test
     public void testgetMedicalRecordListFromJsonSourceFile() {
-        List<MedicalRecord> listOfMedicalRecords = dataExchangerJsonToArrayList.getMedicalRecordList();
+        List<MedicalRecord> listOfMedicalRecords = dataFileReader.getMedicalRecordList();
 
         assertNotNull(listOfMedicalRecords);
         assertEquals(23, listOfMedicalRecords.size());

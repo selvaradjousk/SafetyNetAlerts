@@ -26,7 +26,7 @@ import com.safetynet.alerts.util.PersonMapper;
 
 @DisplayName("Person Service - Unit Tests")
 @ExtendWith(MockitoExtension.class)
-public class PersonEndpointServiceTest {
+public class PersonServiceTest {
 
     @Mock
     private PersonDAO personDaoMock;
@@ -35,7 +35,7 @@ public class PersonEndpointServiceTest {
     private PersonMapper personMapper;
 
     @InjectMocks
-    private PersonService personEndpointService;
+    private PersonService personService;
 
     private static Person testPerson1;
     private static Person testPerson2;
@@ -131,7 +131,7 @@ public class PersonEndpointServiceTest {
         		.getPersonList())
         .thenReturn(personList);
 
-        List<Person> result = personEndpointService
+        List<Person> result = personService
         		.getAllPersonList();
 
         assertEquals(personList, result);

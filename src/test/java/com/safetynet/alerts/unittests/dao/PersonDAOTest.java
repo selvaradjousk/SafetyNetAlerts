@@ -30,7 +30,7 @@ public class PersonDAOTest {
     private ObjectMapper objectMapper;
 
     @Mock
-    private DataFileReader dataExchangerJsonToArrayList;
+    private DataFileReader dataFileReader;
 
     private static Person person1;
     private static Person person2;
@@ -93,11 +93,11 @@ public class PersonDAOTest {
         		.build();
     	
 
-        when(dataExchangerJsonToArrayList
+        when(dataFileReader
         		.getPersonList())
         .thenReturn(Arrays.asList(person1, person2, person3, person4, person5));
 
-        personDAO = new PersonDAO(dataExchangerJsonToArrayList);
+        personDAO = new PersonDAO(dataFileReader);
     }
 
     @Test
