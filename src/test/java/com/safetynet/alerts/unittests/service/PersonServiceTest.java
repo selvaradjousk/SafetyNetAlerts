@@ -397,6 +397,19 @@ public class PersonServiceTest {
         }
   }
     
+    @Test
+    @DisplayName("UPDATE PERSON"
+    		+ " - Given a non existing Person to update,"
+    		+ " when Update Person action request,"
+    		+ " then Person entry should display Data Not Found Exception")
+    public void testUpdatePersonForNonExistingPerson() {
+        when(personDaoMock
+        		.getPersonByName(anyString(), anyString()))
+        .thenReturn(null);
+
+        assertThrows(DataNotFoundException.class, ()
+        		-> personService.updateExistingPerson(personDTO));
+    }
     
 } 
 
