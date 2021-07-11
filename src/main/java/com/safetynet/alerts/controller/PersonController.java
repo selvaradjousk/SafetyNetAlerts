@@ -15,18 +15,41 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IPersonService;
 
+/**
+ * Provides methods for CRUD operations on Person data resource
+ *  using HTTP requests to access and use data.
+ * @author Senthil
+ *
+ */
 @RestController
 public class PersonController {
 
-	private final IPersonService personEndpointService;
+	/**
+	 * Person Service interface class.
+	 */
+	private final IPersonService personService;
 
+	/**
+	 * Constructor for PersonController Class.
+	 * @param personService
+	 */
 	@Autowired
-	public PersonController(final IPersonService personEndpointService) {
-		this.personEndpointService = personEndpointService;
+	public PersonController(
+			final IPersonService personService) {
+		this.personService = personService;
 	}
 
+    /**
+	 * Gets a person data from the Person resource list
+     *  based on its requested URI specified.
+     * @param firstName key value of the requested URI
+     * @param lastName  key value of the requested URI
+     * @return Response Entity return HTTP response
+     *  - includes status, body and header
+     */
 	@GetMapping("/person")
-	public ResponseEntity<PersonDTO> getPerson(@RequestParam("firstName") final String firstName,
+	public ResponseEntity<PersonDTO> getPerson(
+			@RequestParam("firstName") final String firstName,
 			@RequestParam("lastName") final String lastName) {
 
         if (firstName == null
@@ -34,57 +57,86 @@ public class PersonController {
         		|| lastName == null
                 || lastName.trim().length() == 0) {
             throw new BadRequestException("Response Status: 400 Bad Request"
-            		+ " -> The parameter entered has missing values or invalid");
+            		+ " -> The parameter entered has missing values"
+            		+ " or invalid");
         }
-		PersonDTO personDTO = personEndpointService
+		PersonDTO personDTO = personService
 				.getPersonById(firstName, lastName);
 
 		return new ResponseEntity<>(personDTO, HttpStatus.OK);
 	}
-	
+
+	/**
+     * Adds a new person resource based
+     *  on its requested URI specified.
+     * @param person input value of the requested URI
+     * @return Response Entity return HTTP response
+     *  - includes status, body and header
+     */
     @PostMapping("/person")
-    public ResponseEntity<PersonDTO> addNewPerson(@RequestBody final PersonDTO person) {
+    public ResponseEntity<PersonDTO> addNewPerson(
+    		@RequestBody final PersonDTO person) {
 
         if (person.getFirstName() == null
         		|| person.getFirstName().isEmpty()
         		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status: 400 Bad request "
-            		+ "The request body is incomplete or missing required entries");
+            throw new BadRequestException("Response Status: 400 Bad request"
+            		+ " The request body is incomplete"
+            		+ " or missing required entries");
         }
-        PersonDTO personAdded = personEndpointService
+        PersonDTO personAdded = personService
         		.addNewPerson(person);
 
         return new ResponseEntity<>(personAdded, HttpStatus.CREATED);
     }
-    
+
+    /**
+     * Updates a existing person resource
+     *  based on its requested URI specified.
+     * @param person input value of the requested URI
+     * @return Response Entity return HTTP response
+     *  - includes status, body and header
+     */
     @PutMapping("/person")
-    public ResponseEntity<PersonDTO> updateExistingPerson(@RequestBody final PersonDTO person) {
+    public ResponseEntity<PersonDTO> updateExistingPerson(
+    		@RequestBody final PersonDTO person) {
 
         if (person.getFirstName() == null
         		|| person.getFirstName().isEmpty()
         		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
             throw new BadRequestException("Response Status 400 Bad request"
-            		+ " The request body is incomplete or missing required entries");
+            		+ " The request body is incomplete"
+            		+ " or missing required entries");
         }
-        PersonDTO personUpdated = personEndpointService.updateExistingPerson(person);
+        PersonDTO personUpdated = personService
+        		.updateExistingPerson(person);
 
         return new ResponseEntity<>(personUpdated, HttpStatus.OK);
     }
-    
+
+    /**
+     * Deletes a person resource based
+     *  on its requested URI specified.
+     * @param firstName key value of the requested URI
+     * @param lastName  key value of the requested URI
+     * @return Response Entity return HTTP status response
+     */
     @DeleteMapping("/person")
-    public ResponseEntity<Void> deletePerson(@RequestParam("firstName") final String firstName,
-                                             @RequestParam("lastName") final String lastName) {
+    public ResponseEntity<Void> deletePerson(
+    		@RequestParam("firstName") final String firstName,
+    		@RequestParam("lastName") final String lastName) {
 
 		if (firstName == null
 				|| firstName.trim().length() == 0
 				|| lastName == null
                 || lastName.trim().length() == 0) {
             throw new BadRequestException("Response Status: 400 Bad request:"
-            		+ " The request body is incomplete or missing required parameters entry");
+            		+ " The request body is incomplete "
+            		+ "or missing required parameters entry");
         }
-        personEndpointService.deleteExistingPerson(firstName, lastName);
+        personService.deleteExistingPerson(firstName, lastName);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

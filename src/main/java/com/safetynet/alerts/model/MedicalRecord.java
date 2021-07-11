@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Medical Record DO..
+ */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,9 +20,28 @@ import lombok.ToString;
 @ToString
 public class MedicalRecord {
 
+/**
+ * person first name.
+ */
     private String firstName;
+
+/**
+ * person last name.
+ */
     private String lastName;
+
+/**
+ * person birth date.
+ */
     private String birthDate;
+
+/**
+ * medication list.
+ */
     private List<String> medications;
+
+/**
+ * allergies list.
+ */
     private List<String> allergies;
 }

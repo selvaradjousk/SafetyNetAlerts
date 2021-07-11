@@ -6,9 +6,19 @@ import org.springframework.stereotype.Component;
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
 
+/**
+ * MApper for PErson Data resource.
+ * @author Senthil
+ *
+ */
 @Component
 public class PersonMapper {
 
+    /**
+     * Person DTO toPerson DO.
+     * @param personDTO
+     * @return Person
+     */
     public Person toPerson(final PersonDTO personDTO) {
 
         return new Person(personDTO.getFirstName(),
@@ -19,7 +29,12 @@ public class PersonMapper {
                 personDTO.getPhone(),
                 personDTO.getEmail());
     }
-    
+
+    /**
+     * Person DO toPerson DTO.
+     * @param person
+     * @return PersonDTO
+     */
     public PersonDTO toPersonDTO(final Person person) {
 
         return new PersonDTO(person.getFirstName(),

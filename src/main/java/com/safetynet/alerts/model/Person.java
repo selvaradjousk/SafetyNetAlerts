@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Person DO.
+ * @author Senthil
+ *
+ */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,11 +20,38 @@ import lombok.ToString;
 @ToString
 public class Person {
 
+/**
+ * person first name.
+ */
 	private String firstName;
+
+/**
+ * person last name.
+ */
 	private String lastName;
+
+/**
+ * person address.
+ */
 	private String address;
+
+/**
+ * person city.
+ */
 	private String city;
-    private int zip;
+
+/**
+ * person zip.
+ */
+	private int zip;
+
+/**
+ * person phone.
+ */
 	private String phone;
+
+/**
+ * person email.
+ */
 	private String email;
 }

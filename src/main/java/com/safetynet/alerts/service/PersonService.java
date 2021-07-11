@@ -12,13 +12,29 @@ import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.PersonMapper;
 
+/**
+ * Person service class.
+ * @author Senthil
+ *
+ */
 @Service
 public class PersonService implements IPersonService {
 
+    /**
+     * person DAO instance.
+     */
 	private IPersonDAO personDAO;
 
+    /**
+     * person mapper instance.
+     */
 	private PersonMapper personMapper;
-	
+
+    /**
+     * Person service constructor.
+     * @param personDAO
+     * @param personMapper
+     */
     @Autowired
     public PersonService(
     		final IPersonDAO personDAO,
@@ -26,37 +42,58 @@ public class PersonService implements IPersonService {
         this.personDAO = personDAO;
         this.personMapper = personMapper;
     }
-	
-    @Override
-	public PersonDTO getPersonById(String firstName, String lastName) {
 
-        Person person = personDAO.getPersonByName(firstName, lastName);
-        
+    /**
+     * Get person by id.
+     * @return person
+     */
+    @Override
+	public PersonDTO getPersonById(
+			final String firstName,
+			final String lastName) {
+
+        Person person = personDAO
+        		.getPersonByName(firstName, lastName);
+
 		if (person == null) {
-			throw new DataNotFoundException("Person with this ID is not Found");
+			throw new DataNotFoundException("Person "
+					+ "with this ID is not Found");
 		}
-		
+
         return personMapper.toPersonDTO(person);
     }
-    
+
+    /**
+     * Get list of persons.
+     * @return person list
+     */
     @Override
 	public List<Person> getAllPersonList() {
         List<Person> listOfPerson = personDAO.getPersonList();
-        
+
 		if (listOfPerson.isEmpty()) {
-			throw new DataNotFoundException("Person List is Empty");
+			throw new DataNotFoundException("Person"
+					+ " List is Empty");
         }
        return listOfPerson;
    }
 
-    public PersonDTO addNewPerson(final PersonDTO newPerson) {
-        
+    /**
+     * Add new person.
+     * @param newPerson
+     * @return personSaved saved
+     */
+    public PersonDTO addNewPerson(
+    		final PersonDTO newPerson) {
+
     	Person personAlreadyExists
-        = personDAO
-        .getPersonByName(newPerson.getFirstName(), newPerson.getLastName());
+        = personDAO.getPersonByName(
+        		newPerson.getFirstName(),
+        		newPerson.getLastName());
 
 		if (personAlreadyExists != null) {
-			throw new DataAlreadyRegisteredException("Person already registered");
+			throw new DataAlreadyRegisteredException("Person"
+					+ " already registered");
         }
 
         Person personToSave = personMapper.toPerson(newPerson);
@@ -65,9 +102,18 @@ public class PersonService implements IPersonService {
         return personMapper.toPersonDTO(personSaved);
     }
 
-    public PersonDTO updateExistingPerson(final PersonDTO existingPerson) {
+    /**
+     * Update existing person.
+     * @param existingPerson
+     * @return person found
+     */
+    public PersonDTO updateExistingPerson(
+    		final PersonDTO existingPerson) {
+
         Person personFound = personDAO
-        		.getPersonByName(existingPerson.getFirstName(), existingPerson.getLastName());
+        		.getPersonByName(
+        				existingPerson.getFirstName(),
+        				existingPerson.getLastName());
 
 		if (personFound == null) {
 			throw new DataNotFoundException("Response Status: 404"
@@ -83,9 +129,17 @@ public class PersonService implements IPersonService {
         return personMapper.toPersonDTO(personFound);
     }
 
+    /**
+     * Delete existing person.
+     * @param firstName
+     * @param lastName
+     */
+    public void deleteExistingPerson(
+    		final String firstName,
+    		final String lastName) {
 
-    public void deleteExistingPerson(final String firstName, final String lastName) {
-        Person personToDelete = personDAO.getPersonByName(firstName, lastName);
+        Person personToDelete = personDAO
+        		.getPersonByName(firstName, lastName);
 
 		if (personToDelete == null) {
 			throw new DataNotFoundException("Person not found");
@@ -93,5 +147,4 @@ public class PersonService implements IPersonService {
 
         personDAO.deletePerson(personToDelete);
     }
-
 }

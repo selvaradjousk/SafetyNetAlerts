@@ -6,17 +6,50 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Person DTO.
+ * @author Senthil
+ *
+ */
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonDTO {
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
-    private int zip;
-    private String phone;
+
+    /**
+     * Person first name.
+     */
+	private String firstName;
+
+	/**
+     * Person last name.
+     */
+	private String lastName;
+
+    /**
+     * Person address.
+     */
+	private String address;
+
+    /**
+     * Person city.
+     */
+	private String city;
+
+    /**
+     * Person zip.
+     */
+	private int zip;
+
+    /**
+     * Person phone.
+     */
+	private String phone;
+
+    /**
+     * Person email.
+     */
     private String email;
 }

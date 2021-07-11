@@ -11,26 +11,49 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.DataFileReader;
-import com.safetynet.alerts.util.PersonMapper;
 
+/**
+ * Provides methods for Data Access Objects for Person resources.
+ * @author Senthil
+ *
+ */
 @Repository
 public class PersonDAO implements IPersonDAO {
 
-	private PersonMapper personMapper;
-	
+
+	/**
+	 * Mapping Person data resource.
+	 */
 	private Map<String, Person> personsMap = new HashMap<>();
-	
+
+    /**
+     * Constructor of PersonDAO class.
+     * @param dataFileReader
+     */
     @Autowired
-    public PersonDAO(DataFileReader dataFileReader) {
-        dataFileReader.getPersonList().forEach(person -> personsMap.put(person.getFirstName()
+    public PersonDAO(final DataFileReader dataFileReader) {
+        dataFileReader.getPersonList().forEach(person
+        		-> personsMap.put(person.getFirstName()
                 + person.getLastName(), person));
     }
 
+	/**
+	 * Gets a Person data resource from the Map list on it key value sent.
+	 * @param firstName identifier for the person to be found
+	 * @param lastName identifier for the person to be found
+	 * @return personsMap.get(firstName + lastName) list the persons
+	 */
 	@Override
-	public Person getPersonByName(String firstName, String lastName) {
+	public Person getPersonByName(
+			final String firstName,
+			final String lastName) {
         return personsMap.get(firstName + lastName);
     }
-	
+
+	/**
+	 * Gets the Person data resource list form the Map.
+	 * @return ArrayList<>(personList) list the persons
+	 */
 	@Override
 	public List<Person> getPersonList() {
         Collection personList = personsMap.values();
@@ -38,15 +61,25 @@ public class PersonDAO implements IPersonDAO {
 
     }
 
+	/**
+	 * Saves the requested Person data resource form the Map list.
+	 * @param person identifier for the person to be saved
+	 * @return person saved
+	 */
 	public Person savePerson(final Person person) {
-        personsMap.put(person.getFirstName() + person.getLastName(), person);
+        personsMap.put(person.getFirstName()
+        		+ person.getLastName(), person);
 
-        return personsMap.get(person.getFirstName() + person.getLastName());
+        return personsMap.get(person.getFirstName()
+        		+ person.getLastName());
     }
 
-	public void deletePerson(final Person person) {
-		personsMap.remove(person.getFirstName() + person.getLastName());
-		
+	/**
+	 * Deletes the requested Person data resource form the Map list.
+	 * @param personToDelete identifier for the person to be deleted
+	 */
+	public void deletePerson(final Person personToDelete) {
+		personsMap.remove(personToDelete.getFirstName()
+				+ personToDelete.getLastName());
 	}
-	
 }
