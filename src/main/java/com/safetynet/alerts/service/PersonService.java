@@ -84,9 +84,14 @@ public class PersonService implements IPersonService {
     }
 
 
-	public void deleteExistingPerson(String anyString, String anyString2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void deleteExistingPerson(final String firstName, final String lastName) {
+        Person personToDelete = personDAO.getPersonByName(firstName, lastName);
+
+		if (personToDelete == null) {
+			throw new DataNotFoundException("Person not found");
+        }
+
+        personDAO.deletePerson(personToDelete);
+    }
 
 }

@@ -10,6 +10,8 @@ public interface IPersonDAO {
 
 	List<Person> getPersonList();
 	
-	Person savePerson(Person pers);
+	Person savePerson(Person person);
+
+	void deletePerson(Person person);
 
 }
