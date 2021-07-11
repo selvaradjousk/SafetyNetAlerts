@@ -168,4 +168,16 @@ public class PersonDAOTest {
         assertEquals(person3.getEmail(), personSaved.getEmail());
     }
     
+    @Test
+    @DisplayName("DELETE PERSON"
+    		+ " - Given a Person entry value,"
+    		+ " when DELETE action requested,"
+    		+ " then Person entry should be deleted")
+    public void testDeletePerson() {
+        personDAO.deletePerson(person1);
+
+        assertNull(personDAO
+        		.getPersonByName("Test1 FirstName", "Test1 LastName"));
+    }
+    
 }
