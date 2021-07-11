@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -409,6 +410,20 @@ public class PersonServiceTest {
 
         assertThrows(DataNotFoundException.class, ()
         		-> personService.updateExistingPerson(personDTO));
+    }
+    
+    
+    @Test
+    @DisplayName("Test DELETE Existing PERSON")
+    public void testDeletePersonVerify() {
+
+            when(personDaoMock
+            		.getPersonByName(anyString(), anyString()))
+            .thenReturn(testPerson1);
+
+        personService.deleteExistingPerson(testPerson1.getFirstName(), testPerson1.getLastName());
+        
+        verify(personDaoMock, times(1)).deletePerson(any(Person.class));
     }
     
 } 

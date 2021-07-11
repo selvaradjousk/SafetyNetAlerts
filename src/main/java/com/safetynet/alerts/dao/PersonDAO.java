@@ -43,5 +43,10 @@ public class PersonDAO implements IPersonDAO {
 
         return personsMap.get(person.getFirstName() + person.getLastName());
     }
+
+	public void deletePerson(final Person person) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
