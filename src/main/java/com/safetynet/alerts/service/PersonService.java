@@ -65,10 +65,24 @@ public class PersonService implements IPersonService {
         return personMapper.toPersonDTO(personSaved);
     }
 
-	public PersonDTO updateExistingPerson(final PersonDTO existingPerson) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public PersonDTO updateExistingPerson(final PersonDTO existingPerson) {
+        Person personFound = personDAO
+        		.getPersonByName(existingPerson.getFirstName(), existingPerson.getLastName());
+
+		if (personFound == null) {
+			throw new DataNotFoundException("Response Status: 404"
+					+ " - Person requested not found");
+        }
+
+        personFound.setAddress(existingPerson.getAddress());
+        personFound.setCity(existingPerson.getCity());
+        personFound.setZip(existingPerson.getZip());
+        personFound.setPhone(existingPerson.getPhone());
+        personFound.setEmail(existingPerson.getEmail());
+
+        return personMapper.toPersonDTO(personFound);
+    }
+
 
 	public void deleteExistingPerson(String anyString, String anyString2) {
 		// TODO Auto-generated method stub
