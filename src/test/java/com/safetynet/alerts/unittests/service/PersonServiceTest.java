@@ -327,38 +327,75 @@ public class PersonServiceTest {
     
     // ***********************************************************************************
 
-    
-    @Test
-@DisplayName("Test UPDATE Existing PERSON")
-    public void testUpdatePersonDoneCheck() {
+    @DisplayName("Test UPDATE Existing PERSON")
+    @Nested
+    class TestUpdateNewPerson {  
+    	
+        @BeforeEach
+        public void init() {
+            objectMapper = new ObjectMapper();
+            
+            personDTO = personDTO.builder()
+            		.firstName("Test1 FirstName")
+            		.lastName("Test1 Last Name")
+            		.address("Test1 Address")
+            		.city("Test1 City")
+            		.zip(11111)
+            		.phone("111-111-1111")
+            		.email("test1email@email.com")
+            		.build();
 
-        objectMapper = new ObjectMapper();
+            when(personDaoMock
+            		.getPersonByName(anyString(), anyString()))
+            .thenReturn(testPerson1);
+     
+            when(personMapper
+            		.toPersonDTO(any(Person.class)))
+            .thenReturn(personDTO);
+        }
+
         
-        personDTO = personDTO.builder()
-        		.firstName("Test1 FirstName")
-        		.lastName("Test1 Last Name")
-        		.address("Test1 Address")
-        		.city("Test1 City")
-        		.zip(11111)
-        		.phone("111-111-1111")
-        		.email("test1email@email.com")
-        		.build();
+        @Test
+        @DisplayName("Check <Execution Order>"
+        		+ " - Given a existing Person to update,"
+        		+ " when Update Person action request,"
+        		+ " then all steps are executed in correct order and number of expected times")
+        public void testUpdatePersonExecutionOrderCheck() {
 
-        when(personDaoMock
-        		.getPersonByName(anyString(), anyString()))
-        .thenReturn(testPerson1);
- 
-        when(personMapper
-        		.toPersonDTO(any(Person.class)))
-        .thenReturn(personDTO);
+        	personService.updateExistingPerson(personDTO);
 
-        PersonDTO personUpdated = personService
-        		.updateExistingPerson(personDTO);
+            InOrder inOrder = inOrder(personDaoMock, personMapper);
+            inOrder.verify(personDaoMock).getPersonByName(anyString(), anyString());
+            inOrder.verify(personMapper).toPersonDTO(any(Person.class));
+        }
+        
+        @Test
+        @DisplayName("Check <NotNull>"
+        		+ " - Given a existing Person to update,"
+        		+ " when Update Person action request,"
+        		+ " then Person Not null")
+        public void testUpdatePersonNotNullCheck() {
 
-        assertNotNull(personUpdated);
-        assertNotNull(personDTO);
-        assertThat(personUpdated).usingRecursiveComparison().isEqualTo(personDTO);
-    }  
+            PersonDTO personUpdated = personService
+            		.updateExistingPerson(personDTO);
+
+            assertNotNull(personUpdated);
+            assertNotNull(personDTO);
+        }
+        
+        @Test
+        @DisplayName("Check <Validate> match of both same record instance "
+        		+ " - Given a existing Person to update,"
+        		+ " when Update Person action request,"
+        		+ " then Person should be same as test record")
+        public void testUpdatePersonDoneCheck() {
+
+            PersonDTO personUpdated = personService
+            		.updateExistingPerson(personDTO);
+
+            assertThat(personUpdated).usingRecursiveComparison().isEqualTo(personDTO);
+        }
+  }
     
     
 } 
