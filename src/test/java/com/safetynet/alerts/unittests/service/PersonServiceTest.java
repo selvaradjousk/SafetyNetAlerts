@@ -468,7 +468,24 @@ public class PersonServiceTest {
         inOrder.verify(personDaoMock).deletePerson(any(Person.class));
     }
     
-  }
+    }
+
+    @Test
+    @DisplayName("DELETE PERSON"
+    		+ " - Given non existing Person entry value,"
+    		+ " when DELETE action requested,"
+    		+ " then Person entry should display Data Not Found Exception")
+    public void testDeletePersonForNonExistingPerson() {
+        when(personDaoMock
+        		.getPersonByName(anyString(), anyString()))
+        .thenReturn(null);
+
+        assertThrows(DataNotFoundException.class, ()
+        		-> personService
+        		.deleteExistingPerson(testPerson1.getFirstName(), testPerson1.getLastName()));
+    }
+    
+
     
 
     
