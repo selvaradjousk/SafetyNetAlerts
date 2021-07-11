@@ -15,4 +15,6 @@ public interface IPersonService {
 
 	PersonDTO updateExistingPerson(PersonDTO person);
 
+	void deleteExistingPerson(String firstName, String lastName);
+
 }

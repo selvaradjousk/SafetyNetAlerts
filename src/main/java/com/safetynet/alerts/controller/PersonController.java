@@ -3,6 +3,7 @@ package com.safetynet.alerts.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -60,7 +61,9 @@ public class PersonController {
     @PutMapping("/person")
     public ResponseEntity<PersonDTO> updateExistingPerson(@RequestBody final PersonDTO person) {
 
-        if (person.getFirstName() == null || person.getFirstName().isEmpty() || person.getLastName() == null
+        if (person.getFirstName() == null
+        		|| person.getFirstName().isEmpty()
+        		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
             throw new BadRequestException("Response Status 400 Bad request"
             		+ " The request body is incomplete or missing required entries");
@@ -68,5 +71,21 @@ public class PersonController {
         PersonDTO personUpdated = personEndpointService.updateExistingPerson(person);
 
         return new ResponseEntity<>(personUpdated, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/person")
+    public ResponseEntity<Void> deletePerson(@RequestParam("firstName") final String firstName,
+                                             @RequestParam("lastName") final String lastName) {
+
+		if (firstName == null
+				|| firstName.trim().length() == 0
+				|| lastName == null
+                || lastName.trim().length() == 0) {
+            throw new BadRequestException("Response Status: 400 Bad request:"
+            		+ " The request body is incomplete or missing required parameters entry");
+        }
+        personEndpointService.deleteExistingPerson(firstName, lastName);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
