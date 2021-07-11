@@ -413,18 +413,64 @@ public class PersonServiceTest {
     }
     
     
-    @Test
-    @DisplayName("Test DELETE Existing PERSON")
-    public void testDeletePersonVerify() {
+    // ***********************************************************************************
 
+    @DisplayName("Test DELETE Existing PERSON")
+    @Nested
+    class TestDeletePerson {  
+    	
+        @BeforeEach
+        public void init() {
             when(personDaoMock
             		.getPersonByName(anyString(), anyString()))
             .thenReturn(testPerson1);
+        }
+
+    @Test
+    @DisplayName("Check <NotNull>"
+    		+ " - Given a Person entry value,"
+    		+ " when DELETE action requested,"
+    		+ " then Person entry should be deleted"
+    		+ " and should not be null and should exist")
+    public void testDeletePersonExistAlready() {
+
+        assertNotNull(testPerson1);
+        personService.deleteExistingPerson(testPerson1.getFirstName(), testPerson1.getLastName());
+    }
+    
+ 
+    @Test
+    @DisplayName("Check <Deletion Verify>"
+    		+ " - Given a Person entry value,"
+    		+ " when DELETE action requested,"
+    		+ " then personDelete is executed corretly"
+    		+ " and should confirm executing deletePerson Method")
+    public void testDeletePersonVerify() {
 
         personService.deleteExistingPerson(testPerson1.getFirstName(), testPerson1.getLastName());
         
         verify(personDaoMock, times(1)).deletePerson(any(Person.class));
     }
+
+    
+    @Test
+    @DisplayName("Check <Execution Order>"
+    		+ " - Given a Person entry value,"
+    		+ " when DELETE action requested,"
+    		+ " then Person entry should be deleted"
+    		+ " then should abid to the sequence order of actions")
+    public void testDeletePersonExecutionOrderCheck() {
+
+        personService.deleteExistingPerson(testPerson1.getFirstName(), testPerson1.getLastName());
+        
+        InOrder inOrder = inOrder(personDaoMock);
+        inOrder.verify(personDaoMock).getPersonByName(anyString(), anyString());
+        inOrder.verify(personDaoMock).deletePerson(any(Person.class));
+    }
+    
+  }
+    
+
     
 } 
 
