@@ -322,7 +322,44 @@ public class PersonServiceTest {
 
         assertThrows(DataAlreadyRegisteredException.class, ()
         		-> personService.addNewPerson(personDTO));
-    }    
+    }
+
+    
+    // ***********************************************************************************
+
+    
+    @Test
+@DisplayName("Test UPDATE Existing PERSON")
+    public void testUpdatePersonDoneCheck() {
+
+        objectMapper = new ObjectMapper();
+        
+        personDTO = personDTO.builder()
+        		.firstName("Test1 FirstName")
+        		.lastName("Test1 Last Name")
+        		.address("Test1 Address")
+        		.city("Test1 City")
+        		.zip(11111)
+        		.phone("111-111-1111")
+        		.email("test1email@email.com")
+        		.build();
+
+        when(personDaoMock
+        		.getPersonByName(anyString(), anyString()))
+        .thenReturn(testPerson1);
+ 
+        when(personMapper
+        		.toPersonDTO(any(Person.class)))
+        .thenReturn(personDTO);
+
+        PersonDTO personUpdated = personService
+        		.updateExistingPerson(personDTO);
+
+        assertNotNull(personUpdated);
+        assertNotNull(personDTO);
+        assertThat(personUpdated).usingRecursiveComparison().isEqualTo(personDTO);
+    }  
+    
     
 } 
 
