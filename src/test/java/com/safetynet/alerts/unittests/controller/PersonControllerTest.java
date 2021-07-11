@@ -243,6 +243,19 @@ public class PersonControllerTest {
         .deleteExistingPerson(anyString(), anyString());
     }
     
-    
+    @Test
+    @DisplayName("DELETE PERSON"
+    		+ " - Given INVALID PERSON-ID without lastname,"
+    		+ " when DELETE request (/person?firstName={firstName}&lastName={}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeletePersonRequestWithIdWithoutLastname() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/person?firstName=Test FirstName&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .deleteExistingPerson(anyString(), anyString());
+    }
 
 }
