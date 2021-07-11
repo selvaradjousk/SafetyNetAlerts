@@ -226,5 +226,21 @@ public class PersonControllerTest {
         .updateExistingPerson(any(PersonDTO.class));
     }
 
+    @Test
+    @DisplayName("DELETE PERSON"
+    		+ " - Given VALID PERSON-ID,"
+    		+ " when DELETE request (/person?firstName={firstName}&lastName={lastName}),"
+    		+ " then return - Status: 200 OK")
+    public void testDeletePersonRequestWithValidId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/person?firstName=Test FirstName&lastName=Test Last Name"))
+                .andExpect(status()
+                		.isOk());
+
+        verify(personService)
+        .deleteExistingPerson(anyString(), anyString());
+        verify(personService, times(1))
+        .deleteExistingPerson(anyString(), anyString());
+    }
 
 }
