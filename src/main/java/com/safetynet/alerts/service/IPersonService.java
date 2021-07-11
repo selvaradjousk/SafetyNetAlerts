@@ -13,4 +13,6 @@ public interface IPersonService {
 	
     PersonDTO addNewPerson(PersonDTO newPerson);
 
+	PersonDTO updateExistingPerson(PersonDTO person);
+
 }

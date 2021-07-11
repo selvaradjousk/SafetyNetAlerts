@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,12 +48,25 @@ public class PersonController {
         		|| person.getFirstName().isEmpty()
         		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status: 401 Bad request "
+            throw new BadRequestException("Response Status: 400 Bad request "
             		+ "The request body is incomplete or missing required entries");
         }
         PersonDTO personAdded = personEndpointService
         		.addNewPerson(person);
 
         return new ResponseEntity<>(personAdded, HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/person")
+    public ResponseEntity<PersonDTO> updateExistingPerson(@RequestBody final PersonDTO person) {
+
+        if (person.getFirstName() == null || person.getFirstName().isEmpty() || person.getLastName() == null
+                || person.getLastName().isEmpty()) {
+            throw new BadRequestException("Response Status 400 Bad request"
+            		+ " The request body is incomplete or missing required entries");
+        }
+        PersonDTO personUpdated = personEndpointService.updateExistingPerson(person);
+
+        return new ResponseEntity<>(personUpdated, HttpStatus.OK);
     }
 }
