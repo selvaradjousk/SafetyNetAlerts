@@ -130,6 +130,17 @@ public class PersonControllerIT {
             assertNotNull(response.getBody());
         }
         
+        @Test
+        @DisplayName("Check - <NOT NULL - FirstName, LastName Values>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then return response body firstName & LastName param value not null")
+        public void testGetPersonRequestWithValidPersonParamValueNotNull() {
+            
+            assertNotNull(response.getBody().getFirstName());
+            assertNotNull(response.getBody().getLastName());
+        }
+        
         
 
     }
