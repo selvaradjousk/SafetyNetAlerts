@@ -661,6 +661,34 @@ public class PersonControllerIT {
             
         }
         
+       
+        @Test
+        @DisplayName("Check - <RESPONSE GET after Delete 404 NOT FOUND>"
+        		+ " - Given a Person,"
+        		+ " when DELETE request,"
+        		+ " then response on get is 404 NOT FOUND")
+        public void testDeletePersonRequestWithValidPersonResponseNull() {
+
+        	// Confirms person id found before delete
+        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        	
+        	// delete request executed
+        	restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName());
+        	
+            // Checking that existing person has been deleted
+            response = restTemplate.getForEntity(getRootUrl() + PERSON_ID_URL,
+                    PersonDTO.class, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName());
+            
+            // response is not null - has information
+            assertNotNull(response);
+            assertNotNull(response.getHeaders());
+            assertNotNull(response.getBody());
+            
+            // person is not found - confirms delete process
+            assertEquals(404, response.getStatusCodeValue());
+            assertEquals("request status", HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+       }
+        
         
         
         
