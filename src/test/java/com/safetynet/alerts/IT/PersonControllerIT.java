@@ -72,10 +72,7 @@ public class PersonControllerIT {
         
         @AfterEach
         public void finish() {
-//            getPersonAdded = restTemplate.getForEntity(
-//               		getRootUrl() + "/person?firstName="+testPersonToBeAdded.getFirstName()+"&"+"lastName="+testPersonToBeAdded.getLastName(),
-//       				PersonDTO.class);
-                   
+                 
             restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeAdded.getFirstName(), testPersonToBeAdded.getLastName()); 
         }
     
@@ -175,6 +172,27 @@ public class PersonControllerIT {
       //When Post created CHECKs
         assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(testPersonToBeAdded);
     }
+    
+    @Test
+    @DisplayName("Check - able to <Retrieve ADDED PERSON DATA>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request, followed by GET PERSON"
+    		+ " then return Person Added Before successfully")
+    public void testAddPersonRequestWithValidPersonThenOnGetRequestPersonAddedREturnedSuccessfully() {
+            response = restTemplate
+               		.postForEntity(
+               				getRootUrl() + "/person",
+               				testPersonToBeAdded,
+               				PersonDTO.class);
+        getPersonAdded = restTemplate.getForEntity(
+           		getRootUrl() + "/person?firstName="+testPersonToBeAdded.getFirstName()+"&"+"lastName="+testPersonToBeAdded.getLastName(),
+   				PersonDTO.class);
+    	//Then Person can be retrieved CHECKs
+        assertTrue(getPersonAdded.getStatusCode().is2xxSuccessful());   
+    } 
+    
+    
+    
     
     }
 }
