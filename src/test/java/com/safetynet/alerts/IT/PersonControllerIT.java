@@ -689,6 +689,33 @@ public class PersonControllerIT {
             assertEquals("request status", HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
        }
         
+        @Test
+        @DisplayName("Check - <PERSON GET after Delete Response NOT SAME to Person Data>"
+        		+ " - Given a Person,"
+        		+ " when DELETE request,"
+        		+ " then response on get not same as person data to be deleted")
+        public void testDeletePersonRequestResponseToGetPersonNotSameAsOriginalPersonData() {
+
+        	// Confirms person id found before delete
+        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        	
+        	// delete request executed
+        	restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName());
+        	
+            // Checking that existing person has been deleted
+            response = restTemplate.getForEntity(getRootUrl() + PERSON_ID_URL,
+                    PersonDTO.class, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName());
+            
+         // response is not null - has information
+            assertNotNull(response);
+            assertNotNull(response.getHeaders());
+            assertNotNull(response.getBody());
+            
+         // person to be deleted is not found anymore - confirms delete
+            assertThat(response.getBody()).isNotSameAs(testPersonToBeDeleted);
+       }
+        
+        
         
         
         
