@@ -39,7 +39,8 @@ public class PersonControllerIT {
 
     private ObjectMapper objectMapper;
     
-    PersonDTO testPersonToBeAdded, personToAddMissingId;
+    PersonDTO testPersonToBeAdded, testPersonToUpdate, personToAddMissingId,
+    testPersonUpdated, testPersonToUpdateWrongFirstName;
     ResponseEntity<PersonDTO> response, responseOnPost;
     ResponseEntity<PersonDTO> getPersonAdded;
     
@@ -67,6 +68,38 @@ public class PersonControllerIT {
         		.phone("987-654-3210")
         		.email("testemail@email.com")
         		.build();
+        
+        testPersonToUpdate = new PersonDTO().builder()
+         		.firstName("TestUpdate FirstName")
+         		.lastName("Test Last Name")
+         		.address("Test To update Address")
+         		.city("Test to update City")
+         		.zip(98765)
+         		.phone("987-654-3210")
+         		.email("testemail@email.com")
+         		.build();
+        
+        testPersonUpdated = new PersonDTO().builder()
+         		.firstName("TestUpdate FirstName")
+         		.lastName("Test Last Name")
+         		.address("Testvbvb Address")
+         		.city("Test City")
+         		.zip(98765)
+         		.phone("987-654-3210")
+         		.email("testemail@email.com")
+         		.build();
+        
+        testPersonToUpdateWrongFirstName = new PersonDTO().builder()
+         		.firstName("TestUpdate FirstName")
+         		.lastName("Testxxx Last Name")
+         		.address("Test xxx Address")
+         		.city("Testxxx City")
+         		.zip(98765)
+         		.phone("987-654-3210")
+         		.email("testemail@email.com")
+         		.build();
+        
+        
         
  
     	
@@ -382,6 +415,56 @@ public class PersonControllerIT {
         assertNull(response.getBody().getFirstName());       
                
     }
+    }
+    
+    
+    // *********************************************************************************** 
+    @DisplayName("IT - UPDATE PERSON")
+    @Nested
+    class UpdatePersonIT {  
+    	
+        @BeforeEach
+        public void init() {
+        	
+        	// person created
+     	   responseOnPost = restTemplate
+	   		.postForEntity(
+	   				getRootUrl() + "/person",
+	   				testPersonToUpdate,
+	   				PersonDTO.class);
+
+     	   
+     	  
+      	// update requested
+      	restTemplate.put(getRootUrl() + "/person", testPersonUpdated);
+     	  
+           response = restTemplate
+        		   .getForEntity(getRootUrl() + PERSON_ID_URL,
+                   PersonDTO.class,
+                   testPersonToUpdate.getFirstName(),
+                   testPersonToUpdate.getLastName());
+           
+
+        }
+        
+        @AfterEach
+        public void finish() {
+                 
+            restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToUpdate.getFirstName(), testPersonToUpdate.getLastName()); 
+            restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonUpdated.getFirstName(), testPersonUpdated.getLastName());
+        }
+        
+        @Test
+        @DisplayName("Check - <PERSON DATA EXIST BEFORE UPDATE>"
+        		+ " - Given a Person,"
+        		+ " when UPDATE request,"
+        		+ " then Person data EXIST BEFORE UPDATE")
+        public void testUpdatePersonRequestWithValidPersonExisitBeforeUpdate() {
+      	   
+           	// Person Data Exist
+           	assertNotNull(responseOnPost);
+           	assertNotNull(responseOnPost.getBody().getAddress());
+        } 
     }
 
 }
