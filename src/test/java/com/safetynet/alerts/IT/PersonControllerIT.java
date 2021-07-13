@@ -716,10 +716,36 @@ public class PersonControllerIT {
        }
         
         
+        @Test
+        @DisplayName("Check - <PERSON ID param>"
+        		+ "Given incomplete Person Id,"
+        		+ " when DELETE request,"
+        		+ " then person is not deleted")
+        public void testDeleteRequestInvalidPersonId() {
+
+        	// Confirms person id found before delete
+        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        	
+        	// delete request with missing and wrong input
+            restTemplate.delete(getRootUrl() + PERSON_ID_URL, "firstNameDel", "");
+
+            // Checking that existing person has not been deleted
+            response = restTemplate
+            		.getForEntity(getRootUrl() + PERSON_ID_URL,
+                    PersonDTO.class,
+                    testPersonToBeDeleted.getFirstName(),
+                    testPersonToBeDeleted.getLastName());
+
+            // get request confirms that it is able to get the original person
+            assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+            
+            // person data is same as the original - confirms invalid ID delete did not happen
+            assertThat(response.getBody())
+                    .isNotNull()
+                    .usingRecursiveComparison().isEqualTo(testPersonToBeDeleted);
+        }
         
-        
-        
-        
+               
     }
 
 }
