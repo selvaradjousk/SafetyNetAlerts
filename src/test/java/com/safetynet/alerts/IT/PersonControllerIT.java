@@ -1,5 +1,6 @@
 package com.safetynet.alerts.IT;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -160,7 +161,20 @@ public class PersonControllerIT {
         assertEquals("request status", HttpStatus.CREATED.value(), response.getStatusCodeValue());
    }
     
-    
+    @Test
+    @DisplayName("Check - <VALIDATE FIELDS EQUAL>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then return response fields equals added Person")
+    public void testAddPersonRequestWithValidPersonThenSimilarToAddedPersonValues() {
+        response = restTemplate
+           		.postForEntity(
+           				getRootUrl() + "/person",
+           				testPersonToBeAdded,
+           				PersonDTO.class);
+      //When Post created CHECKs
+        assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(testPersonToBeAdded);
+    }
     
     }
 }
