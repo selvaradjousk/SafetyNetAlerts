@@ -125,6 +125,20 @@ public class PersonControllerIT {
         assertNotNull(response.getBody());
     }
     
-    
+    @Test
+    @DisplayName("Check - <NOT NULL - FirstName, LastName Values>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then return response body firstName & LastName param value not null")
+    public void testAddPersonRequestWithValidPersonParamValueNotNull() {
+            response = restTemplate
+               		.postForEntity(
+               				getRootUrl() + "/person",
+               				testPersonToBeAdded,
+               				PersonDTO.class);
+      //When Post created CHECKs
+        assertNotNull(response.getBody().getFirstName());
+        assertNotNull(response.getBody().getLastName());
+    } 
     }
 }
