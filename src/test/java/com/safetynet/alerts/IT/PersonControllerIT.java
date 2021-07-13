@@ -479,7 +479,18 @@ public class PersonControllerIT {
         	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
         }        
         
-        
+        @Test
+        @DisplayName("Check - <PERSON UPDATE - RESPONSE NOT NULL>"
+        		+ " - Given a Person,"
+        		+ " when UPDATE request,"
+        		+ " then returned response Not Null")
+        public void testUpdatePersonResponseResponseNotNull() {
+      	   
+            // Person Update data updated not null
+            assertNotNull(response);
+            assertNotNull(response.getHeaders());
+            assertNotNull(response.getBody());
+        }
         
         
         
