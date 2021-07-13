@@ -141,6 +141,17 @@ public class PersonControllerIT {
             assertNotNull(response.getBody().getLastName());
         }
         
+        @Test
+        @DisplayName("Check - Response Status<200 OK>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then return Status: 200 OK")
+        public void testGetPersonRequestWithValidPersonResponseStatusOk() {
+            assertEquals((HttpStatus.OK), response.getStatusCode());
+            assertEquals(200, response.getStatusCodeValue());
+            assertEquals("request status", HttpStatus.OK.value(), response.getStatusCodeValue());
+       }  
+        
         
 
     }
