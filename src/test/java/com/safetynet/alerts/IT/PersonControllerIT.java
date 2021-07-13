@@ -606,6 +606,23 @@ public class PersonControllerIT {
             assertNotEquals(testPersonToUpdateWrongFirstName.getAddress(), response.getBody().getAddress());
         }
         
+        @Test
+        @DisplayName("Check - <UPDATE INVALID PERSON ID - NOT FOUND 404>"
+        		+ "Given a Person with ID inexistant,"
+        		+ " when UPDATE request,"
+        		+ " then return Reponse Status: 404 NOT_FOUND")
+        public void testUpdatePersonNonFound() {
+        	
+        	// invalid id update is run here to check it fails and previous one stays valid
+        	restTemplate.put(getRootUrl() + "/person", testPersonToUpdateWrongFirstName);
+            
+        	// Checking that existing person has not been modified
+            response = restTemplate.getForEntity("http://localhost:" + port + PERSON_ID_URL,
+                    PersonDTO.class, testPersonToUpdateWrongFirstName.getFirstName(), testPersonToUpdateWrongFirstName.getLastName());
+
+            assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+        }
+        
         
         
     }
