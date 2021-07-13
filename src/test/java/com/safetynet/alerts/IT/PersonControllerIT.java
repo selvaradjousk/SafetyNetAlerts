@@ -153,6 +153,17 @@ public class PersonControllerIT {
        }  
         
         
+        @Test
+        @DisplayName("Check - <VALIDATE FIELDS EQUAL>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then return response fields equals expected added Person")
+        public void testGetPersonRequestWithValidPersonThenSimilarToAddedPersonValues() {
+            assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(testPersonToBeAdded);
+        }
+        
+        
+        
 
     }
  
