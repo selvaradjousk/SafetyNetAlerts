@@ -162,7 +162,28 @@ public class PersonControllerIT {
             assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(testPersonToBeAdded);
         }
         
-        
+        @Test
+        @DisplayName("Check - <MISSING PERSON ID>"
+        		+ "Given a Person with missing ID,"
+        		+ " when GET request,"
+        		+ " then return Reponse Status: 4xx BAD REQUEST")
+        public void testGetPersonMissingId() {
+        	
+            restTemplate
+            .postForEntity(getRootUrl() + "/person",
+            		personToAddMissingId,
+            		PersonDTO.class);
+            
+        	response = restTemplate
+        			.getForEntity(getRootUrl() + PERSON_ID_URL,
+                    PersonDTO.class,
+                    "",
+                    personToAddMissingId.getLastName());
+        	
+            assertEquals("request status", HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+            assertNull(response.getBody().getFirstName());
+            
+        }   
         
 
     }
