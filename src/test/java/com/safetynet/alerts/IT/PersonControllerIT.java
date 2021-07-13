@@ -3,6 +3,7 @@ package com.safetynet.alerts.IT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,7 +84,7 @@ public class PersonControllerIT {
     		+ " - Given a Person to add,"
     		+ " when POST request,"
     		+ " then Person data created is not null")
-    public void testAddPersonRequestWithValidPersonResponseStatusCreated() {
+    public void testAddPersonRequestWithValidPersonResponseNotNull() {
 
 
     
@@ -139,6 +141,26 @@ public class PersonControllerIT {
       //When Post created CHECKs
         assertNotNull(response.getBody().getFirstName());
         assertNotNull(response.getBody().getLastName());
-    } 
+    }
+
+    @Test
+    @DisplayName("Check - Response Status<201 CREATED>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then return Status: 201 Created")
+    public void testAddPersonRequestWithValidPersonResponseStatusCreated() {
+        response = restTemplate
+           		.postForEntity(
+           				getRootUrl() + "/person",
+           				testPersonToBeAdded,
+           				PersonDTO.class);
+      //When Post created CHECKs
+        assertEquals((HttpStatus.CREATED), response.getStatusCode());
+        assertEquals(201, response.getStatusCodeValue());
+        assertEquals("request status", HttpStatus.CREATED.value(), response.getStatusCodeValue());
+   }
+    
+    
+    
     }
 }
