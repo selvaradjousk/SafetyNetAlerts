@@ -1,9 +1,16 @@
 package com.safetynet.alerts.IT;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -32,14 +39,12 @@ public class PersonControllerIT {
     PersonDTO testPersonToBeAdded;
     ResponseEntity<PersonDTO> response;
     ResponseEntity<PersonDTO> getPersonAdded;
+    
+    private final static String PERSON_ID_URL = "/person?firstName={firstName}&lastName={lastName}";
 
-    // ***********************************************************************************
-    @Test
-    @DisplayName("Check Person created - Response Status<CREATED>"
-    		+ " - Given a Person to add,"
-    		+ " when POST request,"
-    		+ " then return Status: 201 Created and body fields equals")
-    public void testAddPersonRequestWithValidPersonResponseStatusCreated() {
+    @BeforeEach
+  public void setUp() {
+    	
         testPersonToBeAdded = new PersonDTO().builder()
         		.firstName("Test FirstName")
         		.lastName("Test Last Name")
@@ -49,6 +54,36 @@ public class PersonControllerIT {
         		.phone("111-111-1111")
         		.email("testemail@email.com")
         		.build();	
+    	
+    }
+    
+    @DisplayName("IT - ADD NEW PERSON")
+    @Nested
+    @TestMethodOrder(OrderAnnotation.class)
+    class AddNewPersonIT {  
+    	
+        @BeforeEach
+        public void init() {
+ 
+        }
+        
+        @AfterEach
+        public void finish() {
+//            getPersonAdded = restTemplate.getForEntity(
+//               		getRootUrl() + "/person?firstName="+testPersonToBeAdded.getFirstName()+"&"+"lastName="+testPersonToBeAdded.getLastName(),
+//       				PersonDTO.class);
+                   
+            restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeAdded.getFirstName(), testPersonToBeAdded.getLastName()); 
+        }
+    
+    // ***********************************************************************************
+    @Test
+    @DisplayName("Check - <RESPONSE NOT NULL>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then Person data created is not null")
+    public void testAddPersonRequestWithValidPersonResponseStatusCreated() {
+
 
     
    response = restTemplate
@@ -56,9 +91,24 @@ public class PersonControllerIT {
    				getRootUrl() + "/person",
    				testPersonToBeAdded,
    				PersonDTO.class);
-   
-        // Check Person created - <NOT NULL>
+
         assertNotNull(response);
-     
-   }
+    }
+    
+    @Test
+    @DisplayName("Check - <RESPONSE HEADER NOT NULL>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then response header not null")
+    public void testAddPersonRequestWithValidPersonResponseHeaderNotNull() {
+            response = restTemplate
+               		.postForEntity(
+               				getRootUrl() + "/person",
+               				testPersonToBeAdded,
+               				PersonDTO.class);
+            assertNotNull(response.getHeaders());
+            assertEquals("application/json", (response.getHeaders().getContentType()).toString());
+    }   
+    
+    }
 }
