@@ -555,7 +555,29 @@ public class PersonControllerIT {
              assertEquals(testPersonToUpdate.getFirstName(), testPersonUpdated.getFirstName());
         }
         
-        
+        @Test
+        @DisplayName("Check - <UPDATE PERSON ID parameter missing >"
+        		+ "Given a Person with missing parameter ID,"
+        		+ " when UPDATE request,"
+        		+ " then return Reponse Status: 400 BAD REQUEST")
+        public void testUpdatePersonMissingParameterId() {
+
+        	// first update asserts the original value expected
+        	restTemplate.put(getRootUrl() + "/person", testPersonToUpdate);
+        	
+        	// invalid id update is run here to check it fails and previous one stays valid
+        	restTemplate.put(getRootUrl() + "/person", personToAddMissingId);
+            
+        	// Checking that existing person has not been modified
+            response = restTemplate.getForEntity("http://localhost:" + port + PERSON_ID_URL,
+                    PersonDTO.class, testPersonToUpdate.getFirstName(), testPersonToUpdate.getLastName());
+
+            assertNotNull(response.getBody());
+            
+            assertEquals(testPersonToUpdate.getAddress(), response.getBody().getAddress());
+            
+            assertNotEquals(personToAddMissingId.getAddress(), response.getBody().getAddress());
+        } 
         
         
         
