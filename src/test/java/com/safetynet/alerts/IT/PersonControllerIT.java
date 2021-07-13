@@ -40,7 +40,7 @@ public class PersonControllerIT {
     private ObjectMapper objectMapper;
     
     PersonDTO testPersonToBeAdded, testPersonToUpdate, personToAddMissingId,
-    testPersonUpdated, testPersonToUpdateWrongFirstName;
+    testPersonUpdated, testPersonToUpdateWrongFirstName, testPersonToBeDeleted;
     ResponseEntity<PersonDTO> response, responseOnPost;
     ResponseEntity<PersonDTO> getPersonAdded;
     
@@ -99,7 +99,15 @@ public class PersonControllerIT {
          		.email("testemail@email.com")
          		.build();
         
-        
+        testPersonToBeDeleted = new PersonDTO().builder()
+        		.firstName("Test FirstName")
+        		.lastName("Test Last Name")
+        		.address("Testing Street")
+        		.city("TestCity")
+        		.zip(98765)
+        		.phone("111-111-1111")
+        		.email("testemail@email.com")
+        		.build();       
         
  
     	
@@ -622,6 +630,38 @@ public class PersonControllerIT {
 
             assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
         }
+        
+       
+        // ***********************************************************************************
+        
+        @DisplayName("IT - DELETE PERSON")
+        @Nested
+        class DeletePersonIT {  
+        	
+            @BeforeEach
+            public void init() {
+          	   restTemplate
+     	   		.postForEntity(
+     	   				getRootUrl() + "/person",
+     	   			testPersonToBeDeleted,
+     	   				PersonDTO.class);
+          	   
+                response = restTemplate
+             		   .getForEntity(getRootUrl() + PERSON_ID_URL,
+                        PersonDTO.class,
+                        testPersonToBeDeleted.getFirstName(),
+                        testPersonToBeDeleted.getLastName());
+            }
+            
+            @AfterEach
+            public void finish() {
+                     
+                restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName()); 
+            }
+            
+        }
+        
+        
         
         
         
