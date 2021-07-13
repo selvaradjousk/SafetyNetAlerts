@@ -515,6 +515,29 @@ public class PersonControllerIT {
         	assertNotEquals(valueBeforeUpdate, valueAfterUpdate);
         } 
         
+        @Test
+        @DisplayName("Check - <On PERSON UPDATE - Value expected Updated>"
+        		+ " - Given a Person,"
+        		+ " when UPDATE request,"
+        		+ " then Person data updated with expected value")
+        public void testUpdatePersonValueSameAsExpectedUpdateValue() {
+       	  
+        	// update requested
+        	restTemplate.put(getRootUrl() + "/person", testPersonUpdated);
+       	  
+             response = restTemplate
+          		   .getForEntity(getRootUrl() + PERSON_ID_URL,
+                     PersonDTO.class,
+                     testPersonToUpdate.getFirstName(),
+                     testPersonToUpdate.getLastName());
+
+         	// Check for expected updated value in response body of person data
+         	assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(testPersonUpdated);
+        }
+        
+        
+        
+        
         
     }
 
