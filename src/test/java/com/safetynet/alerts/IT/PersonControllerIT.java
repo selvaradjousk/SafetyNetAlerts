@@ -10,10 +10,10 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -41,7 +41,7 @@ public class PersonControllerIT {
     private ObjectMapper objectMapper;
     
     PersonDTO testPersonToBeAdded, personToAddMissingId;
-    ResponseEntity<PersonDTO> response;
+    ResponseEntity<PersonDTO> response, responseOnPost;
     ResponseEntity<PersonDTO> getPersonAdded;
     
     private final static String PERSON_ID_URL = "/person?firstName={firstName}&lastName={lastName}";
@@ -68,8 +68,54 @@ public class PersonControllerIT {
         		.phone("987-654-3210")
         		.email("testemail@email.com")
         		.build();
+        
+ 
     	
     }
+    
+    // *********************************************************************************** 
+    @DisplayName("IT - GET PERSON")
+    @Nested
+    @TestMethodOrder(OrderAnnotation.class)
+    class GetPersonIT {  
+    	
+        @BeforeEach
+        public void init() {
+     	   restTemplate
+	   		.postForEntity(
+	   				getRootUrl() + "/person",
+	   				testPersonToBeAdded,
+	   				PersonDTO.class);
+     	   
+           response = restTemplate
+        		   .getForEntity(getRootUrl() + PERSON_ID_URL,
+                   PersonDTO.class,
+                   testPersonToBeAdded.getFirstName(),
+                   testPersonToBeAdded.getLastName());
+        }
+        
+        @AfterEach
+        public void finish() {
+                 
+            restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeAdded.getFirstName(), testPersonToBeAdded.getLastName()); 
+        }
+        
+        
+        
+        @Test
+        @DisplayName("Check - <RESPONSE NOT NULL>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then Person data returned is not null")
+        public void testGetPersonRequestWithValidPersonResponseNotNull() {
+
+           assertNotNull(response);
+        }
+        
+
+    }
+ 
+    // ***********************************************************************************
     
     @DisplayName("IT - ADD NEW PERSON")
     @Nested
@@ -87,7 +133,7 @@ public class PersonControllerIT {
             restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeAdded.getFirstName(), testPersonToBeAdded.getLastName()); 
         }
     
-    // ***********************************************************************************
+
     @Test
     @DisplayName("Check - <RESPONSE NOT NULL>"
     		+ " - Given a Person to add,"
@@ -241,10 +287,9 @@ public class PersonControllerIT {
         				PersonDTO.class);
 
         assertEquals("request status", HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
-        assertNull(response.getBody().getFirstName());
-        
+        assertNull(response.getBody().getFirstName());       
+               
     }
-    
-    
     }
+
 }
