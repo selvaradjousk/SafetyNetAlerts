@@ -2,6 +2,7 @@ package com.safetynet.alerts.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -492,7 +492,28 @@ public class PersonControllerIT {
             assertNotNull(response.getBody());
         }
         
-        
+        @Test
+        @DisplayName("Check - <On PERSON UPDATE - Value Not Same>"
+        		+ " - Given a Person,"
+        		+ " when UPDATE request,"
+        		+ " then returned response Value Not Same Before Update")
+        public void testUpdatePersonValueBeforeAfterNotSame() {
+           	// Value of Address parameter stored for reference before update
+       	  String valueBeforeUpdate = responseOnPost.getBody().getAddress();
+       	  
+        	// update requested
+        	restTemplate.put(getRootUrl() + "/person", testPersonUpdated);
+       	  
+             response = restTemplate
+          		   .getForEntity(getRootUrl() + PERSON_ID_URL,
+                     PersonDTO.class,
+                     testPersonToUpdate.getFirstName(),
+                     testPersonToUpdate.getLastName());
+             
+             String valueAfterUpdate = response.getBody().getAddress();
+            // Check value before and after update are not equal
+        	assertNotEquals(valueBeforeUpdate, valueAfterUpdate);
+        } 
         
         
     }
