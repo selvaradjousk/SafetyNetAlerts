@@ -186,6 +186,26 @@ public class PersonControllerIT {
         }   
         
 
+        @Test
+        @DisplayName("Check - <INVALID PERSON ID - 409>"
+        		+ "Given a Person with invalid ID,"
+        		+ " when GET request,"
+        		+ " then return Reponse Status: 409 NOT FOUND REQUEST")
+        public void testGetPersonForInvalidID() {
+        	
+       
+        	response = restTemplate
+        			.getForEntity(getRootUrl() + PERSON_ID_URL,
+                    PersonDTO.class,
+                    "fdsqfsdfs",
+                    "sdqfsqfdqsf");
+        	
+            assertEquals("request status", HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+            assertNull(response.getBody().getFirstName());
+            
+        }
+        
+        
     }
  
     // ***********************************************************************************
