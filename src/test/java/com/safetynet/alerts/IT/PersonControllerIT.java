@@ -3,6 +3,7 @@ package com.safetynet.alerts.IT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
@@ -39,7 +40,7 @@ public class PersonControllerIT {
 
     private ObjectMapper objectMapper;
     
-    PersonDTO testPersonToBeAdded;
+    PersonDTO testPersonToBeAdded, personToAddMissingId;
     ResponseEntity<PersonDTO> response;
     ResponseEntity<PersonDTO> getPersonAdded;
     
@@ -56,7 +57,17 @@ public class PersonControllerIT {
         		.zip(98765)
         		.phone("111-111-1111")
         		.email("testemail@email.com")
-        		.build();	
+        		.build();
+        
+        personToAddMissingId = new PersonDTO().builder()
+        		.firstName("")
+        		.lastName("")
+        		.address("Test Address")
+        		.city("Test City")
+        		.zip(98765)
+        		.phone("987-654-3210")
+        		.email("testemail@email.com")
+        		.build();
     	
     }
     
@@ -215,6 +226,25 @@ public class PersonControllerIT {
         assertEquals("request status", HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
 
     }
+    
+    @Test
+    @DisplayName("Check - <MISSING PERSON ID>"
+    		+ "Given a Person with missing ID,"
+    		+ " when POST request,"
+    		+ " then return Reponse Status: 4xx BAD REQUEST")
+    public void testAddPersonMissingId() {
+
+        response = restTemplate
+        		.postForEntity(
+        				getRootUrl() + "/person",
+        				personToAddMissingId,
+        				PersonDTO.class);
+
+        assertEquals("request status", HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+        assertNull(response.getBody().getFirstName());
+        
+    }
+    
     
     }
 }
