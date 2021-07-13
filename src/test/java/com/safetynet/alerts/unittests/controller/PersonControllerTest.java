@@ -92,11 +92,11 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD PERSON"
+    @DisplayName("ADD NEW PERSON"
     		+ " - Given a Person to add,"
     		+ " when POST request,"
     		+ " then return Status: 201 Created")
-    public void testAddPersonRequestWithValidId() throws Exception {
+    public void testAddPersonRequestWithValidPersonInfo() throws Exception {
     	when(personService
     			.addNewPerson(any(PersonDTO.class)))
     	.thenReturn(any(PersonDTO.class));

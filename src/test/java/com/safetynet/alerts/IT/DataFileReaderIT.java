@@ -1,4 +1,4 @@
-package com.safetynet.alerts.IT.util;
+package com.safetynet.alerts.IT;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
