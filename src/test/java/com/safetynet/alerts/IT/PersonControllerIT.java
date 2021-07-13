@@ -192,7 +192,29 @@ public class PersonControllerIT {
     } 
     
     
-    
+    @Test
+    @DisplayName("Check - <CONFLICT STATUS - ADD EXISTING PERSON>"
+    		+ "Given a registered Person,"
+    		+ " when POST request,"
+    		+ " then return Response Status: 409 CONFLICT" +
+            "should be returned")
+    public void testAddPersontRequestExistingPerson() {
+
+        restTemplate.postForEntity(
+        		getRootUrl() + "/person",
+        		testPersonToBeAdded,
+        		PersonDTO.class);
+        
+        response = restTemplate
+           		.postForEntity(
+           				getRootUrl() + "/person",
+           				testPersonToBeAdded,
+           				PersonDTO.class);
+
+        assertThat(response.getBody()).isNotSameAs(testPersonToBeAdded);
+        assertEquals("request status", HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
+
+    }
     
     }
 }
