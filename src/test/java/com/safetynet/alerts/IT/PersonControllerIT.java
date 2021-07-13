@@ -579,6 +579,33 @@ public class PersonControllerIT {
             assertNotEquals(personToAddMissingId.getAddress(), response.getBody().getAddress());
         } 
         
+        @Test
+        @DisplayName("Check - <UPDATE INVALID PERSON ID>"
+        		+ "Given a Person with ID inexistant,"
+        		+ " when UPDATE request,"
+        		+ " then return Reponse Status: 400 BAD REQUEST")
+        public void testUpdatePersonNonExisting() {
+
+        	// first update asserts the original value expected
+        	restTemplate.put(getRootUrl() + "/person", testPersonToUpdate);
+        	
+        	// invalid id update is run here to check it fails and previous one stays valid
+        	restTemplate.put(getRootUrl() + "/person", testPersonToUpdateWrongFirstName);
+            
+        	// Checking that existing person has not been modified
+            response = restTemplate.getForEntity("http://localhost:" + port + PERSON_ID_URL,
+                    PersonDTO.class, testPersonToUpdate.getFirstName(), testPersonToUpdate.getLastName());
+
+            assertNotNull(response.getBody());
+            
+            // confirms the original person data is same as get person data
+            // - confirms invalid id info is not taken into account for update 
+            assertEquals(testPersonToUpdate.getAddress(), response.getBody().getAddress());
+            
+            
+            assertNotEquals(testPersonToUpdateWrongFirstName.getAddress(), response.getBody().getAddress());
+        }
+        
         
         
     }
