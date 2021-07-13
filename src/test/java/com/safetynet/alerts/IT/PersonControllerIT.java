@@ -110,5 +110,21 @@ public class PersonControllerIT {
             assertEquals("application/json", (response.getHeaders().getContentType()).toString());
     }   
     
+    @Test
+    @DisplayName("Check - <RESPONSE BODY NOT NULL>"
+    		+ " - Given a Person to add,"
+    		+ " when POST request,"
+    		+ " then response body is not Null")
+    public void testAddPersonRequestWithValidResponseBodyNotNull() {
+            response = restTemplate
+               		.postForEntity(
+               				getRootUrl() + "/person",
+               				testPersonToBeAdded,
+               				PersonDTO.class);
+      //When Post created CHECKs
+        assertNotNull(response.getBody());
+    }
+    
+    
     }
 }
