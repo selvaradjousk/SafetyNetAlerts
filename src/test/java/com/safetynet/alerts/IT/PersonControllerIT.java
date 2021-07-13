@@ -10,7 +10,6 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -76,7 +75,6 @@ public class PersonControllerIT {
     // *********************************************************************************** 
     @DisplayName("IT - GET PERSON")
     @Nested
-    @TestMethodOrder(OrderAnnotation.class)
     class GetPersonIT {  
     	
         @BeforeEach
@@ -111,6 +109,27 @@ public class PersonControllerIT {
 
            assertNotNull(response);
         }
+       
+        
+        @Test
+        @DisplayName("Check - <RESPONSE HEADER NOT NULL>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then response header not null")
+        public void testGetPersonRequestWithValidPersonResponseHeaderNotNull() {
+                assertNotNull(response.getHeaders());
+                assertEquals("application/json", (response.getHeaders().getContentType()).toString());
+        }
+
+        @Test
+        @DisplayName("Check - <RESPONSE BODY NOT NULL>"
+        		+ " - Given a Person,"
+        		+ " when GET request,"
+        		+ " then response body is not Null")
+        public void testGetPersonRequestWithValidResponseBodyNotNull() {
+            assertNotNull(response.getBody());
+        }
+        
         
 
     }
@@ -119,7 +138,6 @@ public class PersonControllerIT {
     
     @DisplayName("IT - ADD NEW PERSON")
     @Nested
-    @TestMethodOrder(OrderAnnotation.class)
     class AddNewPersonIT {  
     	
         @BeforeEach
