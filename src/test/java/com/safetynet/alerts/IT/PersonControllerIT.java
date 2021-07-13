@@ -464,7 +464,26 @@ public class PersonControllerIT {
            	// Person Data Exist
            	assertNotNull(responseOnPost);
            	assertNotNull(responseOnPost.getBody().getAddress());
-        } 
+        }
+        
+        @Test
+        @DisplayName("Check - <PERSON UPDATE - STATUS 200 OK>"
+        		+ " - Given a Person,"
+        		+ " when UPDATE request,"
+        		+ " then return response Status: 200 OK")
+        public void testUpdatePersonResponseStatusOk() {
+      	   
+           	// Person Update Data Exist
+        	assertEquals((HttpStatus.OK), response.getStatusCode());
+        	assertEquals(200, response.getStatusCodeValue());
+        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        }        
+        
+        
+        
+        
+        
+        
     }
 
 }
