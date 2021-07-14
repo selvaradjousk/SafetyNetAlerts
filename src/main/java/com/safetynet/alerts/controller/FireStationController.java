@@ -27,36 +27,43 @@ public class FireStationController {
    
    
    @GetMapping("/fireStation")
-   public ResponseEntity<FireStationDTO> getFireStation(@RequestParam("address") final String address,
-                                                        @RequestParam("station") final Integer station) {
+   public ResponseEntity<FireStationDTO> getFireStation(
+		   @RequestParam("address") final String address,
+		   @RequestParam("station") final Integer station) {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
-       FireStationDTO fireDTO = fireStationService.getFireStationById(address, station);
+       FireStationDTO fireDTO = fireStationService
+    		   .getFireStationById(address, station);
 
        return new ResponseEntity<>(fireDTO, HttpStatus.OK);
    }
    
    
    @PostMapping("/firestation")
-   public ResponseEntity<FireStationDTO> addNewFireStation(@RequestBody final FireStationDTO fireStation) {
+   public ResponseEntity<FireStationDTO> addNewFireStation(
+		   @RequestBody final FireStationDTO fireStation) {
 
        fireStationValidityCheckForAddAndUpdate(fireStation);
-       FireStationDTO fireStationCreated = fireStationService.addNewFireStation(fireStation);
+       FireStationDTO fireStationCreated = fireStationService
+    		   .addNewFireStation(fireStation);
 
        return new ResponseEntity<>(fireStationCreated, HttpStatus.CREATED);
    }
    
    @PutMapping("/firestation")
-   public ResponseEntity<FireStationDTO> updateFireStation(@RequestBody final FireStationDTO fireStation) {
+   public ResponseEntity<FireStationDTO> updateFireStation(
+		   @RequestBody final FireStationDTO fireStation) {
 
        fireStationValidityCheckForAddAndUpdate(fireStation);
-       FireStationDTO fireStationUpdated = fireStationService.updateExistingStation(fireStation);
+       FireStationDTO fireStationUpdated = fireStationService
+    		   .updateExistingStation(fireStation);
 
        return new ResponseEntity<>(fireStationUpdated, HttpStatus.OK);
    } 
    
    @DeleteMapping("/firestation")
-   public ResponseEntity<Void> deleteFireStation(@RequestParam("address") final String address,
+   public ResponseEntity<Void> deleteFireStation(
+		   @RequestParam("address") final String address,
 		   @RequestParam("station") final Integer station) {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
@@ -70,12 +77,15 @@ public class FireStationController {
 	 * FireStation Validity Check For Add and Update Request Methods
 	 * @param fireStation
 	 */
-	private void fireStationValidityCheckForAddAndUpdate(final FireStationDTO fireStation) {
+	private void fireStationValidityCheckForAddAndUpdate(
+			final FireStationDTO fireStation) {
 		boolean fireStationAddressIsNull = (fireStation.getAddress() == null);
 		boolean fireStationAddressIsEmpty = (fireStation.getAddress().isEmpty());
 		
-		if (fireStationAddressIsNull || fireStationAddressIsEmpty) {
-          throw new BadRequestException("Bad request : missing or incomplete body request");
+		if (fireStationAddressIsNull
+				|| fireStationAddressIsEmpty) {
+          throw new BadRequestException("Response Status:"
+          		+ " 400 Bad request - invalid or empty request body");
       }
 	}
 
@@ -86,13 +96,18 @@ public class FireStationController {
 	 * @param address
 	 * @param station
 	 */
-	private void fireStationValidityCheckForDeleteAndGet(final String address, final Integer station) {
+	private void fireStationValidityCheckForDeleteAndGet(
+			final String address,
+			final Integer station) {
 		boolean fireStationAddressIsNull = (address == null);
 		boolean fireStationAddressLengthIsZero = (address.trim().length() == 0);
 		boolean stationIdIsNull = (station == null);
 		
-		if (fireStationAddressIsNull || fireStationAddressLengthIsZero || stationIdIsNull) {
-          throw new BadRequestException("Bad request : missing or incomplete parameter");
+		if (fireStationAddressIsNull
+				|| fireStationAddressLengthIsZero
+				|| stationIdIsNull) {
+          throw new BadRequestException("Response Status:"
+          		+ " 400 Bad request - invalid parameter input");
       }
 	} 
  

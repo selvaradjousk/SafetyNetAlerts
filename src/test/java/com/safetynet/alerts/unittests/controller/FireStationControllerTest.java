@@ -265,7 +265,7 @@ public class FireStationControllerTest {
     }
     
   @Test
-  @DisplayName("DELETE STATION valid firestation id"
+  @DisplayName("Test DELETE FIRESTATION valid firestation id"
   		+ " - Given a valid FireStation ID values,"
   		+ " when DELETE request,"
   		+ " then return - Status: 200 OK")
@@ -291,7 +291,7 @@ public class FireStationControllerTest {
   
   
 @Test
-@DisplayName("DELETE STATION invalid input"
+@DisplayName("Test DELETE FIRESTATION invalid input"
 		+ " - Given without address input value,"
 		+ " when DELETE request,"
 		+ " then return - Status: 400 Bad Request")

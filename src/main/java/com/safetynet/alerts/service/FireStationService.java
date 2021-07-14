@@ -1,5 +1,8 @@
 package com.safetynet.alerts.service;
 
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.FireStationDTO;
@@ -25,6 +28,12 @@ public class FireStationService implements IFireStationService {
 	public void deleteExistingStation(String address, Integer stationId) {
 		// TODO Auto-generated method stub
 		return;
+	}
+
+	@Override
+	public List<String> getAddressesByStation(int stationId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
