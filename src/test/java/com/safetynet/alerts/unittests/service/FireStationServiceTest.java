@@ -1,6 +1,7 @@
 package com.safetynet.alerts.unittests.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -19,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.FireStationDAO;
 import com.safetynet.alerts.dto.FireStationDTO;
+import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.service.FireStationService;
 import com.safetynet.alerts.util.FireStationMapper;
@@ -84,4 +86,18 @@ public class FireStationServiceTest {
         assertEquals(fireStationDTO.getStationId(), fireByIdFound.getStationId());
     }
 
+     @Test
+     @DisplayName("GET FIRESTATION BY ID (No valid id)"
+     		+ " - Given a fireStation with ID with no id,"
+     		+ " when request get fireStation,"
+     		+ " then return throws DataNotFoundException")
+     public void testGetFireStationByIdforInvalidId() {
+         when(fireStationDaoMock
+         		.getStationById(anyString(), anyInt()))
+         .thenReturn(null);
+
+         assertThrows(DataNotFoundException.class, ()
+         		->  fireStationService.getFireStationById(testFireStation1.getAddress(), testFireStation1.getStationId()));
+     }
+     
 }
