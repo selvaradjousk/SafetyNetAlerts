@@ -193,8 +193,44 @@ public class FireStationControllerTest {
         .addNewFireStation(any(FireStationDTO.class));
     }
     }
-
     
+    
+    // ***************************************************************************************************
+    
+    @DisplayName("Test UPDATE FIRESTATION")
+    @Nested
+    class TestUpdateFireStation {  
+    	
+        @BeforeEach
+        public void init() {
+            when(fireStationService
+            		.updateExistingStation(any(FireStationDTO.class)))
+            .thenReturn(any(FireStationDTO.class));
+        }
+        
+        
+        @Test
+        @DisplayName("Check (for valid input)"
+        		+ " - Given valid input, when PUT request,"
+        		+ " then return - Status: 200 OK")
+        public void testUpdateStationWithValidInput() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders
+            		.put("/firestation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(displayAsJsonString(fireStationDTO)))
+                    .andExpect(status()
+                    		.isOk());
+
+            verify(fireStationService)
+            .updateExistingStation(any(FireStationDTO.class));
+            verify(fireStationService, times(1))
+            .updateExistingStation(any(FireStationDTO.class));
+        }
+
+        
+        
+        
+    }    
     
     
 }
