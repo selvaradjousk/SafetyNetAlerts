@@ -15,6 +15,8 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IPersonService;
 
+import lombok.NonNull;
+
 /**
  * Provides methods for CRUD operations on Person data resource
  *  using HTTP requests to access and use data.
@@ -100,7 +102,7 @@ public class PersonController {
      */
     @PutMapping("/person")
     public ResponseEntity<PersonDTO> updateExistingPerson(
-    		@RequestBody final PersonDTO person) {
+    		@RequestBody final PersonDTO person) throws BadRequestException{
 
         if (person.getFirstName() == null
         		|| person.getFirstName().isEmpty()

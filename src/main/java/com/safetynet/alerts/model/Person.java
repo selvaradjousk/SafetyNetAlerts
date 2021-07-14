@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -23,11 +24,13 @@ public class Person {
 /**
  * person first name.
  */
+	@NonNull
 	private String firstName;
 
 /**
  * person last name.
  */
+	@NonNull
 	private String lastName;
 
 /**

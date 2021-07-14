@@ -115,14 +115,42 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD PERSON (without person Id)"
+    @DisplayName("ADD PERSON (without person FirstName)"
     		+ " - Given add a person without person Id,"
     		+ " when POST request,"
     		+ " then return - Status: 400 Bad Request")
-    public void testAddPersonRequestWithoutValidId() throws Exception {
+    public void testAddPersonRequestWithoutValidFirstName() throws Exception {
         objectMapper = new ObjectMapper();
         personDTO = PersonDTO.builder()
         		.firstName("")
+        		.lastName("Test LastName")
+        		.address("1509 Culver St")
+        		.city("Culver")
+        		.zip(97451)
+        		.phone("111-111-1111")
+        		.email("testemail@email.com")
+        		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(personDTO)))
+                .andExpect(status()
+               		.isBadRequest());
+
+        verify(personService, times(0))
+        .addNewPerson(any(PersonDTO.class));
+    }
+    
+    @Test
+    @DisplayName("ADD PERSON (without person LastName)"
+    		+ " - Given add a person without person Id,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddPersonRequestWithoutLastName() throws Exception {
+        objectMapper = new ObjectMapper();
+        personDTO = PersonDTO.builder()
+        		.firstName("Test FirstName")
         		.lastName("")
         		.address("1509 Culver St")
         		.city("Culver")
@@ -209,6 +237,35 @@ public class PersonControllerTest {
         verify(personService, times(0))
         .updateExistingPerson(any(PersonDTO.class));
     }
+    
+    @Test
+    @DisplayName("UPDATE PERSON No lastName"
+    		+ " - Given update a person without lastName,"
+    		+ " when PUT request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdatePersonRequestWithoutLastName() throws Exception {
+        objectMapper = new ObjectMapper();
+       personDTO = PersonDTO.builder()
+       		.firstName("Test FirstName")
+       		.lastName("")
+       		.address("1509 Culver St")
+       		.city("Culver")
+       		.zip(97451)
+       		.phone("111-111-1111")
+       		.email("testemail@email.com")
+       		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(personDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .updateExistingPerson(any(PersonDTO.class));
+    }
+    
 
     @Test
     @DisplayName("UPDATE PERSON"
@@ -257,5 +314,21 @@ public class PersonControllerTest {
         verify(personService, times(0))
         .deleteExistingPerson(anyString(), anyString());
     }
+    
+    @Test
+    @DisplayName("DELETE PERSON"
+    		+ " - Given INVALID PERSON-ID without firstname,"
+    		+ " when DELETE request (/person?firstName={}&lastName={lastName}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeletePersonRequestWithIdWithoutFirstname() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/person?firstName=&lastName=Test LastName"))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .deleteExistingPerson(anyString(), anyString());
+    }
+
 
 }
