@@ -40,8 +40,9 @@ public class PersonControllerIT {
     private ObjectMapper objectMapper;
     
     PersonDTO testPersonToBeAdded, testPersonToUpdate, personToAddMissingId,
-    testPersonUpdated, testPersonToUpdateWrongFirstName, testPersonToBeDeleted;
-    ResponseEntity<PersonDTO> response, responseOnPost;
+    testPersonUpdated, testPersonToUpdateWrongFirstName, testPersonToBeDeleted,
+    testPersonToBeDeletedCopy;
+    ResponseEntity<PersonDTO> response, responseOnPost, responseDelete;
     ResponseEntity<PersonDTO> getPersonAdded;
     
     private final static String PERSON_ID_URL = "/person?firstName={firstName}&lastName={lastName}";
@@ -107,7 +108,16 @@ public class PersonControllerIT {
         		.zip(98765)
         		.phone("111-111-1111")
         		.email("testemail@email.com")
-        		.build();       
+        		.build();  
+        testPersonToBeDeletedCopy = new PersonDTO().builder()
+        		.firstName("Test Delete FirstName")
+        		.lastName("Test Delete Last Name")
+        		.address("Testing Street")
+        		.city("TestCity")
+        		.zip(98765)
+        		.phone("111-111-1111")
+        		.email("testemail@email.com")
+        		.build();    
         
  
     	
@@ -630,6 +640,7 @@ public class PersonControllerIT {
 
             assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
         }
+    }
         
        
         // ***********************************************************************************
@@ -659,7 +670,7 @@ public class PersonControllerIT {
                 restTemplate.delete(getRootUrl() + PERSON_ID_URL, testPersonToBeDeleted.getFirstName(), testPersonToBeDeleted.getLastName()); 
             }
             
-        }
+  
         
        
         @Test
@@ -715,7 +726,7 @@ public class PersonControllerIT {
             assertThat(response.getBody()).isNotSameAs(testPersonToBeDeleted);
        }
         
-        
+       
         @Test
         @DisplayName("Check - <PERSON ID param>"
         		+ "Given incomplete Person Id,"
@@ -723,8 +734,14 @@ public class PersonControllerIT {
         		+ " then person is not deleted")
         public void testDeleteRequestInvalidPersonId() {
 
+        	responseDelete = restTemplate
+  	   				.postForEntity(
+  	   				getRootUrl() + "/person",
+  	   			testPersonToBeDeletedCopy,
+  	   				PersonDTO.class);
+       	   
         	// Confirms person id found before delete
-        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        	assertEquals(HttpStatus.CREATED.value(), responseDelete.getStatusCodeValue());
         	
         	// delete request with missing and wrong input
             restTemplate.delete(getRootUrl() + PERSON_ID_URL, "firstNameDel", "");
@@ -733,8 +750,8 @@ public class PersonControllerIT {
             response = restTemplate
             		.getForEntity(getRootUrl() + PERSON_ID_URL,
                     PersonDTO.class,
-                    testPersonToBeDeleted.getFirstName(),
-                    testPersonToBeDeleted.getLastName());
+                    testPersonToBeDeletedCopy.getFirstName(),
+                    testPersonToBeDeletedCopy.getLastName());
 
             // get request confirms that it is able to get the original person
             assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
@@ -742,10 +759,8 @@ public class PersonControllerIT {
             // person data is same as the original - confirms invalid ID delete did not happen
             assertThat(response.getBody())
                     .isNotNull()
-                    .usingRecursiveComparison().isEqualTo(testPersonToBeDeleted);
+                    .usingRecursiveComparison().isEqualTo(testPersonToBeDeletedCopy);
         }
-        
-               
     }
-
+       
 }
