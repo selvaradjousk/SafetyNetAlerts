@@ -41,7 +41,7 @@ public class FireStationControllerTest {
     private ObjectMapper objectMapper;
 
     
-    private FireStationDTO fireStationDTO;
+    private FireStationDTO fireStationDTO, fireStationDTOInvalidAddress;
 
     @BeforeEach
     public void setUp() {
@@ -50,6 +50,11 @@ public class FireStationControllerTest {
         fireStationDTO = FireStationDTO.builder()
         		.stationId(3)
         		.address("Test StreetName")
+        		.build();
+        
+        fireStationDTOInvalidAddress = FireStationDTO.builder()
+        		.stationId(3)
+        		.address("")
         		.build();
     }
     
@@ -158,15 +163,10 @@ public class FireStationControllerTest {
     		+ " when POST request,"
     		+ " then return - Status: 400 Bad Request")
     public void testAddFireStationRequestWithMissingAddress() throws Exception {
-        fireStationDTO = FireStationDTO.builder()
-        		.stationId(3)
-        		.address("")
-        		.build();
-
         mockMvc.perform(MockMvcRequestBuilders
         		.post("/firestation")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(displayAsJsonString(fireStationDTO)))
+                .content(displayAsJsonString(fireStationDTOInvalidAddress)))
                 .andExpect(status()
                 		.isBadRequest());
 
@@ -203,9 +203,7 @@ public class FireStationControllerTest {
     	
         @BeforeEach
         public void init() {
-            when(fireStationService
-            		.updateExistingStation(any(FireStationDTO.class)))
-            .thenReturn(any(FireStationDTO.class));
+
         }
         
         
@@ -214,6 +212,9 @@ public class FireStationControllerTest {
         		+ " - Given valid input, when PUT request,"
         		+ " then return - Status: 200 OK")
         public void testUpdateStationWithValidInput() throws Exception {
+            when(fireStationService
+            		.updateExistingStation(any(FireStationDTO.class)))
+            .thenReturn(any(FireStationDTO.class));
             mockMvc.perform(MockMvcRequestBuilders
             		.put("/firestation")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -227,7 +228,22 @@ public class FireStationControllerTest {
             .updateExistingStation(any(FireStationDTO.class));
         }
 
-        
+        @Test
+        @DisplayName("Check (Invalid Address)"
+        		+ " - Given invalid Address, when PUT request,"
+        		+ " then return - Status: 400 Bad Request")
+        public void testUpdateStationRequestWithInValidAddress() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders
+            		.put("/firestation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(displayAsJsonString(fireStationDTOInvalidAddress)))
+                    .andExpect(status()
+                    		.isBadRequest());
+
+            verify(fireStationService, times(0))
+            .updateExistingStation(any(FireStationDTO.class));
+        }
+          
         
         
     }    
