@@ -1,5 +1,7 @@
 package com.safetynet.alerts.unittests.controller;
 
+import static com.safetynet.alerts.testingtoolsconfig.DataPreparation.displayAsJsonString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -70,6 +73,8 @@ public class FireStationControllerTest {
         .getFireStationById(anyInt(), anyString());
     }
     
+    
+    // ***************************************************************************************************
     @Test
     @DisplayName("GET STATION (No input values)"
     		+ " - Given no input,"
@@ -117,5 +122,28 @@ public class FireStationControllerTest {
                 .andExpect(status()
                 		.isBadRequest());
     } 
+    
+    // ***************************************************************************************************
+    
+    @Test
+    @DisplayName("ADD STATION"
+    		+ " - Given add firestation,"
+    		+ " when POST request,"
+    		+ " then return - Status: 201 Created")
+    public void testAddStationRequestWithValidIdCheckStatus() throws Exception {
+        when(fireStationService
+        		.addNewFireStation(any(FireStationDTO.class)))
+        .thenReturn(any(FireStationDTO.class));
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/firestation")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(fireStationDTO)))
+                .andExpect(status()
+                		.isCreated());
+
+        verify(fireStationService)
+        .addNewFireStation(any(FireStationDTO.class));
+    }
     
 }

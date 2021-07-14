@@ -12,4 +12,10 @@ public class FireStationService implements IFireStationService {
 		return null;
 	}
 
+	@Override
+	public FireStationDTO addNewFireStation(FireStationDTO fireStationDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
