@@ -288,6 +288,22 @@ public class FireStationControllerTest {
       .deleteExistingStation(anyString(), anyInt());
       
   }
+  
+  
+@Test
+@DisplayName("DELETE STATION invalid input"
+		+ " - Given without address input value,"
+		+ " when DELETE request,"
+		+ " then return - Status: 400 Bad Request")
+public void testDeleteStationRequestWithoutAddressValues() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders
+    		.delete("/firestation?address=&station=3"))
+            .andExpect(status()
+            		.isBadRequest());
+
+    verify(fireStationService, times(0))
+    .deleteExistingStation(anyString(), anyInt());
+}
     
     
 }

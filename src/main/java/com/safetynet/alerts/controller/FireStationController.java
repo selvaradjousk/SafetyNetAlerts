@@ -56,8 +56,8 @@ public class FireStationController {
    } 
    
    @DeleteMapping("/firestation")
-   public ResponseEntity<Void> deleteFireStation(
-   		@RequestParam("address") final String address, @RequestParam("station") final Integer station) {
+   public ResponseEntity<Void> deleteFireStation(@RequestParam("address") final String address,
+		   @RequestParam("station") final Integer station) {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
        fireStationService.deleteExistingStation(address, station);
