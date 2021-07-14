@@ -7,7 +7,7 @@ import com.safetynet.alerts.dto.FireStationDTO;
 @Service
 public class FireStationService implements IFireStationService {
 
-	public FireStationDTO getFireStationById(Integer stationId, String address) {
+	public FireStationDTO getFireStationById(String address, Integer stationId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -22,7 +22,7 @@ public class FireStationService implements IFireStationService {
 		return null;
 	}
 	
-	public void deleteExistingStation(Integer stationId, String address) {
+	public void deleteExistingStation(String address, Integer stationId) {
 		// TODO Auto-generated method stub
 		return;
 	}

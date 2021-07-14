@@ -3,6 +3,7 @@ package com.safetynet.alerts.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +31,7 @@ public class FireStationController {
                                                         @RequestParam("station") final Integer station) {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
-       FireStationDTO fireDTO = fireStationService.getFireStationById(station, address);
+       FireStationDTO fireDTO = fireStationService.getFireStationById(address, station);
 
        return new ResponseEntity<>(fireDTO, HttpStatus.OK);
    }
@@ -54,7 +55,15 @@ public class FireStationController {
        return new ResponseEntity<>(fireStationUpdated, HttpStatus.OK);
    } 
    
-   
+   @DeleteMapping("/firestation")
+   public ResponseEntity<Void> deleteFireStation(
+   		@RequestParam("address") final String address, @RequestParam("station") final Integer station) {
+
+       fireStationValidityCheckForDeleteAndGet(address, station);
+       fireStationService.deleteExistingStation(address, station);
+
+       return new ResponseEntity<>(HttpStatus.OK);
+   }
    
    
 	/**

@@ -66,7 +66,7 @@ public class FireStationControllerTest {
         @BeforeEach
         public void init() {
             when(fireStationService
-            		.getFireStationById(anyInt(), anyString()))
+            		.getFireStationById(anyString(), anyInt()))
             .thenReturn(fireStationDTO);
         }
 
@@ -84,9 +84,9 @@ public class FireStationControllerTest {
                 		.isOk());
 
         verify(fireStationService)
-        .getFireStationById(anyInt(), anyString());
+        .getFireStationById(anyString(), anyInt());
         verify(fireStationService, times(1))
-        .getFireStationById(anyInt(), anyString());
+        .getFireStationById(anyString(), anyInt());
     }
  
 
@@ -137,7 +137,7 @@ public class FireStationControllerTest {
         @BeforeEach
         public void init() {
             when(fireStationService
-            		.getFireStationById(anyInt(), anyString()))
+            		.getFireStationById(anyString(), anyInt()))
             .thenReturn(fireStationDTO);
         }
     
@@ -278,14 +278,14 @@ public class FireStationControllerTest {
               		.isCreated());
 	  
       mockMvc.perform(MockMvcRequestBuilders
-      		.delete("/fireStation?address=Test StreetName&station=3"))
+      		.delete("/firestation?address=Test StreetName&station=3"))
               .andExpect(status()
               		.isOk());
 
       verify(fireStationService)
-      .deleteExistingStation(anyInt(), anyString());
-      verify(fireStationService, times(0))
-      .deleteExistingStation(anyInt(), anyString());
+      .deleteExistingStation(anyString(), anyInt());
+      verify(fireStationService, times(1))
+      .deleteExistingStation(anyString(), anyInt());
       
   }
     
