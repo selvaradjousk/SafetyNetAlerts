@@ -6,7 +6,7 @@ import com.safetynet.alerts.model.FireStation;
 
 public interface IFireStationDAO {
 
-	FireStation getStationById(Integer stationId, String address);
+	FireStation getStationById(String address, Integer stationId);
 
 	List<FireStation> getStationsByStationIds(int stationId);
 	

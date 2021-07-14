@@ -75,12 +75,13 @@ public class FireStationServiceTest {
     		+ " then return fireStation")
     public void testGetFireStationById() {
             when(fireStationDaoMock
-            		.getStationById(anyInt(), anyString()))
+            		.getStationById(anyString(), anyInt()))
             .thenReturn(testFireStation1);
 
-        FireStationDTO fireStationByIdFound = fireStationService
+        FireStationDTO fireByIdFound = fireStationService
         		.getFireStationById(testFireStation1.getAddress(), testFireStation1.getStationId());
 
-        assertEquals(fireStationDTO.getStationId(), fireStationByIdFound.getStationId());
+        assertEquals(fireStationDTO.getStationId(), fireByIdFound.getStationId());
     }
+
 }
