@@ -69,4 +69,53 @@ public class FireStationControllerTest {
         verify(fireStationService, times(1))
         .getFireStationById(anyInt(), anyString());
     }
+    
+    @Test
+    @DisplayName("GET STATION (No input values)"
+    		+ " - Given no input,"
+    		+ " when GET request,"
+    		+ " then return - Status: 400 BAD REQUEST")
+    public void testGetStationRequestWithWithoutInputValues() throws Exception {
+        when(fireStationService
+        		.getFireStationById(anyInt(), anyString()))
+        .thenReturn(fireStationDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/fireStation?station=&address="))
+                .andExpect(status()
+                		.isBadRequest());
+    }
+    
+    @Test
+    @DisplayName("GET STATION (No Station ID)"
+    		+ " - Given no station ID,"
+    		+ " when GET request,"
+    		+ " then return - Status: 400 BAD REQUEST")
+    public void testGetStationRequestWithWithoutStationId() throws Exception {
+        when(fireStationService
+        		.getFireStationById(anyInt(), anyString()))
+        .thenReturn(fireStationDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/fireStation?station=&address=Test StreetName"))
+                .andExpect(status()
+                		.isBadRequest());
+    } 
+    
+    @Test
+    @DisplayName("GET STATION (No Station Address)"
+    		+ " - Given no station Address,"
+    		+ " when GET request,"
+    		+ " then return - Status: 400 BAD REQUEST")
+    public void testGetStationRequestWithWithoutStationAddress() throws Exception {
+        when(fireStationService
+        		.getFireStationById(anyInt(), anyString()))
+        .thenReturn(fireStationDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/fireStation?station=3&address="))
+                .andExpect(status()
+                		.isBadRequest());
+    } 
+    
 }
