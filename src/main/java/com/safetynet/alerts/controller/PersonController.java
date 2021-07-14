@@ -15,8 +15,6 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IPersonService;
 
-import lombok.NonNull;
-
 /**
  * Provides methods for CRUD operations on Person data resource
  *  using HTTP requests to access and use data.
