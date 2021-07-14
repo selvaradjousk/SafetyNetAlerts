@@ -12,16 +12,19 @@ public class FireStationService implements IFireStationService {
 		return null;
 	}
 
-	@Override
 	public FireStationDTO addNewFireStation(FireStationDTO fireStationDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	@Override
 	public FireStationDTO updateExistingStation(FireStationDTO fireStationDTO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void deleteExistingStation(Integer stationId, String address) {
+		// TODO Auto-generated method stub
+		return;
 	}
 
 }

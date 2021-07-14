@@ -9,5 +9,7 @@ public interface IFireStationService {
 	public FireStationDTO addNewFireStation(FireStationDTO fireStationDTO);
 	
 	public FireStationDTO updateExistingStation(FireStationDTO fireStationDTO);
+	
+	public void deleteExistingStation(Integer stationId, String address);
 
 }

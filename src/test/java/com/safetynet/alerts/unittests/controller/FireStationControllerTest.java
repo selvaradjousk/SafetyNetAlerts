@@ -14,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -40,7 +41,7 @@ public class FireStationControllerTest {
 
     private ObjectMapper objectMapper;
 
-    
+    @Mock
     private FireStationDTO fireStationDTO, fireStationDTOInvalidAddress;
 
     @BeforeEach
@@ -244,9 +245,49 @@ public class FireStationControllerTest {
             .updateExistingStation(any(FireStationDTO.class));
         }
           
-        
-        
-    }    
+        @Test
+        @DisplayName("Check (for empty input)"
+        		+ " - Given empty body request,"
+        		+ " when PUT request,"
+        		+ " then return Status: 400 Bad Request")
+        public void testUpdateStationRequestWithEmptyBody() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders
+            		.put("/firestation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(displayAsJsonString("")))
+                    .andExpect(status()
+                    		.isBadRequest());
+
+            verify(fireStationService, times(0))
+            .updateExistingStation(any(FireStationDTO.class));
+        }  
+     
+    }
+    
+  @Test
+  @DisplayName("DELETE STATION valid firestation id"
+  		+ " - Given a valid FireStation ID values,"
+  		+ " when DELETE request,"
+  		+ " then return - Status: 200 OK")
+  public void testDeleteStationRequestWithValidInputValues() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders
+      		.post("/firestation")
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(displayAsJsonString(fireStationDTO)))
+              .andExpect(status()
+              		.isCreated());
+	  
+      mockMvc.perform(MockMvcRequestBuilders
+      		.delete("/fireStation?address=Test StreetName&station=3"))
+              .andExpect(status()
+              		.isOk());
+
+      verify(fireStationService)
+      .deleteExistingStation(anyInt(), anyString());
+      verify(fireStationService, times(0))
+      .deleteExistingStation(anyInt(), anyString());
+      
+  }
     
     
 }
