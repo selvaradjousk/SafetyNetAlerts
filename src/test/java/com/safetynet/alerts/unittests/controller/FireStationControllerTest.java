@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,16 +52,25 @@ public class FireStationControllerTest {
         		.address("Test StreetName")
         		.build();
     }
+    
+    @DisplayName("Test GET FIRESTATION")
+    @Nested
+    class TestGetFireStation {  
+    	
+        @BeforeEach
+        public void init() {
+            when(fireStationService
+            		.getFireStationById(anyInt(), anyString()))
+            .thenReturn(fireStationDTO);
+        }
 
     @Test
-    @DisplayName("GET STATION"
-    		+ " - Given valid key ID,"
+    @DisplayName("Valid FireStation ID"
+    		+ " - Given valid ID,"
     		+ " when GET request,"
     		+ " then return - Status: 200 OK")
     public void testGetStationRequestWithValidInputValues() throws Exception {
-        when(fireStationService
-        		.getFireStationById(anyInt(), anyString()))
-        .thenReturn(fireStationDTO);
+
 
         mockMvc.perform(MockMvcRequestBuilders
         		.get("/fireStation?station=3&address=Test StreetName"))
@@ -72,19 +82,14 @@ public class FireStationControllerTest {
         verify(fireStationService, times(1))
         .getFireStationById(anyInt(), anyString());
     }
-    
-    
-    // ***************************************************************************************************
+ 
+
     @Test
-    @DisplayName("GET STATION (No input values)"
+    @DisplayName("Check <No input values>"
     		+ " - Given no input,"
     		+ " when GET request,"
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutInputValues() throws Exception {
-        when(fireStationService
-        		.getFireStationById(anyInt(), anyString()))
-        .thenReturn(fireStationDTO);
-
         mockMvc.perform(MockMvcRequestBuilders
         		.get("/fireStation?station=&address="))
                 .andExpect(status()
@@ -92,15 +97,11 @@ public class FireStationControllerTest {
     }
     
     @Test
-    @DisplayName("GET STATION (No Station ID)"
+    @DisplayName("Check (No Station ID)"
     		+ " - Given no station ID,"
     		+ " when GET request,"
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutStationId() throws Exception {
-        when(fireStationService
-        		.getFireStationById(anyInt(), anyString()))
-        .thenReturn(fireStationDTO);
-
         mockMvc.perform(MockMvcRequestBuilders
         		.get("/fireStation?station=&address=Test StreetName"))
                 .andExpect(status()
@@ -108,33 +109,38 @@ public class FireStationControllerTest {
     } 
     
     @Test
-    @DisplayName("GET STATION (No Station Address)"
+    @DisplayName("Check (No Station Address)"
     		+ " - Given no station Address,"
     		+ " when GET request,"
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutStationAddress() throws Exception {
-        when(fireStationService
-        		.getFireStationById(anyInt(), anyString()))
-        .thenReturn(fireStationDTO);
-
         mockMvc.perform(MockMvcRequestBuilders
         		.get("/fireStation?station=3&address="))
                 .andExpect(status()
                 		.isBadRequest());
     } 
     
+    } 
+    
     // ***************************************************************************************************
     
+    @DisplayName("Test ADD FIRESTATION")
+    @Nested
+    class TestAddFireStation {  
+    	
+        @BeforeEach
+        public void init() {
+            when(fireStationService
+            		.getFireStationById(anyInt(), anyString()))
+            .thenReturn(fireStationDTO);
+        }
+    
     @Test
-    @DisplayName("ADD STATION"
+    @DisplayName("Check (Valid FireStation Data)"
     		+ " - Given add firestation,"
     		+ " when POST request,"
     		+ " then return - Status: 201 Created")
     public void testAddStationRequestWithValidIdCheckStatus() throws Exception {
-        when(fireStationService
-        		.addNewFireStation(any(FireStationDTO.class)))
-        .thenReturn(any(FireStationDTO.class));
-
         mockMvc.perform(MockMvcRequestBuilders
         		.post("/firestation")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -145,5 +151,50 @@ public class FireStationControllerTest {
         verify(fireStationService)
         .addNewFireStation(any(FireStationDTO.class));
     }
+    
+    @Test
+    @DisplayName("Check (Address value empty)"
+    		+ " - Given No address value,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddFireStationRequestWithMissingAddress() throws Exception {
+        fireStationDTO = FireStationDTO.builder()
+        		.stationId(3)
+        		.address("")
+        		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/firestation")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(fireStationDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(fireStationService, times(0))
+        .addNewFireStation(any(FireStationDTO.class));
+    }
+    
+
+    @Test
+    @DisplayName("Check (empty request body)"
+    		+ " - Given request body empty,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddStationREquestWithEmptyRequestBody() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/firestation")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(fireStationService, times(0))
+        .addNewFireStation(any(FireStationDTO.class));
+    }
+    }
+
+    
+    
     
 }

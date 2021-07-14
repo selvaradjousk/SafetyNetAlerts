@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,8 +35,32 @@ public class FireStationController {
    }
    
    
+   @PostMapping("/firestation")
+   public ResponseEntity<FireStationDTO> addNewFireStation(@RequestBody final FireStationDTO fireStation) {
+
+       fireStationValidityCheckForAddAndUpdate(fireStation);
+       FireStationDTO fireStationCreated = fireStationService.addNewFireStation(fireStation);
+
+       return new ResponseEntity<>(fireStationCreated, HttpStatus.CREATED);
+   }
    
    
+   
+   
+	/**
+	 * FireStation Validity Check For Add and Update Request Methods
+	 * @param fireStation
+	 */
+	private void fireStationValidityCheckForAddAndUpdate(final FireStationDTO fireStation) {
+		boolean fireStationAddressIsNull = (fireStation.getAddress() == null);
+		boolean fireStationAddressIsEmpty = (fireStation.getAddress().isEmpty());
+		
+		if (fireStationAddressIsNull || fireStationAddressIsEmpty) {
+          throw new BadRequestException("Bad request : missing or incomplete body request");
+      }
+	}
+
+
 	/**
 	 * FireStation Validity Check For Delete And Get Request Methods
 	 * 
