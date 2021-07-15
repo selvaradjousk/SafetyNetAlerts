@@ -113,14 +113,15 @@ public class FireStationService implements IFireStationService {
         return fireStationMapper.toFireStationDTO(fireToUpdate);
     }
 	
-	public void deleteExistingStation(String address, Integer stationId) {
-		// TODO Auto-generated method stub
-		return;
-	}
 
-	public void deleteExistingStation(Integer stationId, String address) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void deleteExistingStation(final Integer stationId, final String address) {
+        FireStation fireStationToDelete = fireStationDAO.getStationById(stationId, address);
+
+        if (fireStationToDelete == null) {
+            throw new DataNotFoundException("FireStation not found");
+        }
+
+        fireStationDAO.deleteStationByMapping(fireStationToDelete);
+    }
 
 }
