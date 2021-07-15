@@ -97,10 +97,21 @@ public class FireStationService implements IFireStationService {
         return fireStationMapper.toFireStationDTO(fireSaved);
     }
 	
-	public FireStationDTO updateExistingStation(FireStationDTO fireStationDTO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public FireStationDTO updateExistingStation(
+    		final FireStationDTO fireStationDTO) {
+    	
+        FireStation fireToUpdate = fireStationDAO
+        		.getStationByAddress(fireStationDTO.getAddress());
+
+        if (fireToUpdate == null) {
+            throw new DataNotFoundException("FireStation not found");
+        }
+
+        fireToUpdate.setStationId(fireStationDTO
+        		.getStationId());
+
+        return fireStationMapper.toFireStationDTO(fireToUpdate);
+    }
 	
 	public void deleteExistingStation(String address, Integer stationId) {
 		// TODO Auto-generated method stub
