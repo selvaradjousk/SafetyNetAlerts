@@ -27,6 +27,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.dao.FireStationDAO;
 import com.safetynet.alerts.dto.FireStationDTO;
 import com.safetynet.alerts.exception.DataNotFoundException;
@@ -269,8 +270,21 @@ public class FireStationServiceTest {
             inOrder.verify(fireStationDaoMock).getStationById(anyInt(), anyString());
             inOrder.verify(fireStationDaoMock).updateStation(any(FireStation.class));
         }
-        
-        
         }
+
+    @Test
+    @DisplayName("ADD FIRESTATION ERROR on Existing FireStation"
+    		+ " - Given a existing fireStation,"
+    		+ " when Add fireStation,"
+    		+ " then throw DataAlreadyRegisteredException")
+    public void testAddFireStationThatExistAlready() {
+        when(fireStationDaoMock
+        		.getStationById(anyInt(), anyString()))
+        .thenReturn(testFireStation1);
+
+        assertThrows(DataAlreadyRegisteredException.class, ()
+        		-> fireStationService.addNewFireStation(fireStationDTO));
+    }    
+    
     
 }
