@@ -9,11 +9,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -143,6 +145,22 @@ public class FireStationServiceTest {
          assertEquals("Test2 address", addresses.get(1));
          verify(fireStationDaoMock).getStationsByStationIds(anyInt());
      }
+     
+     
+     @Test
+     @DisplayName("Check (for empty fireStation value)"
+     		+ " - Given a empty fireStation value,"
+     		+ " when request get Address,"
+     		+ " then return throws DataNotFoundException")
+     public void TestGetFireStationAddressForStationWithNoValueProvided() {
+         when(fireStationDaoMock
+         		.getStationsByStationIds(anyInt()))
+         .thenReturn(Collections.emptyList());
+
+         assertThrows(DataNotFoundException.class, ()
+         		->  fireStationService.getAddressesByStation(anyInt()));
+     }
+
      
      
     }
