@@ -342,8 +342,17 @@ public class FireStationServiceTest {
     }
     
     
+    // ***********************************************************************************
+
+    @DisplayName("Test DELETE FIRESTATION")
+    @Nested
+    class TestDeleteFireStationn {  
+        @BeforeEach
+        public void init() {
+        }
+    
     @Test
-    @DisplayName("DELETE FIRESTATION"
+    @DisplayName("Check (existing firestation)"
     		+ " - Given a existing fireStation,"
     		+ " when request delete fireStation,"
     		+ " then delete fireStation")
@@ -360,5 +369,18 @@ public class FireStationServiceTest {
     }
     
     
-    
+    @Test
+    @DisplayName("Check (non existing FireStation Exception Thrown"
+    		+ " - Given a non existing fireStation,"
+    		+ " when request delete fireStation,"
+    		+ " then throw DataNotFoundException")
+		public void testDeleteFireStationFoeNonExistingMedicalRecord() {
+            when(fireStationDaoMock
+            		.getStationById(anyInt(), anyString()))
+            .thenReturn(null);
+
+            assertThrows(DataNotFoundException.class, ()
+            		-> fireStationService.deleteExistingStation(testFireStation1.getStationId(), testFireStation1.getAddress()));
+    }
+    }
 }
