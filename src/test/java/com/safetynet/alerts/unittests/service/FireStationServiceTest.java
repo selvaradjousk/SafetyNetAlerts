@@ -286,5 +286,60 @@ public class FireStationServiceTest {
         		-> fireStationService.addNewFireStation(fireStationDTO));
     }    
     
+    // ***********************************************************************************
+
+    @DisplayName("Test UPDATE Existing FIRESTATION")
+    @Nested
+    class TestUpdateNewFireStationn {  
+        @BeforeEach
+        public void init() {
+        }
+        
+        @Test
+        @DisplayName("Check <Not Null>"
+        		+ " - Given a existing fireStation,"
+        		+ " when request update fireStation,"
+        		+ " then fireStation updated not null")
+        public void testUpdateFireStationNotNullCheck() {
+            when(fireStationDaoMock
+            		.getStationByAddress(anyString()))
+            .thenReturn(testFireStation1);
+
+            FireStationDTO fireStationUpdated = fireStationService
+            		.updateExistingStation(fireStationDTO);
+
+            assertNotNull(fireStationUpdated);
+        }
+        
+        @Test
+        @DisplayName("Check <Match Expected Valuel>"
+        		+ " - Given a existing fireStation,"
+        		+ " when request update fireStation,"
+        		+ " then fireStation updated correctly")
+        public void testUpdateFireStation() {
+            when(fireStationDaoMock
+            		.getStationByAddress(anyString()))
+            .thenReturn(testFireStation1);
+
+            FireStationDTO fireStationUpdated = fireStationService
+            		.updateExistingStation(fireStationDTO);
+
+            assertEquals(100, fireStationUpdated.getStationId());
+            verify(fireStationDaoMock).getStationByAddress(anyString());
+        }
+
+        @Test
+        @DisplayName("Check <for non existing fireStation>"
+        		+ " - Given a non existing fireStation,"
+        		+ " when request update fireStation,"
+        		+ " then fireStation should throw DataNotFoundException")
+    		public void testUpdateFireStationForRecordDoesNotExist() {
+            when(fireStationDaoMock.getStationByAddress(anyString())).thenReturn(null);
+
+            assertThrows(DataNotFoundException.class, ()
+            		-> fireStationService.updateExistingStation(fireStationDTO));
+        }  
+    }
+    
     
 }
