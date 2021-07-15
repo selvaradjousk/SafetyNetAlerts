@@ -96,10 +96,10 @@ public class FireStationServiceTest {
             		.getStationById(anyInt(), anyString()))
             .thenReturn(testFireStation1);
 
-        FireStationDTO fireByIdFound = fireStationService
+        FireStationDTO fireStationByIdFound = fireStationService
         		.getFireStationById(testFireStation1.getStationId(), testFireStation1.getAddress());
 
-        assertEquals(fireStationDTO.getStationId(), fireByIdFound.getStationId());
+        assertEquals(fireStationDTO.getStationId(), fireStationByIdFound.getStationId());
     }
 
      @Test
@@ -116,8 +116,9 @@ public class FireStationServiceTest {
          		->  fireStationService.getFireStationById(testFireStation1.getStationId(), testFireStation1.getAddress()));
      }
      
-     // ***********************************************************************
-    }  
+    }
+    
+    // ***********************************************************************
 
     @DisplayName("Test GET AddressByFIRESTATION BY ID")
     @Nested
@@ -161,8 +162,51 @@ public class FireStationServiceTest {
          		->  fireStationService.getAddressesByStation(anyInt()));
      }
 
-     
-     
     }
-     
+
+    // ***********************************************************************
+
+    @DisplayName("Test GET FIRESTATION BY ADDRESS")
+    @Nested
+    class TestGetFireStationByAddress {  
+    	
+        @BeforeEach
+        public void init() {
+          }
+        
+        @Test
+        @DisplayName("Check (get Station for valid address)"
+        		+ " - Given a fireStation with address,"
+        		+ " when request get fireStation,"
+        		+ " then return fireStation")
+        public void testGetFireStationByAddress() {
+                when(fireStationDaoMock
+                		.getStationByAddress(anyString()))
+                .thenReturn(testFireStation1);
+
+            FireStation fireStationByAddress = fireStationService
+            		.getFireStationByAddress(anyString());
+
+            assertEquals(testFireStation1, fireStationByAddress);
+            verify(fireStationDaoMock).getStationByAddress(anyString());
+        }
+
+        @Test
+        @DisplayName("Check (get Station for invalid address)"
+        		+ " - Given a fireStation with invalid address,"
+        		+ " when request get fireStation,"
+        		+ " then throws DataNotFoundException")
+        public void testGetFireStationByInvalidAddress() {
+            when(fireStationDaoMock
+            		.getStationByAddress(anyString()))
+            .thenReturn(null);
+
+            assertThrows(DataNotFoundException.class, ()
+            		->  fireStationService.getFireStationByAddress(anyString()));
+        }
+        
+    }
+    
+    
+    
 }
