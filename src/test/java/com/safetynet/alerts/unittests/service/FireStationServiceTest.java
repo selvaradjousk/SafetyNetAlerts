@@ -1,10 +1,13 @@
 package com.safetynet.alerts.unittests.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -18,6 +21,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -47,13 +51,13 @@ public class FireStationServiceTest {
     @Mock
     private static FireStationDTO fireStationDTO;
 
+    
     private static FireStation testFireStation1;
-
     private static FireStation testFireStation2;
 
-	private ObjectMapper objectMapper;
+    private static ObjectMapper objectMapper;
 	
-    List<FireStation> fireStations;
+	private static List<FireStation> fireStations;
 
     @BeforeEach
     public void setUp() {
@@ -207,6 +211,66 @@ public class FireStationServiceTest {
         
     }
     
-    
+    // ***********************************************************************************
+
+    @DisplayName("Test ADD New FIRESTATION")
+    @Nested
+    class TestAddNewFireStation {  
+    	
+        @BeforeEach
+        public void init() {
+        	
+            when(fireStationDaoMock
+            		.getStationById(anyInt(), anyString()))
+            .thenReturn(null);
+            
+            when(fireStationDaoMock
+            		.updateStation(any(FireStation.class)))
+            .thenReturn(testFireStation1);
+        }
+        
+        @Test
+        @DisplayName("Check <NotNull>"
+        		+ " - Given a FireStation,"
+        		+ " when Add FireStation,"
+        		+ " then FireStation should be saved")
+        public void testAddFireStationNotNull() {
+        	
+            FireStationDTO fireCreated = fireStationService
+            		.addNewFireStation(fireStationDTO);
+
+            assertNotNull(fireCreated);
+        }
+        
+        @Test
+        @DisplayName("Check <Validate> match of both same record instance>"
+        		+ " - Given a FireStation,"
+        		+ " when Add FireStation,"
+        		+ " then FireStation should be saved")
+        public void testAddFireStationMatchTestValueCheck() {
+        	
+            FireStationDTO fireCreated = fireStationService
+            		.addNewFireStation(fireStationDTO);
+
+            assertThat(fireCreated).usingRecursiveComparison().isEqualTo(fireStationDTO);
+        }
+        
+        @Test
+        @DisplayName("Check <Execution Order>"
+        		+ " - Given a FireStation,"
+        		+ " when Add FireStation,"
+        		+ " then FireStation should be saved")
+        public void testAddFireStationExecutionOrder() {
+        	
+            fireStationService
+            		.addNewFireStation(fireStationDTO);
+
+            InOrder inOrder = inOrder(fireStationDaoMock);
+            inOrder.verify(fireStationDaoMock).getStationById(anyInt(), anyString());
+            inOrder.verify(fireStationDaoMock).updateStation(any(FireStation.class));
+        }
+        
+        
+        }
     
 }

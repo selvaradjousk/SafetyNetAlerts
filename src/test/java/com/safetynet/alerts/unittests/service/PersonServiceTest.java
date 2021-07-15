@@ -55,6 +55,7 @@ public class PersonServiceTest {
     private static Person testPerson4;
     private static Person testPerson5;
 
+    @Mock
     private static PersonDTO personDTO;
 
     private static List<Person> personList;

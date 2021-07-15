@@ -26,4 +26,9 @@ public class FireStationDAO implements IFireStationDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public FireStation updateStation(FireStation fireStation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

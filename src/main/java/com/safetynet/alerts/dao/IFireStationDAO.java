@@ -11,4 +11,6 @@ public interface IFireStationDAO {
 	List<FireStation> getStationsByStationIds(int stationId);
 	
 	FireStation getStationByAddress(final String address);
+	
+	FireStation updateStation(FireStation fireStation);
 }
