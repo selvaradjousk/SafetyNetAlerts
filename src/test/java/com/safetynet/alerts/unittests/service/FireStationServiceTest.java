@@ -342,4 +342,21 @@ public class FireStationServiceTest {
     }
     
     
+    @Test
+    @DisplayName("DELETE FIRESTATION"
+    		+ " - Given a existing fireStation,"
+    		+ " when request delete fireStation,"
+    		+ " then delete fireStation")
+		public void testDeleteFireStation() {
+        when(fireStationDaoMock
+        		.getStationById(anyInt(), anyString()))
+        .thenReturn(testFireStation1);
+
+        fireStationService.deleteExistingStation(testFireStation1.getStationId(), testFireStation1.getAddress());
+
+        InOrder inOrder = inOrder(fireStationDaoMock);
+        inOrder.verify(fireStationDaoMock).getStationById(anyInt(), anyString());
+        inOrder.verify(fireStationDaoMock).deleteStationByMapping(any(FireStation.class));
+    }
+    
 }

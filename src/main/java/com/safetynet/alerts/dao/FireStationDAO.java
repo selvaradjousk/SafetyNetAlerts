@@ -31,4 +31,9 @@ public class FireStationDAO implements IFireStationDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void deleteStationByMapping(final FireStation fireStation) {
+		// TODO Auto-generated method stub
+		
+	}
 }

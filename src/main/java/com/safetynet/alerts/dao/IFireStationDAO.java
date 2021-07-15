@@ -13,4 +13,6 @@ public interface IFireStationDAO {
 	FireStation getStationByAddress(final String address);
 	
 	FireStation updateStation(FireStation fireStation);
+	
+	void deleteStationByMapping(final FireStation fireStation);
 }
