@@ -15,8 +15,8 @@ import com.safetynet.alerts.model.FireStation;
  */
 class FireStationTest {
 	
-	FireStation toTest1 = new FireStation("1509 Culver St", 3);
-	FireStation toTest2 = new FireStation("1509 Culver St", 3);
+	FireStation toTest1 = new FireStation(3, "1509 Culver St");
+	FireStation toTest2 = new FireStation(3, "1509 Culver St");
 	/**
 	 * Test method for {@link com.safetynet.alerts.model.FireStation#FireStation(int, String)}.
 	 */

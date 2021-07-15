@@ -3,16 +3,21 @@ package com.safetynet.alerts.service;
 import java.util.List;
 
 import com.safetynet.alerts.dto.FireStationDTO;
+import com.safetynet.alerts.model.FireStation;
 
 public interface IFireStationService {
 
-	public FireStationDTO getFireStationById(final String address, final Integer stationId);
+	FireStationDTO getFireStationById(Integer stationId, String address);
 	
-	public FireStationDTO addNewFireStation(FireStationDTO fireStationDTO);
+	FireStation getFireStationByAddress(String address);
 	
-	public FireStationDTO updateExistingStation(FireStationDTO fireStationDTO);
-	
-	public void deleteExistingStation(String address, Integer stationId);
-
 	List<String> getAddressesByStation(int stationId);
+	
+	FireStationDTO addNewFireStation(FireStationDTO newFireStation);
+	
+	FireStationDTO updateExistingStation(FireStationDTO existingFireStation);
+	
+	void deleteExistingStation(Integer stationId, String address);
+
+	
 }

@@ -66,7 +66,7 @@ public class FireStationControllerTest {
         @BeforeEach
         public void init() {
             when(fireStationService
-            		.getFireStationById(anyString(), anyInt()))
+            		.getFireStationById(anyInt(), anyString()))
             .thenReturn(fireStationDTO);
         }
 
@@ -84,9 +84,9 @@ public class FireStationControllerTest {
                 		.isOk());
 
         verify(fireStationService)
-        .getFireStationById(anyString(), anyInt());
+        .getFireStationById(anyInt(), anyString());
         verify(fireStationService, times(1))
-        .getFireStationById(anyString(), anyInt());
+        .getFireStationById(anyInt(), anyString());
     }
  
 
@@ -137,7 +137,7 @@ public class FireStationControllerTest {
         @BeforeEach
         public void init() {
             when(fireStationService
-            		.getFireStationById(anyString(), anyInt()))
+            		.getFireStationById(anyInt(), anyString()))
             .thenReturn(fireStationDTO);
         }
     
@@ -283,9 +283,9 @@ public class FireStationControllerTest {
               		.isOk());
 
       verify(fireStationService)
-      .deleteExistingStation(anyString(), anyInt());
+      .deleteExistingStation(anyInt(), anyString());
       verify(fireStationService, times(1))
-      .deleteExistingStation(anyString(), anyInt());
+      .deleteExistingStation(anyInt(), anyString());
       
   }
   
@@ -302,7 +302,7 @@ public void testDeleteStationRequestWithoutAddressValues() throws Exception {
             		.isBadRequest());
 
     verify(fireStationService, times(0))
-    .deleteExistingStation(anyString(), anyInt());
+    .deleteExistingStation(anyInt(), anyString());
 }
     
     

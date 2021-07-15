@@ -143,8 +143,8 @@ public class DataFileReader {
 		for (JsonNode jsonNodeFirestation : fireStations) {
 		    FireStation firestation
 		    = new FireStation(
-		    		jsonNodeFirestation.get("address").asText(),
-		    		jsonNodeFirestation.get("station").asInt());
+		    		jsonNodeFirestation.get("station").asInt(),
+		    		jsonNodeFirestation.get("address").asText());
 
 		    fireStationList.add(firestation);
 		}

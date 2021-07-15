@@ -9,6 +9,7 @@ import lombok.ToString;
 
 /**
  * Fire station DO.
+ * 
  * @author Senthil
  *
  */
@@ -20,13 +21,13 @@ import lombok.ToString;
 @ToString
 public class FireStation {
 
-/**
- * fire station address.
- */
-	private String address;
+	/**
+	 * fire station Id.
+	 */
+	private int stationId;
 
-/**
- * fire station Id.
- */
-    private int stationId;
+	/**
+	 * fire station address.
+	 */
+	private String address;
 }

@@ -33,7 +33,7 @@ public class FireStationController {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
        FireStationDTO fireDTO = fireStationService
-    		   .getFireStationById(address, station);
+    		   .getFireStationById(station, address);
 
        return new ResponseEntity<>(fireDTO, HttpStatus.OK);
    }
@@ -67,7 +67,7 @@ public class FireStationController {
 		   @RequestParam("station") final Integer station) {
 
        fireStationValidityCheckForDeleteAndGet(address, station);
-       fireStationService.deleteExistingStation(address, station);
+       fireStationService.deleteExistingStation(station, address);
 
        return new ResponseEntity<>(HttpStatus.OK);
    }

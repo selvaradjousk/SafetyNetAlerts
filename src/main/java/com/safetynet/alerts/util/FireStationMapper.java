@@ -17,8 +17,7 @@ public class FireStationMapper {
     
     public FireStation toFireStation(final FireStationDTO fireStationDTO) {
 
-        return new FireStation(fireStationDTO.getAddress(),
-        		fireStationDTO.getStationId());
+        return new FireStation(fireStationDTO.getStationId(),
+        		fireStationDTO.getAddress());
     }
 }
-

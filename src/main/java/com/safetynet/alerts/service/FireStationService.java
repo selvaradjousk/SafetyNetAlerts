@@ -1,6 +1,7 @@
 package com.safetynet.alerts.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,41 @@ public class FireStationService implements IFireStationService {
 		this.fireStationMapper = new FireStationMapper();
     }
 
-    public FireStationDTO getFireStationById(final String address, final Integer stationId) {
-        FireStation fireStation = fireStationDAO.getStationById(address, stationId);
+    public FireStationDTO getFireStationById(final Integer stationId, final String address) {
+        FireStation fireStation = fireStationDAO.getStationById(stationId, address);
 
         if (fireStation == null) {
             throw new DataNotFoundException("Failed to get the fireStations mapped to address : " + address);
         }
 
         return fireStationMapper.toFireStationDTO(fireStation);
+    }
+    
+
+    public FireStation getFireStationByAddress(final String address) {
+        FireStation fireStation = fireStationDAO.getStationByAddress(address);
+
+        if (fireStation == null) {
+            throw new DataNotFoundException("Failed to get the fireStations mapped to address : " + address);
+        }
+
+        return fireStation;
+    }
+
+
+    public List<String> getAddressesByStation(final int station) {
+        List<FireStation> fireStations = fireStationDAO.getStationsByStationIds(station);
+        List<String> addresses = new ArrayList<>();
+
+        if (fireStations.isEmpty()) {
+            throw new DataNotFoundException("Failed to get the addresses mapped to station : " + station);
+        }
+
+        for (FireStation fireStation : fireStations) {
+            addresses.add(fireStation.getAddress());
+        }
+
+        return addresses;
     }
 
 	public FireStationDTO addNewFireStation(FireStationDTO fireStationDTO) {
@@ -52,10 +80,9 @@ public class FireStationService implements IFireStationService {
 		return;
 	}
 
-	@Override
-	public List<String> getAddressesByStation(int stationId) {
+	public void deleteExistingStation(Integer stationId, String address) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
