@@ -127,7 +127,7 @@ public class FireStationDAOTest {
     
     }
     
- 
+    // ***********************************************************************************
     @DisplayName("Test GET BY STATION By Station Ids")
     @Nested
     class TestGetFireStationByIds {  
@@ -172,7 +172,7 @@ public class FireStationDAOTest {
     }
     }
     
-    
+    // *********************************************************************************** 
     @Test
     @DisplayName("SAVE FIRE STATION -"
     		+ " Given a FireStation,"
@@ -186,6 +186,16 @@ public class FireStationDAOTest {
         assertEquals(fireStationToSave, fireStationSaved);
     }
     
-    
+    // ***********************************************************************************
+    @Test
+    @DisplayName("DELETE FIRE STATION"
+    		+ " - Given a FireStation,"
+    		+ " when delete FireStation,"
+    		+ " then FireStation should be deleted successfully")
+    public void testDeleteFireStation() {
+        iFireStationDAO.deleteStationByMapping(firestation2);
+
+        assertNull(iFireStationDAO.getStationById(firestation2.getStationId(), firestation2.getAddress()));
+    }  
     
 }
