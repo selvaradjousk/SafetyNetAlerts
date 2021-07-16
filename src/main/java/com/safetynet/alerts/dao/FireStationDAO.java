@@ -1,5 +1,6 @@
 package com.safetynet.alerts.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -42,10 +43,18 @@ public class FireStationDAO implements IFireStationDAO {
 	    }
 
 		
-		   public List<FireStation> getStationsByStationIds(int stationId) {
-				// TODO Auto-generated method stub
-				return null;
-			}
+		public List<FireStation> getStationsByStationIds(final int stationId) {
+	        Collection<FireStation> fireStations = fireStationMap.values();
+	        List<FireStation> fireStationsByStation = new ArrayList<>();
+
+	        for (FireStation fireStation : fireStations) {
+	            if (fireStation.getStationId() == stationId) {
+	                fireStationsByStation.add(fireStation);
+	            }
+	        }
+
+	        return fireStationsByStation;
+	    }
 		   
 		   
 	public FireStation updateStation(FireStation fireStation) {
