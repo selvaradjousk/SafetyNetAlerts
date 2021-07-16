@@ -62,8 +62,7 @@ public class FireStationDAO implements IFireStationDAO {
 	        return fireStationMap.get(fireStation.getStationId()+ fireStation.getAddress());
 	    }
 
-	public void deleteStationByMapping(final FireStation fireStation) {
-		// TODO Auto-generated method stub
-		
-	}
+		public void deleteStationByMapping(final FireStation fireStation) {
+	        fireStationMap.remove(fireStation.getStationId() + fireStation.getAddress());
+	    }
 }

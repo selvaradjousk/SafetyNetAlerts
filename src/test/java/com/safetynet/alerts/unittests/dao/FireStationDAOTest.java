@@ -196,6 +196,6 @@ public class FireStationDAOTest {
         iFireStationDAO.deleteStationByMapping(firestation2);
 
         assertNull(iFireStationDAO.getStationById(firestation2.getStationId(), firestation2.getAddress()));
-    }  
+    }
     
 }
