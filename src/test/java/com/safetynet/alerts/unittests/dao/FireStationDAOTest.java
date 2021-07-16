@@ -85,4 +85,29 @@ public class FireStationDAOTest {
     
     }
     
+    // ***********************************************************************************
+
+    @DisplayName("Test GET FIRESTATION BY ADDRESS")
+    @Nested
+    class TestGetStationByAddress {  
+        @BeforeEach
+        public void init() {
+        }
+    @Test
+    @DisplayName("Check for (valid input)"
+    		+ " - Given an address,"
+    		+ " when getStationByAddress,"
+    		+ " then return FireStation at the address")
+    public void testGetStationByAddress() {
+        String address = "Test1 StreetName";
+
+        FireStation fireFoundByAddress = iFireStationDAO
+        		.getStationByAddress(address);
+
+        assertEquals(firestation1, fireFoundByAddress);
+    }
+
+    }
+    
+    
 }
