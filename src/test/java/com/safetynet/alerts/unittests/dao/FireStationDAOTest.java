@@ -1,6 +1,7 @@
 package com.safetynet.alerts.unittests.dao;
 
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -67,7 +68,20 @@ public class FireStationDAOTest {
     }
     
     
-    
+    @Test
+    @DisplayName("Check (FireStation does not exist)"
+    		+ " - Given a FireStation does not exist already,"
+    		+ " when get firestation,"
+    		+ " then return null")
+    public void testGetStationByIdForNonExistingStation() {
+        FireStation fireStationNonExistant = new FireStation(1, "sfkjshd zerouezo");
+
+        FireStation fireStationFound = iFireStationDAO
+        		.getStationById(fireStationNonExistant.getStationId(),
+        		fireStationNonExistant.getAddress());
+
+        assertNull(fireStationFound);
+    }
     
     }
     
