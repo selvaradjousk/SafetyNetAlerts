@@ -109,5 +109,19 @@ public class FireStationDAOTest {
 
     }
     
+    @Test
+    @DisplayName("Check (unvalid address input)"
+    		+ " - Given an unregistered address,"
+    		+ " when getStationByAddress,"
+    		+ " then return null")
+    public void testGetStationByAddressNonExistingAddress() {
+        String unRegisteredAddress = "sjdflqsdlf jsdfljsld";
+
+        FireStation fireSFoundByAddress = iFireStationDAO
+        		.getStationByAddress(unRegisteredAddress);
+
+        assertNull(fireSFoundByAddress);
+    }
+    
     
 }
