@@ -24,18 +24,15 @@ public class FireStationDAO implements IFireStationDAO {
 	        		 + fireStation.getAddress(), fireStation));
 	    }
 
-	public List<FireStation> getStationsByStationIds(int stationId) {
+		public FireStation getStationById(final Integer stationId, final String address) {
+	        return fireStationMap.get(stationId + address);
+	    }
+	   
+	   public List<FireStation> getStationsByStationIds(int stationId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public FireStation getStationById(Integer stationId, String address) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public FireStation getStationByAddress(String address) {
 		// TODO Auto-generated method stub
 		return null;

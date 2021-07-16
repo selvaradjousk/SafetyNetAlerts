@@ -66,6 +66,9 @@ public class FireStationDAOTest {
         assertEquals(firestation2, fireStationFound);
     }
     
+    
+    
+    
     }
     
 }
