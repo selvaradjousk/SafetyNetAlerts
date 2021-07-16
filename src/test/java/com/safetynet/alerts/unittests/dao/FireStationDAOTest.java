@@ -170,7 +170,22 @@ public class FireStationDAOTest {
 
         assertEquals(Collections.emptyList(), fireSFoundByStation);
     }
-    
     }
+    
+    
+    @Test
+    @DisplayName("SAVE FIRE STATION -"
+    		+ " Given a FireStation,"
+    		+ " when save FireStation,"
+    		+ " then FireStation should be saved successfully")
+    public void testSaveFireStation() {
+        FireStation fireStationToSave = new FireStation(2, "TestNew StreetNamet");
+
+        FireStation fireStationSaved = iFireStationDAO.updateStation(fireStationToSave);
+
+        assertEquals(fireStationToSave, fireStationSaved);
+    }
+    
+    
     
 }
