@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -144,6 +145,18 @@ public class FireStationDAOTest {
 
         assertNotNull(fireSFoundByStation);
         assertTrue(fireSFoundByStation.contains(firestation2));
+    }
+    
+    @Test
+    @DisplayName("Check (for invalid Station Number)"
+    		+ " - Given an invalid station number,"
+    		+ " when getStationsByStationIds,"
+    		+ " then return an empty fireStation list")
+    public void testGetStationsByStationIdsForInvalidStationNumber() {
+        List<FireStation> fireSFoundByStation = iFireStationDAO
+        		.getStationsByStationIds(5);
+
+        assertEquals(Collections.emptyList(), fireSFoundByStation);
     }
     
     
