@@ -57,10 +57,10 @@ public class FireStationDAO implements IFireStationDAO {
 	    }
 		   
 		   
-	public FireStation updateStation(FireStation fireStation) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		public FireStation updateStation(final FireStation fireStation) {
+	        fireStationMap.put(fireStation.getStationId() + fireStation.getAddress(), fireStation);
+	        return fireStationMap.get(fireStation.getStationId()+ fireStation.getAddress());
+	    }
 
 	public void deleteStationByMapping(final FireStation fireStation) {
 		// TODO Auto-generated method stub
