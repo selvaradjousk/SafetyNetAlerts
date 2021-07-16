@@ -159,7 +159,17 @@ public class FireStationDAOTest {
         assertEquals(Collections.emptyList(), fireSFoundByStation);
     }
     
-    
+    @Test
+    @DisplayName("GET BY STATION By Station Ids"
+    		+ " - Given a negative station number,"
+    		+ " when getStationsByStationIds,"
+    		+ " then return an empty fireStation list")
+    public void testGetStationsByStationIdsReturnEmptyFireStationListForNegativeInvalidValue() {
+        List<FireStation> fireSFoundByStation = iFireStationDAO
+        		.getStationsByStationIds(-5);
+
+        assertEquals(Collections.emptyList(), fireSFoundByStation);
+    }
     
     }
     
