@@ -3,9 +3,12 @@ package com.safetynet.alerts.unittests.dao;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
@@ -107,8 +110,6 @@ public class FireStationDAOTest {
         assertEquals(firestation1, fireFoundByAddress);
     }
 
-    }
-    
     @Test
     @DisplayName("Check (unvalid address input)"
     		+ " - Given an unregistered address,"
@@ -123,5 +124,30 @@ public class FireStationDAOTest {
         assertNull(fireSFoundByAddress);
     }
     
+    }
+    
+ 
+    @DisplayName("Test GET BY STATION By Station Ids")
+    @Nested
+    class TestGetFireStationByIds {  
+        @BeforeEach
+        public void init() {
+        }
+    @Test
+    @DisplayName("Check (for valid inputs)"
+    		+ " - Given a station number,"
+    		+ " when getStationsByStationIds,"
+    		+ " then return FireStation associated with that station number")
+    public void testGetStationsByStationIds() {
+        List<FireStation> fireSFoundByStation = iFireStationDAO
+        		.getStationsByStationIds(1);
+
+        assertNotNull(fireSFoundByStation);
+        assertTrue(fireSFoundByStation.contains(firestation2));
+    }
+    
+    
+    
+    }
     
 }
