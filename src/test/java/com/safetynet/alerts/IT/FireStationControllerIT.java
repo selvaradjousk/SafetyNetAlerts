@@ -1,5 +1,6 @@
 package com.safetynet.alerts.IT;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -136,7 +137,14 @@ public class FireStationControllerIT {
             assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
        }  
         
-        
+        @Test
+        @DisplayName("Check - <VALIDATE FIELDS EQUAL>"
+        		+ " - Given a FireStation,"
+        		+ " when GET request,"
+        		+ " then return response fields equals expected added FireStation")
+        public void testGetFireStationRequestWithValidPersonThenSimilarToAddedFireStationValues() {
+            assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(fireStationToAdd);
+        }       
         
     }
     
