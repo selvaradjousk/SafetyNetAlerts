@@ -106,8 +106,10 @@ public class MedicalRecordServiceTest {
                     medicalRecordDTO.getLastName());
 
             assertNotNull(medicalRecordByIdFound);
-        }  
-    
+        }
+
+
+	        
     }
 
 }
