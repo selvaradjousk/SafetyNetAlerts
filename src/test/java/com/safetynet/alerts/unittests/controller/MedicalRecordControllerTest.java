@@ -122,7 +122,22 @@ public class MedicalRecordControllerTest {
 
     }
     
+    @Test
+    @DisplayName("Check (without both invalid input )"
+    		+ " - Given INVALID ID - both invalid,"
+    		+ " when GET request (/medicalRecord?firstName=&lastName=),"
+    		+ " then return BadRequest status (an HTTP 400 response)")
+    public void testGetMedicalRecordRequestWithIdBothInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/medicalRecord?firstNameXXXXXXXXXX=&lastName=YYYYYYYYYY"))
+                .andExpect(status()
+                		.isBadRequest());
+
+    }
     
     }
 
+    
+    
+    
 }
