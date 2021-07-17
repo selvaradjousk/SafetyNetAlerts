@@ -409,6 +409,27 @@ public class MedicalRecordControllerTest {
     
     }
     
+    // ***************************************************************************************************
+    @DisplayName("Test DELETE MEDICAL RECORD")
+    @Nested
+    class TestDeleteMedicalRecord { 
     
+    @Test
+    @DisplayName("Check for (VALID Medical Record ids)"
+    		+ " - Given VALID PERSON-ID,"
+    		+ " when DELETE request (/medicalRecord?firstName={firstName}&lastName={lastName}),"
+    		+ " then return - Status: 200 OK")
+    public void testDeleteMedicalRecordRequestWithValidId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/medicalRecord?firstName=Test FirstName&lastName=Test Last Name"))
+                .andExpect(status()
+                		.isOk());
+
+        verify(medicalRecordService)
+        .deleteMedicalRecord(anyString(), anyString());
+        verify(medicalRecordService, times(1))
+        .deleteMedicalRecord(anyString(), anyString());
+    }
+    }
 
 }
