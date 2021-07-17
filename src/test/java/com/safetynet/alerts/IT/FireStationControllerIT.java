@@ -104,7 +104,19 @@ public class FireStationControllerIT {
                 assertEquals("application/json", (response.getHeaders().getContentType()).toString());
         }    
        
-    
+        @Test
+        @DisplayName("Check - <RESPONSE BODY NOT NULL>"
+        		+ " - Given a FireStation,"
+        		+ " when GET request,"
+        		+ " then response body is not Null")
+        public void testGetFireStationRequestWithValidResponseBodyNotNull() {
+            assertNotNull(response.getBody());
+        }       
+        
+        
+        
+        
+        
     }
     
 }
