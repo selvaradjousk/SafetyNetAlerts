@@ -2,6 +2,7 @@ package com.safetynet.alerts.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -641,7 +642,31 @@ public class FireStationControllerIT {
         }
         
         
-    
+        @Test
+        @DisplayName("Check - <On UPDATE - Value Changed>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then returned response Value Not Same Before Update")
+        public void testUpdateFireStationValueBeforeAfterNotSame() {
+           	// Value of Address parameter stored for reference before update
+       	  int valueBeforeUpdate = responseOnPost.getBody().getStationId();
+       	  
+        	// update requested
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationUpdated);
+       	  
+             response = restTemplate
+          		   .getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+          				 FireStationDTO.class,
+                     fireStationToUpdate.getStationId(),
+                     fireStationToUpdate.getAddress());
+             
+             int valueAfterUpdate = response.getBody().getStationId();
+            // Check value before and after update are not equal
+        	assertNotEquals(valueBeforeUpdate, valueAfterUpdate);
+        } 
+        
+        
+        
     
     }
     
