@@ -311,6 +311,39 @@ public class FireStationControllerIT {
     }
     
     
+    @Test
+    @DisplayName("Check - <RESPONSE HEADER NOT NULL>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then response header not null")
+    public void testAddFireStationRequestWithValidFiresStationResponseHeaderNotNull() {
+            response = restTemplate
+        			.postForEntity(getRootUrl() + "/firestation",
+        					fireStationToAdd,
+        					FireStationDTO.class);
+            //When Post created CHECKs
+            assertNotNull(response.getHeaders());
+            assertEquals("application/json", (response.getHeaders().getContentType()).toString());
+    } 
+    
+    @Test
+    @DisplayName("Check - <RESPONSE BODY NOT NULL>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then response Body not null")
+    public void testAddFireStationRequestWithValidFiresStationResponseBodyNotNull() {
+            response = restTemplate
+        			.postForEntity(getRootUrl() + "/firestation",
+        					fireStationToAdd,
+        					FireStationDTO.class);
+            //When Post created CHECKs
+            assertNotNull(response.getBody());
+            
+    }
+    
+    
+    
+    
     
     }
     
