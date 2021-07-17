@@ -79,7 +79,7 @@ public class FireStationControllerTest {
 
 
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/fireStation?station=3&address=Test StreetName"))
+        		.get("/firestation?station=3&address=Test StreetName"))
                 .andExpect(status()
                 		.isOk());
 
@@ -97,7 +97,7 @@ public class FireStationControllerTest {
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutInputValues() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/fireStation?station=&address="))
+        		.get("/firestation?station=&address="))
                 .andExpect(status()
                 		.isBadRequest());
     }
@@ -109,7 +109,7 @@ public class FireStationControllerTest {
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutStationId() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/fireStation?station=&address=Test StreetName"))
+        		.get("/firestation?station=&address=Test StreetName"))
                 .andExpect(status()
                 		.isBadRequest());
     } 
@@ -121,7 +121,7 @@ public class FireStationControllerTest {
     		+ " then return - Status: 400 BAD REQUEST")
     public void testGetStationRequestWithWithoutStationAddress() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/fireStation?station=3&address="))
+        		.get("/firestation?station=3&address="))
                 .andExpect(status()
                 		.isBadRequest());
     } 
@@ -278,7 +278,7 @@ public class FireStationControllerTest {
               		.isCreated());
 	  
       mockMvc.perform(MockMvcRequestBuilders
-      		.delete("/firestation?address=Test StreetName&station=3"))
+      		.delete("/firestation?station=3&address=Test StreetName"))
               .andExpect(status()
               		.isOk());
 

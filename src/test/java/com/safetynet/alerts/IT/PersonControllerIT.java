@@ -39,6 +39,7 @@ public class PersonControllerIT {
 
     private ObjectMapper objectMapper;
     
+    
     PersonDTO testPersonToBeAdded, testPersonToUpdate, personToAddMissingId,
     testPersonUpdated, testPersonToUpdateWrongFirstName, testPersonToBeDeleted,
     testPersonToBeDeletedCopy;
@@ -49,7 +50,7 @@ public class PersonControllerIT {
 
     @BeforeEach
   public void setUp() {
-    	
+    	objectMapper = new ObjectMapper();
         testPersonToBeAdded = new PersonDTO().builder()
         		.firstName("Test FirstName")
         		.lastName("Test Last Name")

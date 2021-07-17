@@ -26,12 +26,12 @@ public class FireStationController {
    }
    
    
-   @GetMapping("/fireStation")
+   @GetMapping("/firestation")
    public ResponseEntity<FireStationDTO> getFireStation(
-		   @RequestParam("address") final String address,
-		   @RequestParam("station") final Integer station) {
+		   @RequestParam("station") final Integer station,
+		   @RequestParam("address") final String address){
 
-       fireStationValidityCheckForDeleteAndGet(address, station);
+       fireStationValidityCheckForDeleteAndGet(station, address);
        FireStationDTO fireDTO = fireStationService
     		   .getFireStationById(station, address);
 
@@ -63,10 +63,10 @@ public class FireStationController {
    
    @DeleteMapping("/firestation")
    public ResponseEntity<Void> deleteFireStation(
-		   @RequestParam("address") final String address,
-		   @RequestParam("station") final Integer station) {
+		   @RequestParam("station") final Integer station,
+		   @RequestParam("address") final String address) {
 
-       fireStationValidityCheckForDeleteAndGet(address, station);
+       fireStationValidityCheckForDeleteAndGet(station, address);
        fireStationService.deleteExistingStation(station, address);
 
        return new ResponseEntity<>(HttpStatus.OK);
@@ -97,8 +97,8 @@ public class FireStationController {
 	 * @param station
 	 */
 	private void fireStationValidityCheckForDeleteAndGet(
-			final String address,
-			final Integer station) {
+			final Integer station,
+			final String address) {
 		boolean fireStationAddressIsNull = (address == null);
 		boolean fireStationAddressLengthIsZero = (address.trim().length() == 0);
 		boolean stationIdIsNull = (station == null);
