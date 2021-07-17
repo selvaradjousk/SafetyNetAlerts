@@ -60,11 +60,22 @@ public class FireStationControllerIT {
     			.stationId(3)
     			.address("")
     			.build();
+        
+        
+        fireStationToAddMissingId = 
+        		new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("")
+    			.build();
+        
+        fireStationToAddMissingBothIdAndAddress = 
+        		new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("")
+    			.build();
     	
      }
-
-    
-    
+        
     
     // *********************************************************************************** 
     @DisplayName("IT - GET FIRESTATION")
@@ -84,6 +95,12 @@ public class FireStationControllerIT {
                    FireStationDTO.class,
                    fireStationToAdd.getStationId(),
                    fireStationToAdd.getAddress());
+           
+           fireStationToAddMissingAddress = 
+           		new FireStationDTO().builder()
+       			.stationId(3)
+       			.address("")
+       			.build();
            
            fireStationToAddMissingId = 
            		new FireStationDTO().builder()
@@ -213,12 +230,52 @@ public class FireStationControllerIT {
             
         }
         
+        @Test
+        @DisplayName("Check - <MISSING FIRESTATION Both Params"
+        		+ "Given a FireStation with missing Both Params,"
+        		+ " when GET request,"
+        		+ " then return Reponse Status: 4xx BAD REQUEST")
+        public void testGetPersonMissingBothParams() {
+        	
+            restTemplate
+            .postForEntity(getRootUrl() + "/firestation",
+            		fireStationToAddMissingAddress,
+            		FireStationDTO.class);
+            
+        	response = restTemplate
+        			.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                    FireStationDTO.class,
+                    fireStationToAddMissingBothIdAndAddress.getStationId(),
+                    fireStationToAddMissingBothIdAndAddress.getAddress());
+        	
+            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+            assertEquals(0, response.getBody().getStationId());
+            
+        }
         
         
-        
-        
-        
-        
+
+        @Test
+        @DisplayName("Check - <INVALID PERSON ID - 409>"
+        		+ "Given a Person with invalid ID,"
+        		+ " when GET request,"
+        		+ " then return Reponse Status: 409 NOT FOUND REQUEST")
+        public void testGetPersonForInvalidID() {
+        	
+       
+        	response = restTemplate
+        			.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                    FireStationDTO.class,
+                    99,
+                    "sdqfsqfdqsf");
+        	
+            assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+            assertEquals(0, response.getBody().getStationId());
+            
+        }
+
     }
+    
+    
     
 }
