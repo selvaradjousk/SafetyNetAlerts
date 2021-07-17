@@ -373,7 +373,23 @@ public class FireStationControllerIT {
         //When Post created CHECKs
         assertEquals((HttpStatus.CREATED), response.getStatusCode());
 
+    }
     
+    
+    @Test
+    @DisplayName("Check - <VALIDATE FIELDS EQUAL>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then return response fields equals added FireStation")
+    public void testAddFireStationRequestWithValidFireStationThenSimilarToAddedFireStationValues() {
+        response = restTemplate
+           		.postForEntity(
+           				getRootUrl() + "/firestation",
+    					fireStationToAdd,
+    					FireStationDTO.class);
+      //When Post created CHECKs
+        assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(fireStationToAdd);
+    }
     
     
     
