@@ -40,7 +40,8 @@ public class FireStationControllerIT {
 
     private ObjectMapper objectMapper;
     
-    FireStationDTO fireStationToAdd;
+    FireStationDTO fireStationToAdd, fireStationToAddMissingAddress, fireStationToAddMissingId,
+    fireStationToAddMissingBothIdAndAddress;
     
     ResponseEntity<FireStationDTO> response;
     ResponseEntity<FireStationDTO> getFireStationAdded;
@@ -53,6 +54,13 @@ public class FireStationControllerIT {
     			.stationId(3)
     			.address("addressAdded")
     			.build();
+    	
+        fireStationToAddMissingAddress = 
+        		new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("")
+    			.build();
+    	
      }
 
     
@@ -76,6 +84,18 @@ public class FireStationControllerIT {
                    FireStationDTO.class,
                    fireStationToAdd.getStationId(),
                    fireStationToAdd.getAddress());
+           
+           fireStationToAddMissingId = 
+           		new FireStationDTO().builder()
+       			.stationId(3)
+       			.address("")
+       			.build();
+           
+           fireStationToAddMissingBothIdAndAddress = 
+           		new FireStationDTO().builder()
+       			.stationId(3)
+       			.address("")
+       			.build();
         }
         
         @AfterEach
@@ -144,7 +164,31 @@ public class FireStationControllerIT {
         		+ " then return response fields equals expected added FireStation")
         public void testGetFireStationRequestWithValidPersonThenSimilarToAddedFireStationValues() {
             assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(fireStationToAdd);
-        }       
+        }
+        
+        
+        @Test
+        @DisplayName("Check - <MISSING FIRESTATION ID>"
+        		+ "Given a FireStation with missing ID,"
+        		+ " when GET request,"
+        		+ " then return Reponse Status: 4xx BAD REQUEST")
+        public void testGetPersonMissingId() {
+        	
+            restTemplate
+            .postForEntity(getRootUrl() + "/firestation",
+            		fireStationToAddMissingId,
+            		FireStationDTO.class);
+            
+        	response = restTemplate
+        			.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                    FireStationDTO.class,
+                    fireStationToAddMissingId.getStationId(),
+                    fireStationToAddMissingId.getAddress());
+        	
+            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+            assertEquals(0, response.getBody().getStationId());
+            
+        }  
         
     }
     
