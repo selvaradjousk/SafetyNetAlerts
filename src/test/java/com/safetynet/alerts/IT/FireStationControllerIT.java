@@ -626,6 +626,20 @@ public class FireStationControllerIT {
         	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
         }
         
+       
+        @Test
+        @DisplayName("Check - <UPDATE - RESPONSE NOT NULL>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then returned response Not Null")
+        public void testUpdateFireStationResponseResponseNotNull() {
+      	   
+            // FireStation Update data updated not null
+            assertNotNull(response);
+            assertNotNull(response.getHeaders());
+            assertNotNull(response.getBody());
+        }
+        
         
     
     
