@@ -113,7 +113,16 @@ public class FireStationControllerIT {
             assertNotNull(response.getBody());
         }       
         
-        
+        @Test
+        @DisplayName("Check - <NOT NULL - StationId, Address Values>"
+        		+ " - Given a FireStation,"
+        		+ " when GET request,"
+        		+ " then return response body StationId & Address param value not null")
+        public void testGetFireStationRequestWithValidFireStationParamValueNotNull() {
+            
+            assertNotNull(response.getBody().getStationId());
+            assertNotNull(response.getBody().getAddress());
+        } 
         
         
         
