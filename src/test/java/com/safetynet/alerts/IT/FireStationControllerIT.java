@@ -837,6 +837,32 @@ public class FireStationControllerIT {
     }
     
     
+    @Test
+    @DisplayName("Check - <FIRESTATION GET after Delete Response NOT SAME to Person Data>"
+    		+ " - Given a FireStation,"
+    		+ " when DELETE request,"
+    		+ " then response on get not same as fireStation data to be deleted")
+    public void testDeleteFireStationRequestResponseToGetFireStationNotSameAsOriginalPersonData() {
+
+    	// Confirms fireStation id found before delete
+    	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+    	
+    	// delete request executed
+    	restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToBeDeleted.getStationId(), fireStationToBeDeleted.getAddress());
+    	
+        // Checking that existing fireStation has been deleted
+        response = restTemplate.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                FireStationDTO.class, fireStationToBeDeleted.getStationId(), fireStationToBeDeleted.getAddress());
+        
+     // response is not null - has information
+        assertNotNull(response);
+        assertNotNull(response.getHeaders());
+        assertNotNull(response.getBody());
+        
+     // fireStation to be deleted is not found anymore - confirms delete
+        assertThat(response.getBody()).isNotSameAs(fireStationToBeDeleted);
+   }
+    
     
     
     }
