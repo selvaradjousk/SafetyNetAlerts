@@ -737,6 +737,32 @@ public class FireStationControllerIT {
         } 
         
         
+        @Test
+        @DisplayName("Check - <UPDATE INVALID FIRESTATION ADDRESS>"
+        		+ "Given a FIRESTATION with ADDRESS inexistant,"
+        		+ " when UPDATE request,"
+        		+ " then return Reponse Status: 400 BAD REQUEST")
+        public void testUpdateFireStationNonExisting() {
+
+        	// first update asserts the original value expected
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationToUpdate);
+        	
+        	// invalid id update is run here to check it fails and previous one stays valid
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationToUpdateWrongId);
+            
+        	// Checking that existing person has not been modified
+            response = restTemplate.getForEntity("http://localhost:" + port + FIRESTATION_ID_URL,
+                    FireStationDTO.class, fireStationToUpdate.getStationId(), fireStationToUpdate.getAddress());
+
+            assertNotNull(response.getBody());
+            
+            // confirms the original person data is same as get person data
+            // - confirms invalid id info is not taken into account for update 
+            assertEquals(fireStationToUpdate.getAddress(), response.getBody().getAddress());
+            
+            
+            assertNotEquals(fireStationToUpdateWrongId.getAddress(), response.getBody().getAddress());
+        }
         
     
     }
