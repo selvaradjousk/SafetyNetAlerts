@@ -430,6 +430,43 @@ public class MedicalRecordControllerTest {
         verify(medicalRecordService, times(1))
         .deleteMedicalRecord(anyString(), anyString());
     }
+    
+    @Test
+    @DisplayName("Check for (INVALID PERSON-ID no firstname)"
+    		+ " - Given INVALID PERSON-ID without firstname,"
+    		+ " when DELETE request (/medicalRecord?firstName={}&lastName={lastName}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeleteMedicalRecordRequestWithIdWithoutFirstname() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/medicalRecord?firstName=&lastName=Test LastName"))
+                .andExpect(status()
+                		.isBadRequest());
+    }
+    
+    @Test
+    @DisplayName("Check for (INVALID PERSON-ID no lastname)"
+    		+ " - Given INVALID PERSON-ID without lastname,"
+    		+ " when DELETE request (/medicalRecord?firstName={firstName}&lastName={}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeleteMedicalRecordRequestWithIdWithoutLastname() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/medicalRecord?firstName=Test FirstName&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+    }
+    
+    @Test
+    @DisplayName("check for (without any input)"
+    		+ " - Given INVALID PERSON-ID without input,"
+    		+ " when DELETE request (/medicalRecord?firstName={}&lastName={}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeleteMedicalRecordRequestWithIdNoIdInput() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/medicalRecord?firstName=&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+    }
+ 
     }
 
 }
