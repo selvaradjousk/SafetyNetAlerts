@@ -42,7 +42,8 @@ public class FireStationControllerTest {
     private ObjectMapper objectMapper;
 
     @Mock
-    private FireStationDTO fireStationDTO, fireStationDTOInvalidAddress;
+    private FireStationDTO fireStationDTO, fireStationDTOInvalidAddress, fireStationDTOInvalidId,
+    fireStationDTOInvalidIdAndAddress;
 
     @BeforeEach
     public void setUp() {
@@ -57,8 +58,19 @@ public class FireStationControllerTest {
         		.stationId(3)
         		.address("")
         		.build();
+        
+        fireStationDTOInvalidAddress = FireStationDTO.builder()
+        		.stationId(3)
+        		.address("")
+        		.build();
+        
+        fireStationDTOInvalidIdAndAddress = FireStationDTO.builder()
+        		.stationId(3)
+        		.address("")
+        		.build();
     }
     
+ // ***************************************************************************************************
     @DisplayName("Test GET FIRESTATION")
     @Nested
     class TestGetFireStation {  
@@ -175,6 +187,24 @@ public class FireStationControllerTest {
         .addNewFireStation(any(FireStationDTO.class));
     }
     
+    
+    @Test
+    @DisplayName("Check (Input values invalid)"
+    		+ " - Given Input values invalid,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddFireStationRequestWitinvalidIAndAddressd() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/firestation")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(fireStationDTOInvalidIdAndAddress)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(fireStationService, times(0))
+        .addNewFireStation(any(FireStationDTO.class));
+    }
+    
 
     @Test
     @DisplayName("Check (empty request body)"
@@ -244,6 +274,22 @@ public class FireStationControllerTest {
             verify(fireStationService, times(0))
             .updateExistingStation(any(FireStationDTO.class));
         }
+        
+        @Test
+        @DisplayName("Check (Invalid Address and Id)"
+        		+ " - Given invalid Address, when PUT request,"
+        		+ " then return - Status: 400 Bad Request")
+        public void testUpdateStationRequestWithInValidAddressAndId() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders
+            		.put("/firestation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(displayAsJsonString(fireStationDTOInvalidAddress)))
+                    .andExpect(status()
+                    		.isBadRequest());
+
+            verify(fireStationService, times(0))
+            .updateExistingStation(any(FireStationDTO.class));
+        }
           
         @Test
         @DisplayName("Check (for empty input)"
@@ -263,6 +309,14 @@ public class FireStationControllerTest {
         }  
      
     }
+    
+    
+    
+    // ***************************************************************************************************
+    
+    @DisplayName("Test DELETE FIRESTATION")
+    @Nested
+    class TestDeleteFireStation {  
     
   @Test
   @DisplayName("Test DELETE FIRESTATION valid firestation id"
@@ -289,21 +343,51 @@ public class FireStationControllerTest {
       
   }
   
-  
-@Test
-@DisplayName("Test DELETE FIRESTATION invalid input"
-		+ " - Given without address input value,"
-		+ " when DELETE request,"
-		+ " then return - Status: 400 Bad Request")
-public void testDeleteStationRequestWithoutAddressValues() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders
-    		.delete("/firestation?address=&station=3"))
-            .andExpect(status()
-            		.isBadRequest());
+  @Test
+  @DisplayName("Test DELETE FIRESTATION empty address input"
+  		+ " - Given without address input value,"
+  		+ " when DELETE request,"
+  		+ " then return - Status: 400 Bad Request")
+  public void testDeleteStationRequestWithoutAddressValues() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders
+      		.delete("/firestation?address=&station=3"))
+              .andExpect(status()
+              		.isBadRequest());
 
-    verify(fireStationService, times(0))
-    .deleteExistingStation(anyInt(), anyString());
-}
-    
+      verify(fireStationService, times(0))
+      .deleteExistingStation(anyInt(), anyString());
+  }
+  
+  @Test
+  @DisplayName("Test DELETE FIRESTATION empty id input"
+  		+ " - Given without id input value,"
+  		+ " when DELETE request,"
+  		+ " then return - Status: 400 Bad Request")
+  public void testDeleteStationRequestWithoutIdValue() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders
+      		.delete("/firestation?address=Test StreetName&station="))
+              .andExpect(status()
+              		.isBadRequest());
+
+      verify(fireStationService, times(0))
+      .deleteExistingStation(anyInt(), anyString());
+  }
+  
+  @Test
+  @DisplayName("Test DELETE FIRESTATION empty address and id inputs"
+  		+ " - Given without input value,"
+  		+ " when DELETE request,"
+  		+ " then return - Status: 400 Bad Request")
+  public void testDeleteStationRequestWithoutValues() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders
+      		.delete("/firestation?address=&station="))
+              .andExpect(status()
+              		.isBadRequest());
+
+      verify(fireStationService, times(0))
+      .deleteExistingStation(anyInt(), anyString());
+  }
+  
+  }  
     
 }

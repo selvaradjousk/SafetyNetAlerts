@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,12 @@ public class PersonControllerTest {
         		.build();
     }
     
+    // ***************************************************************************************************
+    @DisplayName("Test GET PERSON")
+    @Nested
+    class TestGetPerson { 
     @Test
-    @DisplayName("GET PERSON"
+    @DisplayName("Check (Valid input)"
     		+ " - Given VALID PERSON-ID,"
     		+ " when GET request (/person?firstName=Test FirstName&lastName=Test Last Name),"
     		+ " then return - Status: OK 200")
@@ -76,7 +81,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    @DisplayName("GET PERSON"
+    @DisplayName("Check (invalid input - no lastname"
     		+ " - Given INVALID PERSON-ID - without lastname,"
     		+ " when GET request (/person?firstName=Test FirstName&lastName=),"
     		+ " then return - Status: 400 Bad Request")
@@ -92,7 +97,45 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD NEW PERSON"
+    @DisplayName("Check (invalid input - no firstname"
+    		+ " - Given INVALID PERSON-ID - without firstname,"
+    		+ " when GET request (/person?firstName=&lastName=Test LastName),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testGetPersonRequestWithIdWithoutFirstname() throws Exception {
+    	
+    	mockMvc.perform(MockMvcRequestBuilders
+        		.get("/person?firstName=Test FirstName&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .getPersonById(anyString(), anyString());
+    }
+    
+    @Test
+    @DisplayName("Check (invalid input - no name"
+    		+ " - Given INVALID PERSON-ID - without name,"
+    		+ " when GET request (/person?firstName=&lastName=),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testGetPersonRequestWithIdWithoutName() throws Exception {
+    	
+    	mockMvc.perform(MockMvcRequestBuilders
+        		.get("/person?firstName=Test FirstName&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .getPersonById(anyString(), anyString());
+    }
+}
+    
+    // ***************************************************************************************************
+    @DisplayName("Test ADD PERSON")
+    @Nested
+    class TestAddPerson {  
+    
+    @Test
+    @DisplayName("Check (valid input)"
     		+ " - Given a Person to add,"
     		+ " when POST request,"
     		+ " then return Status: 201 Created")
@@ -115,7 +158,7 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD PERSON (without person FirstName)"
+    @DisplayName("Check (without person FirstName)"
     		+ " - Given add a person without person Id,"
     		+ " when POST request,"
     		+ " then return - Status: 400 Bad Request")
@@ -143,7 +186,7 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD PERSON (without person LastName)"
+    @DisplayName("Check (without person LastName)"
     		+ " - Given add a person without person Id,"
     		+ " when POST request,"
     		+ " then return - Status: 400 Bad Request")
@@ -171,7 +214,35 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("ADD PERSON (empty request body)"
+    @DisplayName("Check (without person Name)"
+    		+ " - Given add a person without any person Ids,"
+    		+ " when POST request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testAddPersonRequestWithoutAnyNameIds() throws Exception {
+        objectMapper = new ObjectMapper();
+        personDTO = PersonDTO.builder()
+        		.firstName("")
+        		.lastName("")
+        		.address("1509 Culver St")
+        		.city("Culver")
+        		.zip(97451)
+        		.phone("111-111-1111")
+        		.email("testemail@email.com")
+        		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(personDTO)))
+                .andExpect(status()
+               		.isBadRequest());
+
+        verify(personService, times(0))
+        .addNewPerson(any(PersonDTO.class));
+    }
+    
+    @Test
+    @DisplayName("Check(empty request body)"
     		+ " - Given add a person with an empty request body,"
     		+ " when POST request,"
     		+ " then return Status: 400 Bad Request)")
@@ -187,8 +258,15 @@ public class PersonControllerTest {
         .addNewPerson(any(PersonDTO.class));
     }
     
+}
+    
+    // ***************************************************************************************************
+    @DisplayName("Test UPDATE PERSON")
+    @Nested
+    class TestUpdatePerson {  
+    
     @Test
-    @DisplayName("UPDATE PERSON"
+    @DisplayName("Check (Valid input)"
     		+ " - Given update a Person with VALID PERSON-ID,"
     		+ " when PUT request,"
     		+ " then return - Status: 200 OK")
@@ -211,7 +289,7 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("UPDATE PERSON"
+    @DisplayName("Check (invalid input - no ids)"
     		+ " - Given update a person without person Id,"
     		+ " when PUT request,"
     		+ " then return - Status: 400 Bad Request")
@@ -239,7 +317,35 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("UPDATE PERSON No lastName"
+    @DisplayName("Check for ( No firstName)"
+    		+ " - Given update a person without firstName,"
+    		+ " when PUT request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdatePersonRequestWithoutFirstName() throws Exception {
+        objectMapper = new ObjectMapper();
+       personDTO = PersonDTO.builder()
+       		.firstName("")
+       		.lastName("Test LastName")
+       		.address("1509 Culver St")
+       		.city("Culver")
+       		.zip(97451)
+       		.phone("111-111-1111")
+       		.email("testemail@email.com")
+       		.build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(personDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(personService, times(0))
+        .updateExistingPerson(any(PersonDTO.class));
+    }
+    
+    @Test
+    @DisplayName("UCheck for ( No lastName)"
     		+ " - Given update a person without lastName,"
     		+ " when PUT request,"
     		+ " then return - Status: 400 Bad Request")
@@ -268,7 +374,7 @@ public class PersonControllerTest {
     
 
     @Test
-    @DisplayName("UPDATE PERSON"
+    @DisplayName("Check (No input of body)"
     		+ " - Given update a person with no request body content,"
     		+ " when PUT request,"
     		+ " then return Status: 400 Bad Request)")
@@ -282,9 +388,16 @@ public class PersonControllerTest {
         verify(personService, times(0))
         .updateExistingPerson(any(PersonDTO.class));
     }
-
+}
+    
+ // ***************************************************************************************************
+    @DisplayName("Test DELETE PERSON")
+    @Nested
+    class TestDeletePerson {  
+    
+    
     @Test
-    @DisplayName("DELETE PERSON"
+    @DisplayName("Check (valid ID input)"
     		+ " - Given VALID PERSON-ID,"
     		+ " when DELETE request (/person?firstName={firstName}&lastName={lastName}),"
     		+ " then return - Status: 200 OK")
@@ -301,7 +414,7 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("DELETE PERSON"
+    @DisplayName("Check (invalid person ID) input"
     		+ " - Given INVALID PERSON-ID without lastname,"
     		+ " when DELETE request (/person?firstName={firstName}&lastName={}),"
     		+ " then return - Status: 400 Bad Request")
@@ -316,7 +429,7 @@ public class PersonControllerTest {
     }
     
     @Test
-    @DisplayName("DELETE PERSON"
+    @DisplayName("Check (INVALID PERSON-ID without firstname)"
     		+ " - Given INVALID PERSON-ID without firstname,"
     		+ " when DELETE request (/person?firstName={}&lastName={lastName}),"
     		+ " then return - Status: 400 Bad Request")
@@ -329,6 +442,21 @@ public class PersonControllerTest {
         verify(personService, times(0))
         .deleteExistingPerson(anyString(), anyString());
     }
+    
+    @Test
+    @DisplayName("Check (INVALID inputs)"
+    		+ " - Given INVALID PERSON-ID without No input Id,"
+    		+ " when DELETE request (/person?firstName={}&lastName={}),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testDeletePersonRequestWithIdWithoutIdInput() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.delete("/person?firstName=&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
 
+        verify(personService, times(0))
+        .deleteExistingPerson(anyString(), anyString());
+    }
 
+    }
 }
