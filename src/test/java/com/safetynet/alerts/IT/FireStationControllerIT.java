@@ -1,5 +1,6 @@
 package com.safetynet.alerts.IT;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterEach;
@@ -92,6 +93,16 @@ public class FireStationControllerIT {
 
            assertNotNull(response);
         }
+        
+        @Test
+        @DisplayName("Check - <RESPONSE HEADER NOT NULL>"
+        		+ " - Given a FireStation,"
+        		+ " when GET request,"
+        		+ " then response header not null")
+        public void testGetFireStationRequestWithValidFireStationResponseHeaderNotNull() {
+                assertNotNull(response.getHeaders());
+                assertEquals("application/json", (response.getHeaders().getContentType()).toString());
+        }    
        
     
     }
