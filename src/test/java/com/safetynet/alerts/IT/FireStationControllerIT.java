@@ -666,6 +666,26 @@ public class FireStationControllerIT {
         } 
         
         
+        @Test
+        @DisplayName("Check - <On FIRESTATION UPDATE - Value expected Updated>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then FireStation data updated with expected value")
+        public void testUpdateFireStationValueSameAsExpectedUpdateValue() {
+       	  
+        	// update requested
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationUpdated);
+       	  
+             response = restTemplate
+          		   .getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                     FireStationDTO.class,
+                     fireStationToUpdate.getStationId(),
+                     fireStationToUpdate.getAddress());
+
+         	// Check for expected updated value in response body of person data
+         	assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(fireStationUpdated);
+        }
+        
         
     
     }
