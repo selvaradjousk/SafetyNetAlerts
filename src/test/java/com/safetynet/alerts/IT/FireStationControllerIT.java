@@ -45,7 +45,8 @@ public class FireStationControllerIT {
     
     FireStationDTO fireStationToAdd, fireStationToAddMissingAddress, fireStationToAddMissingId,
     fireStationToAddMissingBothIdAndAddress, fireStationToUpdate, fireStationUpdated,
-    fireStationToUpdateWrongAddress, fireStationToUpdateWrongId;
+    fireStationToUpdateWrongAddress, fireStationToUpdateWrongId, fireStationToBeDeleted,
+    fireStationToBeDeletedCopy;
     
     ResponseEntity<FireStationDTO> response, responseOnPost;
     ResponseEntity<FireStationDTO> getFireStationAdded;
@@ -96,7 +97,18 @@ public class FireStationControllerIT {
     	fireStationToUpdateWrongId = new FireStationDTO().builder()
     			.stationId(10)
     			.address("addressToUpdate")
-    			.build();      
+    			.build();
+    	
+    	fireStationToBeDeleted = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("addressAddedtoDelete")
+    			.build();
+    	
+    	
+    	fireStationToBeDeletedCopy = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("addressAddedtoBeDeleted")
+    			.build();
         
     	
      }
@@ -763,8 +775,70 @@ public class FireStationControllerIT {
             
             assertNotEquals(fireStationToUpdateWrongId.getAddress(), response.getBody().getAddress());
         }
-        
-    
+   
     }
     
+    
+    // ***********************************************************************************
+    
+    @DisplayName("IT - DELETE FIRESTATION")
+    @Nested
+    class DeleteFireStationIT {  
+    	
+        @BeforeEach
+        public void init() {
+      	   restTemplate
+ 	   		.postForEntity(
+ 	   				getRootUrl() + "/firestation",
+ 	   			fireStationToBeDeleted,
+ 	   				FireStationDTO.class);
+      	   
+            response = restTemplate
+         		   .getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                    FireStationDTO.class,
+                    fireStationToBeDeleted.getStationId(),
+                    fireStationToBeDeleted.getAddress());
+        }
+        
+        @AfterEach
+        public void finish() {
+                 
+            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToBeDeleted.getStationId(), fireStationToBeDeleted.getAddress()); 
+        }
+        
+
+    
+   
+    @Test
+    @DisplayName("Check - <RESPONSE GET after Delete 404 NOT FOUND>"
+    		+ " - Given a FireStation,"
+    		+ " when DELETE request,"
+    		+ " then response on get is 404 NOT FOUND")
+    public void testDeleteFireStationRequestWithValidFireStationResponseNull() {
+
+    	// Confirms firestation  found before delete
+    	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+    	
+    	// delete request executed
+    	restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToBeDeleted.getStationId(), fireStationToBeDeleted.getAddress());
+    	
+        // Checking that existing fireStation has been deleted
+        response = restTemplate.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                FireStationDTO.class, fireStationToBeDeleted.getStationId(), fireStationToBeDeleted.getAddress());
+        
+        // response is not null - has information
+        assertNotNull(response);
+        assertNotNull(response.getHeaders());
+        assertNotNull(response.getBody());
+        
+        // fireStation is not found - confirms delete process
+        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+    }
+    
+    
+    
+    
+    }
+   
 }
