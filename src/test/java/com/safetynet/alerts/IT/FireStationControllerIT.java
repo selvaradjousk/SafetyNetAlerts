@@ -276,6 +276,42 @@ public class FireStationControllerIT {
 
     }
     
+
+    // ***********************************************************************************
     
+    
+    @DisplayName("IT - ADD FIRESTATION")
+    @Nested
+    class AddNewFireStationIT {  
+    	
+        @BeforeEach
+        public void init() {
+      	
+        }
+        
+        @AfterEach
+        public void finish() {
+                 
+        	restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToAdd.getStationId(), fireStationToAdd.getAddress());
+        }
+    
+    @Test
+    @DisplayName("Check - <RESPONSE NOT NULL>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then FireStation added is not null")
+    public void testAddFireStationRequestWithValidFireStationResponseNotNull() {
+    	 
+    	response = restTemplate
+    			.postForEntity(getRootUrl() + "/firestation",
+    					fireStationToAdd,
+    					FireStationDTO.class);
+    	
+        assertNotNull(response);
+    }
+    
+    
+    
+    }
     
 }
