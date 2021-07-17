@@ -357,7 +357,22 @@ public class FireStationControllerIT {
         assertNotNull(response.getBody().getAddress());
     }
     
-    
+   
+    @Test
+    @DisplayName("Check - Response Status<201 CREATED>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then return Status: 201 Created")
+    public void testAddFireStationRequestWithValidFireStationResponseStatusCreated() {
+    	 
+    	response = restTemplate
+    			.postForEntity(getRootUrl() + "/firestation",
+    					fireStationToAdd,
+    					FireStationDTO.class);
+
+        //When Post created CHECKs
+        assertEquals((HttpStatus.CREATED), response.getStatusCode());
+
     
     
     
