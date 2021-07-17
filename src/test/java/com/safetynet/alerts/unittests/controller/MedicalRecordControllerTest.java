@@ -277,5 +277,38 @@ public class MedicalRecordControllerTest {
     }
     
     }
+    
+    // ***************************************************************************************************
+    @DisplayName("Test UPDATE MEDICAL RECORD")
+    @Nested
+    class TestUpdateMedicalRecord { 
+
+    @Test
+    @DisplayName("Check (Valid MedicalRecord input)"
+    		+ " - Given a valid MedicalRecord to update,"
+    		+ " when PUT request,"
+    		+ " then return - Status 200 OK")
+    public void testUpdateMedicalRecordRequestWithValidRecordInfo() throws Exception {
+
+    	when(medicalRecordService
+        		.updateMedicalRecord(any(MedicalRecordDTO.class)))
+        .thenReturn(any(MedicalRecordDTO.class));
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(medicalDTO)))
+                .andExpect(status()
+                		.isOk());
+
+        verify(medicalRecordService)
+        .updateMedicalRecord(any(MedicalRecordDTO.class));
+        verify(medicalRecordService, times(1))
+        .updateMedicalRecord(any(MedicalRecordDTO.class));
+    }
+    
+    }
+    
+    
 
 }
