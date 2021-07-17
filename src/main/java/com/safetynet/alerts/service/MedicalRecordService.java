@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dao.IMedicalRecordDAO;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.util.MedicalRecordMapper;
@@ -42,11 +43,18 @@ public class MedicalRecordService implements IMedicalRecordService {
         return medicalRecordMapper.toMedicalRecordDTO(medicalRecord);
     }
 	
-	@Override
-	public MedicalRecordDTO addNewMedicalRecord(MedicalRecordDTO newMedicalRecord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+     public MedicalRecordDTO addNewMedicalRecord(final MedicalRecordDTO medicalRecord) {
+         MedicalRecord medicalRecordFound = medicalRecordDAO.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
+                medicalRecord.getLastName());
+
+        if (medicalRecordFound != null) {
+            throw new DataAlreadyRegisteredException("MedicalRecord already registered");
+        }
+        MedicalRecord medicalRecordToSave = medicalRecordMapper.toMedicalRecord(medicalRecord);
+        MedicalRecord medicalRecordSaved = medicalRecordDAO.updateMedicalRecord(medicalRecordToSave);
+
+        return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved);
+    }
 
 
     public MedicalRecordDTO updateMedicalRecord(final MedicalRecordDTO medicalRecord) {

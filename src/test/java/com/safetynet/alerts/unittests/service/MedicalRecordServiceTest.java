@@ -89,7 +89,7 @@ public class MedicalRecordServiceTest {
     
 
     // ***********************************************************************************
-    @DisplayName("Test GET MEDICAL RECORD BY ID")
+    @DisplayName("Test GET MEDICAL RECORD")
     @Nested
     class TestDeleteMedicalRecord {
     	
@@ -159,7 +159,7 @@ public class MedicalRecordServiceTest {
   }
     
     @Test
-    @DisplayName("GET MEDICAL RECORD BY ID"
+    @DisplayName("GET MEDICAL RECORD invalid id Exception"
     		+ " - Given a medicalRecord with person ID with no id,"
     		+ " when request get MedicalRecord,"
     		+ " then return throws DataNotFoundException")
@@ -199,10 +199,7 @@ public class MedicalRecordServiceTest {
 
         }
         
-        
-        
-    }
-    
+   
     @Test
     @DisplayName("Check <Not Null> on Add Record"
     		+ " - Given a new medicalRecord,"
@@ -214,6 +211,8 @@ public class MedicalRecordServiceTest {
         		.addNewMedicalRecord(medicalRecordDTO);
         assertNotNull(medicalRecordAdded);
     } 
+    
+    }
     
     // ***********************************************************************************
 
