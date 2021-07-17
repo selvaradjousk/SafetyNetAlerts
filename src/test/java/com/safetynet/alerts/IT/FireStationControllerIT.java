@@ -712,6 +712,31 @@ public class FireStationControllerIT {
              assertEquals(valueAfterUpdate, fireStationUpdated.getStationId(), "Expected value is 5");
         }
         
+        @Test
+        @DisplayName("Check - <UPDATE FIRESTATION ID parameter missing >"
+        		+ "Given a FireStation with missing parameter ID,"
+        		+ " when UPDATE request,"
+        		+ " then return Reponse Status: 400 BAD REQUEST")
+        public void testUpdateFireStationMissingParameterId() {
+
+        	// first update asserts the original value expected
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationToUpdate);
+        	
+        	// invalid id update is run here to check it fails and previous one stays valid
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationToAddMissingId);
+            
+        	// Checking that existing person has not been modified
+            response = restTemplate.getForEntity("http://localhost:" + port + FIRESTATION_ID_URL,
+                    FireStationDTO.class, fireStationToUpdate.getStationId(), fireStationToUpdate.getAddress());
+
+            assertNotNull(response.getBody());
+            
+            assertEquals(fireStationToUpdate.getAddress(), response.getBody().getAddress());
+            
+            assertNotEquals(fireStationToAddMissingId.getAddress(), response.getBody().getAddress());
+        } 
+        
+        
         
     
     }
