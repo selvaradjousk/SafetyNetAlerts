@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -123,6 +124,17 @@ public class FireStationControllerIT {
             assertNotNull(response.getBody().getStationId());
             assertNotNull(response.getBody().getAddress());
         } 
+        
+        @Test
+        @DisplayName("Check - Response Status<200 OK>"
+        		+ " - Given a FireStation,"
+        		+ " when GET request,"
+        		+ " then return Status: 200 OK")
+        public void testGetFireStationRequestWithValidFireStationResponseStatusOk() {
+            assertEquals((HttpStatus.OK), response.getStatusCode());
+            assertEquals(200, response.getStatusCodeValue());
+            assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+       }  
         
         
         
