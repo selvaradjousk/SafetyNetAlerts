@@ -168,6 +168,5 @@ public class MedicalRecordControllerTest {
         .addNewMedicalRecord(any(MedicalRecordDTO.class));
     }
     }
-    
-    
+
 }

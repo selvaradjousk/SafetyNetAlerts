@@ -62,5 +62,4 @@ public class MedicalRecordController {
         return new ResponseEntity<>(medicalRecordCreated, HttpStatus.CREATED);
    }
    
-   
 }
