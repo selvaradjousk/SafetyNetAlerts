@@ -48,11 +48,20 @@ public class MedicalRecordService implements IMedicalRecordService {
 		return null;
 	}
 
-	@Override
-	public MedicalRecordDTO updateMedicalRecord(MedicalRecordDTO existingMedicalRecord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+    public MedicalRecordDTO updateMedicalRecord(final MedicalRecordDTO medicalRecord) {
+        MedicalRecord medicalRecordFound = medicalRecordDAO.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
+                medicalRecord.getLastName());
+
+        if (medicalRecordFound == null) {
+            throw new DataNotFoundException("MedicalRecord not found");
+        }
+        medicalRecordFound.setBirthDate(medicalRecord.getBirthDate());
+        medicalRecordFound.setMedications(medicalRecord.getMedications());
+        medicalRecordFound.setAllergies(medicalRecord.getAllergies());
+
+        return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound);
+    }
 
 	@Override
 	public void deleteMedicalRecord(String firstName, String lastName) {

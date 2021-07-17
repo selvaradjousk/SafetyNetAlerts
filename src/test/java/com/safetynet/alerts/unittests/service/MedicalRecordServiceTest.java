@@ -172,6 +172,9 @@ public class MedicalRecordServiceTest {
         		->  medicalRecordService.getMedicalRecordById(anyString(), anyString()));
     }
     
+
+    
+    
     
     // ***********************************************************************************
 
@@ -201,11 +204,11 @@ public class MedicalRecordServiceTest {
             		.updateMedicalRecord(medicalRecordDTO);
 
             assertNotNull((medicalRecordUpdated.getAllergies()).contains("some allergies1"));
-        }
+        }  
         
-    }   
+    }
     
-
+   
 }
 
 
