@@ -463,6 +463,27 @@ public class FireStationControllerIT {
                
     }
     
+    
+    @Test
+    @DisplayName("Check - <MISSING FIRESTATION ADDRESS>"
+    		+ "Given a FireStation with missing ADDRESS,"
+    		+ " when POST request,"
+    		+ " then return Reponse Status: 4xx BAD REQUEST")
+    public void testAddFireStationMissingAddress() {
+
+        response = restTemplate
+        		.postForEntity(
+        				getRootUrl() + "/firestation",
+        				fireStationToAddMissingAddress,
+        				FireStationDTO.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+        assertEquals(0, response.getBody().getStationId());
+        assertNull(response.getBody().getAddress());
+               
+    }
+    
+    
     }
     
 }
