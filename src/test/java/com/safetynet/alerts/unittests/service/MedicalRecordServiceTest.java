@@ -173,8 +173,47 @@ public class MedicalRecordServiceTest {
     }
     
 
+    // ***********************************************************************************
+
+    @DisplayName("Test ADD MEDICAL RECORD")
+    @Nested
+    class TestAddNewMedicalRecord {
+    	
+        @BeforeEach
+        public void init() {
+            when(medicalRecordDAOMock
+            		.getMedicalRecordByPersonId(anyString(), anyString()))
+            .thenReturn(null);
+            
+            when(medicalRecordMapper
+            		.toMedicalRecord(any(MedicalRecordDTO.class)))
+            .thenReturn(medicalRecord);
+           
+            when(medicalRecordDAOMock
+            		.updateMedicalRecord(any(MedicalRecord.class)))
+            .thenReturn(medicalRecord);
+            
+            when(medicalRecordMapper
+            		.toMedicalRecordDTO(any(MedicalRecord.class)))
+            .thenReturn(medicalRecordDTO);
+
+        }
+        
+        
+        
+    }
     
-    
+    @Test
+    @DisplayName("Check <Not Null> on Add Record"
+    		+ " - Given a new medicalRecord,"
+    		+ " when add Medical Record,"
+    		+ " then medicalRecord is not null")
+    public void testAddMedicalRecordCheckNotNull() {
+
+        medicalRecordAdded = medicalRecordService
+        		.addNewMedicalRecord(medicalRecordDTO);
+        assertNotNull(medicalRecordAdded);
+    } 
     
     // ***********************************************************************************
 
