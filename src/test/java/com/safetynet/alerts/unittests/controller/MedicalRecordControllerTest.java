@@ -109,7 +109,18 @@ public class MedicalRecordControllerTest {
 
     }
     
-    
+    @Test
+    @DisplayName("Check (without any input )"
+    		+ " - Given INVALID PERSON-ID - without any input,"
+    		+ " when GET request (/medicalRecord?firstName=&lastName=),"
+    		+ " then return BadRequest status (an HTTP 400 response)")
+    public void testGetMedicalRecordRequestWithIdWithoutAnyInput() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/medicalRecord?firstName=&lastName="))
+                .andExpect(status()
+                		.isBadRequest());
+
+    }
     
     
     }
