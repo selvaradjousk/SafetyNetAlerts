@@ -419,6 +419,30 @@ public class FireStationControllerIT {
             assertEquals(HttpStatus.OK.value(), getFireStationAdded.getStatusCodeValue());
     } 
     
+    @Test
+    @DisplayName("Check - <CONFLICT STATUS - ADD EXISTING FIRESTATION>"
+    		+ "Given a registered FireStation,"
+    		+ " when POST request,"
+    		+ " then return Response Status: 409 CONFLICT" +
+            "should be returned")
+    public void testAddFireStationRequestExistingPerson() {
+
+        restTemplate.postForEntity(
+        		getRootUrl() + "/firestation",
+        		fireStationToAdd,
+        		FireStationDTO.class);
+        
+        response = restTemplate
+           		.postForEntity(
+           				getRootUrl() + "/firestation",
+           				fireStationToAdd,
+           				FireStationDTO.class);
+
+        assertThat(response.getBody()).isNotSameAs(fireStationToAdd);
+        assertEquals(HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
+
+    }
+    
     
     
     }
