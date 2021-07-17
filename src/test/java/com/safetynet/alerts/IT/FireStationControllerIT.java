@@ -166,7 +166,10 @@ public class FireStationControllerIT {
         @AfterEach
         public void finish() {
                  
-            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToAdd.getStationId(), fireStationToAdd.getAddress()); 
+            restTemplate.delete(getRootUrl()
+            		+ FIRESTATION_ID_URL,
+            		fireStationToAdd.getStationId(),
+            		fireStationToAdd.getAddress()); 
         }
         
         
@@ -340,7 +343,10 @@ public class FireStationControllerIT {
         @AfterEach
         public void finish() {
                  
-        	restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToAdd.getStationId(), fireStationToAdd.getAddress());
+        	restTemplate.delete(getRootUrl()
+        			+ FIRESTATION_ID_URL,
+        			fireStationToAdd.getStationId(),
+        			fireStationToAdd.getAddress());
         }
     
     @Test
@@ -452,7 +458,8 @@ public class FireStationControllerIT {
                				fireStationToAdd,
                				FireStationDTO.class);
             
-            getFireStationAdded = restTemplate.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+            getFireStationAdded = restTemplate.getForEntity(getRootUrl()
+            		+ FIRESTATION_ID_URL,
                     FireStationDTO.class,
                     fireStationToAdd.getStationId(),
                     fireStationToAdd.getAddress());
@@ -584,8 +591,13 @@ public class FireStationControllerIT {
         @AfterEach
         public void finish() {
                  
-            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToUpdate.getStationId(), fireStationToUpdate.getAddress()); 
-            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationUpdated.getStationId(), fireStationUpdated.getAddress());
+            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL,
+            		fireStationToUpdate.getStationId(),
+            		fireStationToUpdate.getAddress()); 
+            
+            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL,
+            		fireStationUpdated.getStationId(),
+            		fireStationUpdated.getAddress());
         }
         
         @Test
@@ -601,6 +613,20 @@ public class FireStationControllerIT {
         }   
     
     
+        @Test
+        @DisplayName("Check - <UPDATE - STATUS 200 OK>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then return response Status: 200 OK")
+        public void testUpdateFireStationResponseStatusOk() {
+      	   
+           	// FireStation Update Data Exist
+        	assertEquals((HttpStatus.OK), response.getStatusCode());
+        	assertEquals(200, response.getStatusCodeValue());
+        	assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        }
+        
+        
     
     
     }
