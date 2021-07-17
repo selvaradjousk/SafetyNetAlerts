@@ -48,7 +48,7 @@ public class FireStationControllerIT {
     fireStationToUpdateWrongAddress, fireStationToUpdateWrongId, fireStationToBeDeleted,
     fireStationToBeDeletedCopy;
     
-    ResponseEntity<FireStationDTO> response, responseOnPost;
+    ResponseEntity<FireStationDTO> response, responseOnPost, responseDelete;
     ResponseEntity<FireStationDTO> getFireStationAdded;
     
     @BeforeEach
@@ -863,6 +863,41 @@ public class FireStationControllerIT {
         assertThat(response.getBody()).isNotSameAs(fireStationToBeDeleted);
    }
     
+    
+    @Test
+    @DisplayName("Check - <FIRESTATION ID param>"
+    		+ "Given incomplete FireStation Id,"
+    		+ " when DELETE request,"
+    		+ " then FireStation is not deleted")
+    public void testDeleteRequestInvalidFireStationId() {
+
+    	responseDelete = restTemplate
+	   				.postForEntity(
+	   				getRootUrl() + "/firestation",
+	   			fireStationToBeDeletedCopy,
+	   				FireStationDTO.class);
+   	   
+    	// Confirms fireStation id found before delete
+    	assertEquals(HttpStatus.CREATED.value(), responseDelete.getStatusCodeValue());
+    	
+    	// delete request with missing and wrong input
+        restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, "firstNameDel", "");
+
+        // Checking that existing fireStation has not been deleted
+        response = restTemplate
+        		.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                FireStationDTO.class,
+                fireStationToBeDeletedCopy.getStationId(),
+                fireStationToBeDeletedCopy.getAddress());
+
+        // get request confirms that it is able to get the original fireStation
+        assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+        
+        // fireStaiton data is same as the original - confirms invalid ID delete did not happen
+        assertThat(response.getBody())
+                .isNotNull()
+                .usingRecursiveComparison().isEqualTo(fireStationToBeDeletedCopy);
+    }
     
     
     }
