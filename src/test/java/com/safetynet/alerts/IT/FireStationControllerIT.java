@@ -3,6 +3,7 @@ package com.safetynet.alerts.IT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
@@ -443,7 +444,24 @@ public class FireStationControllerIT {
 
     }
     
-    
+    @Test
+    @DisplayName("Check - <MISSING FIRESTATION ID>"
+    		+ "Given a FireStation with missing ID,"
+    		+ " when POST request,"
+    		+ " then return Reponse Status: 4xx BAD REQUEST")
+    public void testAddFireStationMissingId() {
+
+        response = restTemplate
+        		.postForEntity(
+        				getRootUrl() + "/firestation",
+        				fireStationToAddMissingId,
+        				FireStationDTO.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+        assertEquals(0, response.getBody().getStationId());
+        assertNull(response.getBody().getAddress());
+               
+    }
     
     }
     
