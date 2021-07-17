@@ -392,6 +392,18 @@ public class MedicalRecordControllerTest {
 
     }
     
+    @Test
+    @DisplayName("Check (No request body input)"
+    		+ " - Given no request body content,"
+    		+ " when PUT request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdateMedicalRecordRequestWithNoRequestBody() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString("")))
+                .andExpect(status()
+                		.isBadRequest());
 
     }
     
