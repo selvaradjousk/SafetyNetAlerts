@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +61,25 @@ public class MedicalRecordController {
     		   .addNewMedicalRecord(medicalRecord);
 
         return new ResponseEntity<>(medicalRecordCreated, HttpStatus.CREATED);
+   }
+   
+   
+   @PutMapping("/medicalRecord")
+   public ResponseEntity<MedicalRecordDTO> updateMedicalRecord(
+		   @RequestBody final MedicalRecordDTO medicalRecord) {
+
+       if (medicalRecord.getFirstName() == null
+    		   || medicalRecord.getFirstName().isEmpty()
+    		   || medicalRecord.getLastName() == null ||
+               medicalRecord.getLastName().isEmpty()) {
+           throw new BadRequestException("Response:"
+              		+ " 400 Bad request missing info in request body");
+       }
+       MedicalRecordDTO medicalRecordUpdated = medicalRecordService
+    		   .updateMedicalRecord(medicalRecord);
+
+         return new ResponseEntity<>(medicalRecordUpdated, HttpStatus.OK);
+
    }
    
 }

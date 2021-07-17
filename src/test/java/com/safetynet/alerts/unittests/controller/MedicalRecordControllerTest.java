@@ -307,6 +307,10 @@ public class MedicalRecordControllerTest {
         .updateMedicalRecord(any(MedicalRecordDTO.class));
     }
     
+    
+    
+    
+    
     }
     
     
