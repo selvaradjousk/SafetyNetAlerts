@@ -43,9 +43,10 @@ public class FireStationControllerIT {
     private ObjectMapper objectMapper;
     
     FireStationDTO fireStationToAdd, fireStationToAddMissingAddress, fireStationToAddMissingId,
-    fireStationToAddMissingBothIdAndAddress;
+    fireStationToAddMissingBothIdAndAddress, fireStationToUpdate, fireStationUpdated,
+    fireStationToUpdateWrongAddress, fireStationToUpdateWrongId;
     
-    ResponseEntity<FireStationDTO> response;
+    ResponseEntity<FireStationDTO> response, responseOnPost;
     ResponseEntity<FireStationDTO> getFireStationAdded;
     
     @BeforeEach
@@ -75,6 +76,27 @@ public class FireStationControllerIT {
     			.stationId(3)
     			.address("")
     			.build();
+        
+    	fireStationToUpdate = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("addressAddedtoUpdate")
+    			.build();
+    	
+    	fireStationUpdated = new FireStationDTO().builder()
+    			.stationId(5)
+    			.address("addressAddedtoUpdate")
+    			.build();
+    	
+    	fireStationToUpdateWrongAddress = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("qhdkfhqdkshfqhfdkqhdf")
+    			.build();
+    	
+    	fireStationToUpdateWrongId = new FireStationDTO().builder()
+    			.stationId(10)
+    			.address("addressToUpdate")
+    			.build();      
+        
     	
      }
         
@@ -115,6 +137,30 @@ public class FireStationControllerIT {
        			.stationId(3)
        			.address("")
        			.build();
+           
+       	fireStationToUpdate = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("addressAddedtoUpdate")
+    			.build();
+    	
+    	fireStationUpdated = new FireStationDTO().builder()
+    			.stationId(5)
+    			.address("addressAddedtoUpdate")
+    			.build();
+    	
+    	fireStationToUpdateWrongAddress = new FireStationDTO().builder()
+    			.stationId(3)
+    			.address("qhdkfhqdkshfqhfdkqhdf")
+    			.build();
+    	
+    	fireStationToUpdateWrongId = new FireStationDTO().builder()
+    			.stationId(10)
+    			.address("addressToUpdate")
+    			.build();        
+           
+           
+           
+           
         }
         
         @AfterEach
@@ -502,6 +548,59 @@ public class FireStationControllerIT {
         assertNull(response.getBody().getAddress());
                
     }
+
+    }
+   
+    
+    // *********************************************************************************** 
+    @DisplayName("IT - UPDATE FIRESTATION")
+    @Nested
+    class UpdateFireStationIT {  
+    	
+        @BeforeEach
+        public void init() {
+        	
+        	// person created
+     	   responseOnPost = restTemplate
+	   		.postForEntity(
+	   				getRootUrl() + "/firestation",
+	   				fireStationToUpdate,
+	   				FireStationDTO.class);
+
+     	   
+     	  
+      	// update requested
+      	restTemplate.put(getRootUrl() + "/firestation", fireStationUpdated);
+     	  
+           response = restTemplate
+        		   .getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                   FireStationDTO.class,
+                   fireStationToUpdate.getStationId(),
+                   fireStationToUpdate.getAddress());
+           
+
+        } 
+        
+        @AfterEach
+        public void finish() {
+                 
+            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationToUpdate.getStationId(), fireStationToUpdate.getAddress()); 
+            restTemplate.delete(getRootUrl() + FIRESTATION_ID_URL, fireStationUpdated.getStationId(), fireStationUpdated.getAddress());
+        }
+        
+        @Test
+        @DisplayName("Check - <Station DATA EXIST BEFORE UPDATE>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then FireStation data EXIST BEFORE UPDATE")
+        public void testUpdateFireStationRequestWithValidFireStationExisitBeforeUpdate() {
+      	   
+           	// Person Data Exist
+           	assertNotNull(responseOnPost);
+           	assertNotNull(responseOnPost.getBody().getAddress());
+        }   
+    
+    
     
     
     }
