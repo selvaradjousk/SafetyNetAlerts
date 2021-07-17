@@ -687,6 +687,32 @@ public class FireStationControllerIT {
         }
         
         
+        @Test
+        @DisplayName("Check - <On FIRESTATION UPDATE - FireStation ID requested and updated Same>"
+        		+ " - Given a FireStation,"
+        		+ " when UPDATE request,"
+        		+ " then FireStation ID requested for update and updated ID are Same")
+        public void testUpdateFireStationValueSameIdRequestedIsUpdated() {
+          	// Value of Address parameter stored for reference before update
+       	  int valueBeforeUpdate = responseOnPost.getBody().getStationId();
+       	  
+        	// update requested
+        	restTemplate.put(getRootUrl() + "/firestation", fireStationUpdated);
+       	  
+             response = restTemplate
+          		   .getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+          				 FireStationDTO.class,
+                     fireStationToUpdate.getStationId(),
+                     fireStationToUpdate.getAddress());
+             
+             int valueAfterUpdate = response.getBody().getStationId();
+            // Check value before and after update are not equal
+        	assertNotEquals(valueBeforeUpdate, valueAfterUpdate);
+         	// Check for expected updated value in response body of person data
+             assertEquals(valueAfterUpdate, fireStationUpdated.getStationId(), "Expected value is 5");
+        }
+        
+        
     
     }
     
