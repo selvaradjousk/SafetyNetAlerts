@@ -1,5 +1,7 @@
 package com.safetynet.alerts.unittests.controller;
 
+import static com.safetynet.alerts.testingtoolsconfig.DataPreparation.displayAsJsonString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -137,7 +140,34 @@ public class MedicalRecordControllerTest {
     
     }
 
+    // ***************************************************************************************************
+    @DisplayName("Test ADD MEDICAL RECORD")
+    @Nested
+    class TestAddMedicalRecord { 
     
+    @Test
+    @DisplayName("Check (for valid input ids)"
+    		+ " - Given a Medical Record to add,"
+    		+ " when POST request,"
+    		+ " then return Status: 201 Created")
+    public void testAddMedicalRecordRequestWithValidIdCheckCreationStatus() throws Exception {
+        when(medicalRecordService
+        		.addNewMedicalRecord(any(MedicalRecordDTO.class)))
+        .thenReturn(any(MedicalRecordDTO.class));
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.post("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(medicalDTO)))
+                .andExpect(status()
+                		.isCreated());
+
+        verify(medicalRecordService)
+        .addNewMedicalRecord(any(MedicalRecordDTO.class));
+        verify(medicalRecordService, times(1))
+        .addNewMedicalRecord(any(MedicalRecordDTO.class));
+    }
+    }
     
     
 }
