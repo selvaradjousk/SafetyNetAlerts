@@ -342,6 +342,23 @@ public class FireStationControllerIT {
     }
     
     
+    @Test
+    @DisplayName("Check - <NOT NULL - Id and address Value>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request,"
+    		+ " then return response body StationId param value not null")
+    public void testAddFireStationRequestWithValidFireStationParamValueNotNull() {
+            response = restTemplate
+        			.postForEntity(getRootUrl() + "/firestation",
+        					fireStationToAdd,
+        					FireStationDTO.class);
+      //When Post created CHECKs
+        assertNotNull(response.getBody().getStationId());
+        assertNotNull(response.getBody().getAddress());
+    }
+    
+    
+    
     
     
     
