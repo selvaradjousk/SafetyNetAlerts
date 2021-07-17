@@ -3,6 +3,7 @@ package com.safetynet.alerts.IT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -390,6 +391,33 @@ public class FireStationControllerIT {
       //When Post created CHECKs
         assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(fireStationToAdd);
     }
+    
+    
+    @Test
+    @DisplayName("Check - able to <Retrieve ADDED FIRESTATION DATA>"
+    		+ " - Given a FireStation to add,"
+    		+ " when POST request, followed by GET FireStation"
+    		+ " then return FireStation Added Before successfully")
+    public void testAddFireStationRequestWithValidFireStationThenOnGetRequestFireStationAddedREturnedSuccessfully() {
+            response = restTemplate
+               		.postForEntity(
+               				getRootUrl() + "/firestation",
+               				fireStationToAdd,
+               				FireStationDTO.class);
+            
+            getFireStationAdded = restTemplate.getForEntity(getRootUrl() + FIRESTATION_ID_URL,
+                    FireStationDTO.class,
+                    fireStationToAdd.getStationId(),
+                    fireStationToAdd.getAddress());
+            
+            
+    	//Then FireStation can be retrieved CHECKs
+        assertTrue(getFireStationAdded.getStatusCode().is2xxSuccessful());   
+            
+            assertEquals((HttpStatus.OK), getFireStationAdded.getStatusCode());
+            assertEquals(200, getFireStationAdded.getStatusCodeValue());
+            assertEquals(HttpStatus.OK.value(), getFireStationAdded.getStatusCodeValue());
+    } 
     
     
     
