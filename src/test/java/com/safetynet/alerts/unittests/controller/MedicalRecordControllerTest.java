@@ -286,7 +286,7 @@ public class MedicalRecordControllerTest {
     @Test
     @DisplayName("Check (Valid MedicalRecord input)"
     		+ " - Given a valid MedicalRecord to update,"
-    		+ " when PUT request,"
+    		+ " when update request,"
     		+ " then return - Status 200 OK")
     public void testUpdateMedicalRecordRequestWithValidRecordInfo() throws Exception {
 
@@ -308,8 +308,92 @@ public class MedicalRecordControllerTest {
     }
     
     
+    @Test
+    @DisplayName("Check (incomplete id input firstname)"
+    		+ " - Given an incomplete ID firstname,"
+    		+ " when update request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdateMedicalRecordRequestWithIncompleteIdNoFirstName() throws Exception {
+        medicalDTO = MedicalRecordDTO.builder()
+        		.firstName("")
+        		.lastName("Test Last Name")
+        		.birthDate("01/01/1960")
+        		.medications(Arrays.asList("First symptom",
+        				"Second medication",
+        				"Third medication",
+        				"terazine:500mg"))
+                .allergies(Arrays.asList("First allergy",
+                		"Second allergy",
+                		"Third allergy"))
+                .build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(medicalDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+    }
     
+    @Test
+    @DisplayName("Check (incomplete id input lastname)"
+    		+ " - Given an incomplete ID lastname,"
+    		+ " when update request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdateMedicalRecordRequestWithIncompleteIdWithoutLastNameName() throws Exception {
+        medicalDTO = MedicalRecordDTO.builder()
+        		.firstName("Test First Name")
+        		.lastName("")
+        		.birthDate("01/01/1960")
+        		.medications(Arrays.asList("First symptom",
+        				"Second medication",
+        				"Third medication",
+        				"terazine:500mg"))
+                .allergies(Arrays.asList("First allergy",
+                		"Second allergy",
+                		"Third allergy"))
+                .build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(medicalDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+    }
     
+    @Test
+    @DisplayName("Check without any inputs)"
+    		+ " - Given an incomplete IDs,"
+    		+ " when update request,"
+    		+ " then return - Status: 400 Bad Request")
+    public void testUpdateMedicalRecordRequestWithIncompleteIdWithoutAnyNameInputs() throws Exception {
+        medicalDTO = MedicalRecordDTO.builder()
+        		.firstName("")
+        		.lastName("")
+        		.birthDate("01/01/1960")
+        		.medications(Arrays.asList("First symptom",
+        				"Second medication",
+        				"Third medication",
+        				"terazine:500mg"))
+                .allergies(Arrays.asList("First allergy",
+                		"Second allergy",
+                		"Third allergy"))
+                .build();
+
+        mockMvc.perform(MockMvcRequestBuilders
+        		.put("/medicalRecord")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(medicalDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+    }
+    
+
+    }
     
     }
     
