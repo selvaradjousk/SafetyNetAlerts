@@ -735,6 +735,55 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 
 	    }
 	    
+
+	    @Test
+	    @DisplayName("Check (for missing firstName)"
+	    		+ " - Given ID param without firstname,"
+	    		+ " when DELETE request,"
+	    		+ " then MedicalRecord is not deleted")
+	    public void testDeleteRequestIdNoFirstName() {
+
+	    	// Delete request with ID without firstName
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL, "firstNameDel", "");
+
+	     // Verify medical record exists not deleted
+	        response = restTemplate.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToDelete.getFirstName(),
+	                medicalRecordToDelete.getLastName());
+
+	        assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	        assertNotNull(response.getBody());
+	        assertThat(response.getBody())
+	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
+	    }
+	    
+	    @Test
+	    @DisplayName("Check (for missing lastName)"
+	    		+ " - Given ID param without lastname,"
+	    		+ " when DELETE request,"
+	    		+ " then MedicalRecord is not deleted")
+	    public void testDeleteRequestIdNoLastName() {
+
+	    	// Delete request with ID without lastName
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL, "", "lastNameDel");
+
+	     // Verify medical record exists not deleted
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToDelete.getFirstName(),
+	                medicalRecordToDelete.getLastName());
+
+	        assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	        assertNotNull(response.getBody());
+	        assertThat(response.getBody())
+	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
+	    }
 	    
 	    }
 	    
