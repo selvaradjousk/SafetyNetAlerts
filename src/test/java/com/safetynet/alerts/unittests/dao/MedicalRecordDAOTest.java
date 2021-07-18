@@ -94,6 +94,48 @@ public class MedicalRecordDAOTest {
 
         assertNull(medicalRecordFound);
     }
+    
+    @Test
+    @DisplayName("Check ( no firstname input )"
+    		+ "Given person Id without firstname,"
+    		+ " when getMedicalRecordByPersonId,"
+    		+ " then return null")
+    public void testGetMedicalRecordByPersonIdForNoFirstName() {
+        medicalRecordFound = iMedicalRecordDAO
+        		.getMedicalRecordByPersonId(
+        				"",
+        				"Test2 LastName");
+
+        assertNull(medicalRecordFound);
+    }
+    
+    @Test
+    @DisplayName("Check ( no lastnamename input )"
+    		+ "Given person Id without lastname,"
+    		+ " when getMedicalRecordByPersonId,"
+    		+ " then return null")
+    public void testGetMedicalRecordByPersonIdForNoLastNameName() {
+        medicalRecordFound = iMedicalRecordDAO
+        		.getMedicalRecordByPersonId(
+        				"Test2 FirstName",
+        				"");
+
+        assertNull(medicalRecordFound);
+    }
+    
+    @Test
+    @DisplayName("Check for ( no input )"
+    		+ "Given person Id without no input,"
+    		+ " when getMedicalRecordByPersonId,"
+    		+ " then return null")
+    public void testGetMedicalRecordByPersonIdForNoInput() {
+        medicalRecordFound = iMedicalRecordDAO
+        		.getMedicalRecordByPersonId(
+        				"",
+        				"");
+
+        assertNull(medicalRecordFound);
+    }
   
     
     } 
