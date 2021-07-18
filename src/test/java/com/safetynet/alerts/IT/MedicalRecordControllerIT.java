@@ -43,7 +43,8 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown,
 	    medicalRecordToAdd, medicalRecordToAddIdNoFirstName,
 	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput,
-	    medicalRecordToAddIdNull;
+	    medicalRecordToAddIdNull, medicalRecordToUpdate,
+	    medicalRecordUpdated;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -97,6 +98,19 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	       		  "01/01/1970",
 	       		  Arrays.asList("Test Medication1"),
 	       		  Arrays.asList("Test Allergy1"));
+	         
+	         medicalRecordToUpdate = new MedicalRecordDTO("firstNamePut",
+	         		"lastNamePut",
+	         		"01/01/1970",
+	         		Arrays.asList("Test Medication1"),
+	         		Arrays.asList("Test Allergy1"));
+
+	         medicalRecordUpdated = new MedicalRecordDTO(
+	         		"firstNamePut",
+	         		"lastNamePut",
+	         		"01/01/1970",
+	         		Arrays.asList("Test Medication1"),
+	         		Arrays.asList("Test Allergy1", "Test Allergy2")); 
 	        
 	    }
 	    
@@ -273,7 +287,8 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            		+ MEDICALRECORD_ID_URL,
 	            		medicalRecordToAdd.getFirstName(),
 	            		medicalRecordToAdd.getLastName());
-  
+	            
+ 
 	        }
 	        
 	        @Test
@@ -495,6 +510,59 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            assertEquals(HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
 	        }
 	        
+	    }
+	    
+	    
+	    //*************************************************************************************************
+	    
+	    
+	    @DisplayName("IT - UPDATE MEDICAL RECORD")
+	    @Nested
+	    class UpdateMedicalRecordIT {  
+	    	
+	        @BeforeEach
+	        public void init() {
+	        	restTemplate.postForEntity(
+	        			getRootUrl()
+	        			+ "/medicalRecord",
+	        			medicalRecordToUpdate,
+	        			MedicalRecordDTO.class);
+	        }
+	        
+	        
+	    @AfterEach
+	    public void finish() {
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL,
+	        		medicalRecordToUpdate.getFirstName(),
+	        		medicalRecordToUpdate.getLastName());
+	    }
+	    
+	    
+	    @Test
+	    @DisplayName("Check (Update for Valid Input)"
+	    		+ " - Given a MedicalRecord to update,"
+	    		+ " when PUT request,"
+	    		+ " then MedicalRecord updated")
+	    public void testMedicalRecordToUpdateValidInput() {
+	        
+	        restTemplate.put(getRootUrl()
+	        		+ "/medicalRecord",
+	        		medicalRecordUpdated);
+
+	     // Verify modification due update
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToUpdate.getFirstName(),
+	                medicalRecordToUpdate.getLastName());
+
+	        assertNotNull(response.getBody());
+	        assertThat(response.getBody())
+	                .usingRecursiveComparison().isEqualTo(medicalRecordUpdated);
+	    }
+	    
 	    }
 
 }
