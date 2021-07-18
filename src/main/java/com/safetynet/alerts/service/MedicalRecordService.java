@@ -43,22 +43,30 @@ public class MedicalRecordService implements IMedicalRecordService {
         return medicalRecordMapper.toMedicalRecordDTO(medicalRecord);
     }
 	
-     public MedicalRecordDTO addNewMedicalRecord(final MedicalRecordDTO medicalRecord) {
-         MedicalRecord medicalRecordFound = medicalRecordDAO.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
-                medicalRecord.getLastName());
+     public MedicalRecordDTO addNewMedicalRecord(
+    		 final MedicalRecordDTO medicalRecord) {
+         MedicalRecord medicalRecordFound = medicalRecordDAO
+        		 .getMedicalRecordByPersonId(
+        				 medicalRecord.getFirstName(),
+        				 medicalRecord.getLastName());
 
         if (medicalRecordFound != null) {
-            throw new DataAlreadyRegisteredException("MedicalRecord already registered");
+            throw new DataAlreadyRegisteredException(
+            		"MedicalRecord already registered");
         }
-        MedicalRecord medicalRecordToSave = medicalRecordMapper.toMedicalRecord(medicalRecord);
-        MedicalRecord medicalRecordSaved = medicalRecordDAO.updateMedicalRecord(medicalRecordToSave);
+        MedicalRecord medicalRecordToSave = medicalRecordMapper
+        		.toMedicalRecord(medicalRecord);
+        MedicalRecord medicalRecordSaved = medicalRecordDAO
+        		.updateMedicalRecord(medicalRecordToSave);
 
         return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved);
     }
 
 
-    public MedicalRecordDTO updateMedicalRecord(final MedicalRecordDTO medicalRecord) {
-        MedicalRecord medicalRecordFound = medicalRecordDAO.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
+    public MedicalRecordDTO updateMedicalRecord(
+    		final MedicalRecordDTO medicalRecord) {
+        MedicalRecord medicalRecordFound = medicalRecordDAO
+        		.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
                 medicalRecord.getLastName());
 
         if (medicalRecordFound == null) {
@@ -71,9 +79,16 @@ public class MedicalRecordService implements IMedicalRecordService {
         return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound);
     }
 
-	@Override
-	public void deleteMedicalRecord(String firstName, String lastName) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void deleteMedicalRecord(
+    		final String firstName,
+    		final String lastName) {
+        MedicalRecord medicalRecordToDelete = medicalRecordDAO
+        		.getMedicalRecordByPersonId(firstName, lastName);
+
+        if (medicalRecordToDelete == null) {
+            throw new DataNotFoundException("MedicalRecord not found");
+        }
+
+        medicalRecordDAO.deleteMedicalRecord(medicalRecordToDelete);
+    }
 }
