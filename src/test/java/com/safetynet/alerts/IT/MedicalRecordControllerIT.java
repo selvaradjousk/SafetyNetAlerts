@@ -1,5 +1,6 @@
 package com.safetynet.alerts.IT;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,6 +90,25 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        	 assertNotNull(response.getBody());
 	        	 assertNotNull(response.getHeaders());
 	        }
+	        
+	        
+	        @Test
+	        @DisplayName("Check (Valid Input ID - Response status 200 OK)"
+	        		+ " - Given valid ID param,"
+	        		+ " when GET request,"
+	        		+ " then Response status 200 OK")
+	        public void testGetRequestForValidIdInputResponseStatus() {
+
+	        	response = restTemplate
+	        			.getForEntity(getRootUrl() + 
+	        					MEDICALRECORD_ID_URL,
+	        					MedicalRecordDTO.class,
+	        					medicalRecordToGet.getFirstName(),
+	        					medicalRecordToGet.getLastName());
+
+	            assertEquals( HttpStatus.OK.value(), response.getStatusCodeValue());
+	        }
+	        
 	        
 	    }
 
