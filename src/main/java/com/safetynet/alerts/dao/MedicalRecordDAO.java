@@ -50,9 +50,11 @@ public class MedicalRecordDAO implements IMedicalRecordDAO {
 						+ medicalRecord.getLastName());
 	}
 
-	public void deleteMedicalRecord(MedicalRecord medicalRecord) {
-		// TODO Auto-generated method stub
-
-	}
+	public void deleteMedicalRecord(
+			final MedicalRecord medicalRecord) {
+        medicalRecordsMap.remove(
+        		medicalRecord.getFirstName()
+        		+ medicalRecord.getLastName());
+}
 
 }
