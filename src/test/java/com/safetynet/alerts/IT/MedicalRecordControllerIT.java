@@ -47,7 +47,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    medicalRecordToAddIdNull, medicalRecordToUpdate,
 	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName,
 	    medicalRecordUpdatedNoLastName, medicalRecordUpdatedNoFirstNameAndLastName,
-	    medicalRecordUpdatedNoInvalidIDInput;
+	    medicalRecordUpdatedNoInvalidIDInput, medicalRecordToDelete;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -142,6 +142,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         		"01/01/1970",
 	                 Arrays.asList("Test Medication1"),
 	                 Arrays.asList("Test Allergy1", "Test Allergy2"));
+	         
+	         medicalRecordToDelete = new MedicalRecordDTO(
+	         		"firstNameDel",
+	         		"lastNameDel",
+	                 "01/01/1970",
+	                 Arrays.asList("Test Medication1"),
+	                 Arrays.asList("Test Allergy1"));
 	        
 	    }
 	    
@@ -687,4 +694,48 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    }
 	    }
 
+	    //*************************************************************************************************
+	    
+	    
+	    @DisplayName("IT - DELETE MEDICAL RECORD")
+	    @Nested
+	    class DeleteMedicalRecordIT {  
+	    	
+	        @BeforeEach
+	        public void init() {
+	        	restTemplate.postForEntity(getRootUrl()
+	        			+ "/medicalRecord",
+	        			medicalRecordToDelete,
+	        			MedicalRecordDTO.class);
+	        }
+	    
+	        
+	    @Test
+	    @DisplayName("Check (VALID Input)"
+	    		+ " - Given ID param VALID,"
+	    		+ " when DELETE request,"
+	    		+ " then MedicalRecord is deleted")
+	    public void gtestDeleteRequestValidInput() {
+
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL,
+	        		medicalRecordToDelete.getFirstName(),
+	        		medicalRecordToDelete.getLastName());
+
+	        // Verify MedicalRecord deletion done
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToDelete.getFirstName(),
+	                medicalRecordToDelete.getLastName());
+
+	        assertThat(response.getBody()).hasAllNullFieldsOrProperties();
+	        assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+
+	    }
+	    
+	    
+	    }
+	    
 }
