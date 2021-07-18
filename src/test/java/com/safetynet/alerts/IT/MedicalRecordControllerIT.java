@@ -448,7 +448,30 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                    MedicalRecordDTO.class);
 
 	            assertNotEquals( medicalRecordToAdd, response.getBody());
-	        }   
+	        }
+	        
+	        
+	        @Test
+	        @DisplayName("Check (Existing one update - values not same)"
+	        		+ " - Given a existing MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response no match values to original")
+	        public void testAddRequestForExistingMedicalRecordResponseValuesNotSame() {
+
+	            restTemplate.postForEntity(getRootUrl()
+	            		+ "/medicalRecord",
+	            		medicalRecordToAdd,
+	            		MedicalRecordDTO.class);
+	            
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertNotEquals( medicalRecordToAdd.getAllergies(), response.getBody().getAllergies());
+	            assertNotEquals( medicalRecordToAdd.getFirstName(), response.getBody().getFirstName());
+	        }  
 	        
 	    }
 
