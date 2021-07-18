@@ -46,7 +46,8 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput,
 	    medicalRecordToAddIdNull, medicalRecordToUpdate,
 	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName,
-	    medicalRecordUpdatedNoLastName, medicalRecordUpdatedNoFirstNameAndLastName;
+	    medicalRecordUpdatedNoLastName, medicalRecordUpdatedNoFirstNameAndLastName,
+	    medicalRecordUpdatedNoInvalidIDInput;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -134,6 +135,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         		"01/01/1970",
 	         		Arrays.asList("Test Medication1"),
 	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
+	         
+	         medicalRecordUpdatedNoInvalidIDInput = new MedicalRecordDTO(
+	         		"XXXXXXX",
+	         		"lastNamePut",
+	         		"01/01/1970",
+	                 Arrays.asList("Test Medication1"),
+	                 Arrays.asList("Test Allergy1", "Test Allergy2"));
 	        
 	    }
 	    
@@ -655,7 +663,28 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
 	    }
 	    
-	    
+	    @Test
+	    @DisplayName("Check (Update for No Id Valid Input)"
+	    		+ " - Given a MedicalRecord to update with no ID input,"
+	    		+ " when PUT request,"
+	    		+ " then MedicalRecord not updated")
+	      public void testMedicalRecordUpdateWithNoValidIdInput() {
+
+	       restTemplate.put(getRootUrl()
+	    		   + "/medicalRecord",
+	    		   medicalRecordUpdatedNoInvalidIDInput);
+
+	       // Verify no modification is done due update
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToUpdate.getFirstName(),
+	                medicalRecordToUpdate.getLastName());
+
+	        assertNotNull(response.getBody());
+	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
+	    }
 	    }
 
 }
