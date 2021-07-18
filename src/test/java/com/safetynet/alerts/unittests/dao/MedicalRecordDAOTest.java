@@ -171,6 +171,15 @@ public class MedicalRecordDAOTest {
            assertNotNull( medicalRecordSaved);
         }
         
+        @Test
+        @DisplayName("Check (save result Match expected) "
+        		+ "Given a MedicalRecord,"
+        		+ " when save,"
+        		+ " then MedicalRecord saved as expected")
+        public void testSaveMedicalRecordUpdateAsExpected() {
+
+           assertEquals(medicalRecord3, medicalRecordSaved);
+        }     
         
         
     }
