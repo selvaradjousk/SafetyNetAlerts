@@ -168,6 +168,28 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
 	        }
 	        
+	      
+	        
+	        @Test
+	        @DisplayName("Check (Invalid input - no input)"
+	        		+ " - Given incomplete ID param no input,"
+	        		+ " when GET request,"
+	        		+ " then BAD REQUEST status should be returned")
+	        public void testGetRequestForInputIdNoInput() {
+
+	            // get request with missing input
+	            response = restTemplate
+	            		.getForEntity(getRootUrl() +
+	                    MEDICALRECORD_ID_URL,
+	                    MedicalRecordDTO.class,
+	                    "",
+	                    "");
+
+	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+	        }
+	        
+	        
+	        
 	        
 	    }
 
