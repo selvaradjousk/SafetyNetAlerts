@@ -259,7 +259,25 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                    MedicalRecordDTO.class);
 
 	            assertNotNull(response);
-	        }  
+	        }
+	        
+	        
+	        @Test
+	        @DisplayName("Check (Valid input Response body Not NULL)"
+	        		+ " - Given a MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response body not null")
+	        public void testAddMedicalRecordValidInputResponseBodyNotNull() {
+
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertNotNull(response.getBody());
+	            assertNotNull(response.getHeaders());
+	        }    
 	        
 	    }
 
