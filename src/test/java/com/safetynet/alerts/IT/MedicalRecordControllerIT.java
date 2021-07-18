@@ -471,7 +471,29 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 
 	            assertNotEquals( medicalRecordToAdd.getAllergies(), response.getBody().getAllergies());
 	            assertNotEquals( medicalRecordToAdd.getFirstName(), response.getBody().getFirstName());
-	        }  
+	        }
+	        
+	        @Test
+	        @DisplayName("Check (Existing one update Status: 409 CONFLICT)"
+	        		+ " - Given a registered MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then MedicalRecord not Added and CONFLICT " +
+	                "status is returned")
+	        public void testAddRequestForExistingMedicalRecord() {
+
+	            restTemplate.postForEntity(getRootUrl()
+	            		+ "/medicalRecord",
+	            		medicalRecordToAdd,
+	            		MedicalRecordDTO.class);
+	            
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertEquals(HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
+	        }
 	        
 	    }
 
