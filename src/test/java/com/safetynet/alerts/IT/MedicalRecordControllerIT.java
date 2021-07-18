@@ -2,6 +2,7 @@ package com.safetynet.alerts.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
@@ -427,6 +428,27 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            assertNotNull(response.getBody());
 	            assertNotNull( medicalRecordToAdd);
 	        }
+	        
+	        @Test
+	        @DisplayName("Check (Existing one update - response no match original)"
+	        		+ " - Given a existing MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response no match original")
+	        public void testAddRequestForExistingMedicalRecordResponseNotSame() {
+
+	            restTemplate.postForEntity(getRootUrl()
+	            		+ "/medicalRecord",
+	            		medicalRecordToAdd,
+	            		MedicalRecordDTO.class);
+	            
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertNotEquals( medicalRecordToAdd, response.getBody());
+	        }   
 	        
 	    }
 
