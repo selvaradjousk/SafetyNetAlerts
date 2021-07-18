@@ -20,6 +20,14 @@ public class MedicalRecordDAO implements IMedicalRecordDAO {
                 jsonDataArrayList.getMedicalRecordList().forEach(medicalRecord -> medicalRecordsMap.put(medicalRecord.getFirstName()
                 + medicalRecord.getLastName(), medicalRecord));
     }
+    
+    
+
+	public MedicalRecord getMedicalRecordByPersonId(final String firstName, String lastName) {
+            return medicalRecordsMap.get(firstName + lastName);
+    }
+	
+	
 	public MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord) {
 		// TODO Auto-generated method stub
 		return null;
@@ -30,12 +38,5 @@ public class MedicalRecordDAO implements IMedicalRecordDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public MedicalRecord getMedicalRecordByPersonId(String firstName, String lastName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 	
 }
