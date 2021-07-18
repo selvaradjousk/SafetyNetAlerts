@@ -39,7 +39,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 
 	    private ObjectMapper objectMapper;
 	    
-	    MedicalRecordDTO medicalRecordToGet;
+	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -51,6 +51,15 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                "01/01/1970",
 	                Arrays.asList("Test Medication1"),
 	                Arrays.asList("Test Allergy1"));
+	        
+	        medicalRecordGetUnknown = new MedicalRecordDTO(
+	        		"UNKNOWN NAME",
+	        		"UNKNOWN NAME",
+	        		"01/01/1970",
+	                Arrays.asList("Test Medication1"),
+	                Arrays.asList("Test Allergy1"));
+	        
+	        
 	    }
 	    
 	    //*************************************************************************************************
@@ -189,7 +198,22 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        }
 	        
 	        
-	        
+	        @Test
+	        @DisplayName("Check (non existing medical record)"
+	        		+ " - Given MedicalRecord does not exist,"
+	        		+ " when GET request,"
+	        		+ " then NOT FOUND should be returned")
+	        public void testGetRequestForNonExistingRecord() {
+
+	            response = restTemplate
+	            		.getForEntity(getRootUrl() +
+	                    MEDICALRECORD_ID_URL,
+	                    MedicalRecordDTO.class,
+	                    medicalRecordGetUnknown.getFirstName(),
+	                    medicalRecordGetUnknown.getLastName());
+
+	            assertEquals( HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+	        }  
 	        
 	    }
 
