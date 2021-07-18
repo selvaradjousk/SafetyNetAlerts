@@ -785,6 +785,34 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
 	    }
 	    
+	    
+	    @Test
+	    @DisplayName("Check (for No Input Parameters)"
+	    		+ " - Given ID param no input,"
+	    		+ " when DELETE request,"
+	    		+ " then MedicalRecord is not deleted")
+	    public void testDeleteRequestNoIdParam() {
+
+	    	// Delete request with no input parameters
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL, "", "");
+
+	        // Verify medical record exists not deleted
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToDelete.getFirstName(),
+	                medicalRecordToDelete.getLastName());
+
+	        assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	        assertNotNull(response.getBody());
+	        assertThat(response.getBody())
+	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
+	    }
+	    
+	    
+	    
 	    }
 	    
 }
