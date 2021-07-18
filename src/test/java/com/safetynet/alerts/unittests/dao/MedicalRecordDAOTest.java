@@ -180,8 +180,21 @@ public class MedicalRecordDAOTest {
 
            assertEquals(medicalRecord3, medicalRecordSaved);
         }     
-        
-        
+    }
+    
+    
+    @Test
+    @DisplayName("Check (Delete request)"
+    		+ " Given a MedicalRecord,"
+    		+ " when delete,"
+    		+ " then MedicalRecord deleted")
+    public void testDelete() {
+        iMedicalRecordDAO.deleteMedicalRecord(medicalRecord1);
+
+        assertNull(iMedicalRecordDAO
+        		.getMedicalRecordByPersonId(
+        				"Test1 FirstName",
+        				"Test1 LastName"));
     }
     
 }
