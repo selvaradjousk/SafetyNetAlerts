@@ -2,6 +2,7 @@ package com.safetynet.alerts.unittests.dao;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -136,8 +137,43 @@ public class MedicalRecordDAOTest {
 
         assertNull(medicalRecordFound);
     }
-  
-    
+
     } 
+    
+    
+    // ***********************************************************************************
+
+    @DisplayName("Test GET MEDICALRECORD")
+    @Nested
+    class TestSaveMedicalRecordByPersonId {  
+    	
+        @BeforeEach
+        public void init() {
+          }
+
+
+        @Test
+        @DisplayName("Check (save result not null) "
+        		+ "Given a MedicalRecord,"
+        		+ " when save,"
+        		+ " then MedicalRecord saved not null")
+        public void testSaveMedicalRecord() {
+           medicalRecord3 = new MedicalRecord(
+        		   "Test3 FirstName",
+        		   "Test3 LastName",
+        		   "01/01/1990",
+                    Arrays.asList("medications 3"),
+                    Arrays.asList("alergies 3"));
+
+           medicalRecordSaved = iMedicalRecordDAO
+        		   .updateMedicalRecord(medicalRecord3);
+
+           assertNotNull( medicalRecordSaved);
+        }
+        
+        
+        
+        
+    }
     
 }
