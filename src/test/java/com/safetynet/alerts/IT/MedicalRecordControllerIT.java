@@ -149,6 +149,26 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
 	        }
 	        
+	        
+	        @Test
+	        @DisplayName("Check (Invalid input - no lastname)"
+	        		+ " - Given incomplete ID param no lastname,"
+	        		+ " when GET request,"
+	        		+ " then BAD REQUEST status should be returned")
+	        public void testGetRequestForInputIdNoLastName() {
+
+	        	// get request with missing lastName
+	            response = restTemplate
+	            		.getForEntity(getRootUrl() +
+	                    MEDICALRECORD_ID_URL,
+	                    MedicalRecordDTO.class,
+	                    medicalRecordToGet.getFirstName(),
+	                    "");
+
+	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+	        }
+	        
+	        
 	    }
 
 }
