@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.inOrder;
@@ -288,6 +289,26 @@ public class MedicalRecordServiceTest {
         }
         
         @Test
+        @DisplayName("Check <Execution Order > and times"
+        		+ " - Given a existing medicalRecord,"
+        		+ " when request update MedicalRecord,"
+        		+ " then all steps are executed in correct order and number of expected times")
+        public void testUpdateMedicalRecordExecutionOrderCheck() {
+
+
+            medicalRecordService
+            		.updateMedicalRecord(medicalRecordDTO);
+
+
+            InOrder inOrder = inOrder(medicalRecordDAOMock, medicalRecordMapper);
+            inOrder.verify(medicalRecordDAOMock).getMedicalRecordByPersonId(anyString(), anyString());
+            inOrder.verify(medicalRecordMapper).toMedicalRecordDTO(any(MedicalRecord.class));
+            
+            verify(medicalRecordDAOMock, times(1)).getMedicalRecordByPersonId(anyString(), anyString());
+            verify(medicalRecordMapper, times(1)).toMedicalRecordDTO(any(MedicalRecord.class));
+        }
+        
+        @Test
         @DisplayName("Check <Not Null> Record Exists on Update Record"
         		+ " - Given a existing medicalRecord,"
         		+ " when request update MedicalRecord,"
@@ -298,9 +319,37 @@ public class MedicalRecordServiceTest {
             		.updateMedicalRecord(medicalRecordDTO);
 
             assertNotNull((medicalRecordUpdated.getAllergies()).contains("some allergies1"));
-        }  
+        }
         
-    }
+        @Test
+        @DisplayName("Check <Validate> match of updated values"
+        		+ " - Given a existing medicalRecord,"
+        		+ " when request update MedicalRecord,"
+        		+ " then medicalRecord should be updated")
+        public void testUpdateMedicalRecord() {
+
+           medicalRecordUpdated = medicalRecordService
+            		.updateMedicalRecord(medicalRecordDTO);
+
+            assertTrue((medicalRecordUpdated.getAllergies()).contains("some allergies1"));
+        }
+
+      }
+
+
+        @Test
+        @DisplayName("ERROR UPDATE MEDICAL RECORD on Non Existing Record"
+        		+ " - Given a non existing medicalRecord,"
+        		+ " when request update MedicalRecord,"
+        		+ " then medicalRecord should throw DataNotFoundException")
+    		public void testUpdateMedicalRecordForRecordDoesNotExist() {
+            when(medicalRecordDAOMock
+            		.getMedicalRecordByPersonId(anyString(), anyString()))
+            .thenReturn(null);
+
+            assertThrows(DataNotFoundException.class, ()
+            		-> medicalRecordService.updateMedicalRecord(medicalRecordDTO));
+        }
     
     // ***********************************************************************************
 
