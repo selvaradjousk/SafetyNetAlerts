@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -55,6 +56,17 @@ public class MedicalRecordDAOTest {
     }
     
     
+    // ***********************************************************************************
+
+    @DisplayName("Test GET MEDICALRECORD")
+    @Nested
+    class TestGetMedicalRecordByPersonId {  
+    	
+        @BeforeEach
+        public void init() {
+          }
+
+    
     @Test
     @DisplayName("Check (valid id )"
     		+ "Given a person Id,"
@@ -69,6 +81,21 @@ public class MedicalRecordDAOTest {
         assertEquals(medicalRecord1, medicalRecordFound);
     }
  
+    @Test
+    @DisplayName("Check (non existing id )"
+    		+ "Given a non existing person Id,"
+    		+ " when getMedicalRecordByPersonId,"
+    		+ " then return null")
+    public void testGetMedicalRecordByPersonIdForInValidInput() {
+        medicalRecordFound = iMedicalRecordDAO
+        		.getMedicalRecordByPersonId(
+        				"Test3 FirstName",
+        				"Test3 LastName");
+
+        assertNull(medicalRecordFound);
+    }
+  
     
+    } 
     
 }
