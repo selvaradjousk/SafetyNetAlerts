@@ -296,6 +296,24 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
 	        }
 	        
+	        
+	        @Test
+	        @DisplayName("Check (Valid input New record equals expected)"
+	        		+ " - Given a MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then MedicalRecord added match expected")
+	        public void testAddMedicalRecordValidInputMatchExpected() {
+
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+	         
+	            assertThat(response.getBody())
+	                    .usingRecursiveComparison().isEqualTo(medicalRecordToAdd);
+	        } 
+	        
 	    }
 
 }
