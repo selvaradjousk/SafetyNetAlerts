@@ -1,5 +1,7 @@
 package com.safetynet.alerts.unittests.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,6 +27,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dao.MedicalRecordDAO;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.MedicalRecordService;
@@ -200,18 +203,71 @@ public class MedicalRecordServiceTest {
         }
         
    
-    @Test
-    @DisplayName("Check <Not Null> on Add Record"
-    		+ " - Given a new medicalRecord,"
-    		+ " when add Medical Record,"
-    		+ " then medicalRecord is not null")
-    public void testAddMedicalRecordCheckNotNull() {
+        @Test
+        @DisplayName("Check <Execution Order >"
+        		+ " - Given a new medicalRecord,"
+        		+ " when add Medical Record,"
+        		+ " then all steps are executed in"
+        		+ " correct order and number of expected times")
+        public void testAddMedicalRecordExecutionOrderCheck() {
 
-        medicalRecordAdded = medicalRecordService
-        		.addNewMedicalRecord(medicalRecordDTO);
-        assertNotNull(medicalRecordAdded);
-    } 
+        	medicalRecordService
+            		.addNewMedicalRecord(medicalRecordDTO);
+
+            InOrder inOrder = inOrder(medicalRecordDAOMock, medicalRecordMapper, medicalRecordDAOMock, medicalRecordMapper);
+            inOrder.verify(medicalRecordDAOMock).getMedicalRecordByPersonId(anyString(), anyString());
+            inOrder.verify(medicalRecordMapper).toMedicalRecord(any(MedicalRecordDTO.class));
+            inOrder.verify(medicalRecordDAOMock).updateMedicalRecord(any(MedicalRecord.class));
+            inOrder.verify(medicalRecordMapper).toMedicalRecordDTO(any(MedicalRecord.class));
+            
+            verify(medicalRecordDAOMock, times(1)).getMedicalRecordByPersonId(anyString(), anyString());
+            verify(medicalRecordMapper, times(1)).toMedicalRecord(any(MedicalRecordDTO.class));
+            verify(medicalRecordDAOMock, times(1)).updateMedicalRecord(any(MedicalRecord.class));
+            verify(medicalRecordMapper, times(1)).toMedicalRecordDTO(any(MedicalRecord.class));
+
+        }
+        
+        
+        @Test
+        @DisplayName("Check <Not Null> on Add Record"
+        		+ " - Given a new medicalRecord,"
+        		+ " when add Medical Record,"
+        		+ " then medicalRecord is not null")
+        public void testAddMedicalRecordCheckNotNull() {
+
+            medicalRecordAdded = medicalRecordService
+            		.addNewMedicalRecord(medicalRecordDTO);
+            assertNotNull(medicalRecordAdded);
+        }
+        
+        
+        @Test
+        @DisplayName("Check <Validate> match of both same record instance"
+        		+ " - Given a new medicalRecord,"
+        		+ " when add Medical Record,"
+        		+ " then medicalRecord should be added and same as test record")
+        public void testAddMedicalRecord() {
+
+            medicalRecordAdded = medicalRecordService
+            		.addNewMedicalRecord(medicalRecordDTO);
+
+            assertThat(medicalRecordAdded).usingRecursiveComparison().isEqualTo(medicalRecordDTO);
+        }
+      } 
     
+    
+    @Test
+    @DisplayName("ERROR ADD MEDICAL RECORD - Duplication"
+    		+ " - Given a existing medicalRecord,"
+    		+ " when Add MedicalRecord,"
+    		+ " then throw DataAlreadyRegisteredException")
+    public void testAddMedicalRecordThatExistAlready() {
+        when(medicalRecordDAOMock
+        		.getMedicalRecordByPersonId(anyString(), anyString()))
+        .thenReturn(medicalRecord);
+
+        assertThrows(DataAlreadyRegisteredException.class, ()
+        		-> medicalRecordService.addNewMedicalRecord(medicalRecordDTO));
     }
     
     // ***********************************************************************************
