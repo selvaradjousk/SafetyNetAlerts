@@ -2,6 +2,7 @@ package com.safetynet.alerts.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -44,7 +45,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    medicalRecordToAdd, medicalRecordToAddIdNoFirstName,
 	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput,
 	    medicalRecordToAddIdNull, medicalRecordToUpdate,
-	    medicalRecordUpdated;
+	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -110,7 +111,14 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         		"lastNamePut",
 	         		"01/01/1970",
 	         		Arrays.asList("Test Medication1"),
-	         		Arrays.asList("Test Allergy1", "Test Allergy2")); 
+	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
+	         
+	         medicalRecordUpdatedNoFirstName = new MedicalRecordDTO(
+	         		"",
+	         		"lastNamePut",
+	         		"01/01/1970",
+	         		Arrays.asList("Test Medication1"),
+	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
 	        
 	    }
 	    
@@ -561,6 +569,29 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        assertNotNull(response.getBody());
 	        assertThat(response.getBody())
 	                .usingRecursiveComparison().isEqualTo(medicalRecordUpdated);
+	    }
+	    
+	    @Test
+	    @DisplayName("Check (Update for No Firstname Id Valid Input)"
+	    		+ " - Given a MedicalRecord to update with no firstname input,"
+	    		+ " when PUT request,"
+	    		+ " then MedicalRecord not updated")
+	      public void testMedicalRecordUpdateWithNoFirstNameInput() {
+
+	       restTemplate.put(getRootUrl()
+	    		   + "/medicalRecord",
+	    		   medicalRecordUpdatedNoFirstName);
+
+	       // Verify no modification is done due update
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToUpdate.getFirstName(),
+	                medicalRecordToUpdate.getLastName());
+
+	        assertNotNull(response.getBody());
+	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
 	    }
 	    
 	    }
