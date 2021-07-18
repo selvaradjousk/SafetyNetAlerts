@@ -277,7 +277,24 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 
 	            assertNotNull(response.getBody());
 	            assertNotNull(response.getHeaders());
-	        }    
+	        }
+	        
+	        
+	        @Test
+	        @DisplayName("Check (Valid input Response status 201 CREATED)"
+	        		+ " - Given a MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response status 201 CREATED")
+	        public void testAddMedicalRecordValidInputResponseStatusCreated() {
+
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
+	        }
 	        
 	    }
 
