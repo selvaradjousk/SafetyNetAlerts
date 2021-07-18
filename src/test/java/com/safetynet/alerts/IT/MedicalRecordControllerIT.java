@@ -46,7 +46,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput,
 	    medicalRecordToAddIdNull, medicalRecordToUpdate,
 	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName,
-	    medicalRecordUpdatedNoLastName;
+	    medicalRecordUpdatedNoLastName, medicalRecordUpdatedNoFirstNameAndLastName;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -123,6 +123,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         
 	         medicalRecordUpdatedNoLastName = new MedicalRecordDTO(
 	         		"firstNamePut",
+	         		"",
+	         		"01/01/1970",
+	         		Arrays.asList("Test Medication1"),
+	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
+	         
+	         medicalRecordUpdatedNoFirstNameAndLastName = new MedicalRecordDTO(
+	         		"",
 	         		"",
 	         		"01/01/1970",
 	         		Arrays.asList("Test Medication1"),
@@ -612,6 +619,29 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	       restTemplate.put(getRootUrl()
 	    		   + "/medicalRecord",
 	    		   medicalRecordUpdatedNoLastName);
+
+	       // Verify no modification is done due update
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToUpdate.getFirstName(),
+	                medicalRecordToUpdate.getLastName());
+
+	        assertNotNull(response.getBody());
+	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
+	    }
+	    
+	    @Test
+	    @DisplayName("Check (Update for No Id Valid Input)"
+	    		+ " - Given a MedicalRecord to update with no ID input,"
+	    		+ " when PUT request,"
+	    		+ " then MedicalRecord not updated")
+	      public void testMedicalRecordUpdateWithNoFirstNameAndLastNameInput() {
+
+	       restTemplate.put(getRootUrl()
+	    		   + "/medicalRecord",
+	    		   medicalRecordUpdatedNoFirstNameAndLastName);
 
 	       // Verify no modification is done due update
 	        response = restTemplate
