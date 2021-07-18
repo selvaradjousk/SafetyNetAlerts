@@ -145,7 +145,7 @@ public class MedicalRecordDAOTest {
 
     @DisplayName("Test GET MEDICALRECORD")
     @Nested
-    class TestSaveMedicalRecordByPersonId {  
+    class TestSaveMedicalRecord {  
     	
         @BeforeEach
         public void init() {
@@ -170,7 +170,6 @@ public class MedicalRecordDAOTest {
 
            assertNotNull( medicalRecordSaved);
         }
-        
         
         
         
