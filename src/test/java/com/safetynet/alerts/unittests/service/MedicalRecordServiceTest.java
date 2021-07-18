@@ -91,7 +91,7 @@ public class MedicalRecordServiceTest {
     // ***********************************************************************************
     @DisplayName("Test GET MEDICAL RECORD")
     @Nested
-    class TestDeleteMedicalRecord {
+    class TestGetMedicalRecord {
     	
         @BeforeEach
         public void init() {
@@ -246,7 +246,31 @@ public class MedicalRecordServiceTest {
         
     }
     
+    // ***********************************************************************************
+
+    @DisplayName("Test DELETE MEDICAL RECORD")
+    @Nested
+    class TestDeleteMedicalRecord {
+
+    @Test
+    @DisplayName("Check (for existing input)"
+    		+ " - Given a existing medicalRecord,"
+    		+ " when request delete MedicalRecord,"
+    		+ " then delete MedicalRecord")
+		public void testDeleteMedicalRecord() {
+        when(medicalRecordDAOMock
+        		.getMedicalRecordByPersonId(anyString(), anyString()))
+        .thenReturn(medicalRecord);
+
+        medicalRecordService.deleteMedicalRecord(medicalRecord.getFirstName(), medicalRecord.getLastName());
+
+        InOrder inOrder = inOrder(medicalRecordDAOMock);
+        inOrder.verify(medicalRecordDAOMock).getMedicalRecordByPersonId(anyString(), anyString());
+        inOrder.verify(medicalRecordDAOMock).deleteMedicalRecord(any(MedicalRecord.class));
+    }
    
+
+    }
 }
 
 
