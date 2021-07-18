@@ -811,8 +811,31 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
 	    }
 	    
-	    
-	    
+	    @Test
+	    @DisplayName("Check (for Wrong FirstName Input Parameters)"
+	    		+ " - Given ID param  Wrong FirstName Input,"
+	    		+ " when DELETE request,"
+	    		+ " then MedicalRecord is not deleted")
+	    public void testDeleteRequestUnknownRecordInput() {
+
+	    	// Delete request with wrong firstname input parameters
+	        restTemplate.delete(getRootUrl()
+	        		+ MEDICALRECORD_ID_URL, "XXXXXXXXX", "lastNameDel");
+
+	        // Verify medical record exists not deleted
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToDelete.getFirstName(),
+	                medicalRecordToDelete.getLastName());
+
+	        assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	        assertNotNull(response.getBody());
+	        assertThat(response.getBody())
+	                .usingRecursiveComparison().isEqualTo(medicalRecordToDelete);
+	    }
+
 	    }
 	    
 }
