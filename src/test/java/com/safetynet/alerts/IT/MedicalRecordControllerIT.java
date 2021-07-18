@@ -39,7 +39,8 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 
 	    private ObjectMapper objectMapper;
 	    
-	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown;
+	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown,
+	    medicalRecordToAdd;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -59,6 +60,12 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                Arrays.asList("Test Medication1"),
 	                Arrays.asList("Test Allergy1"));
 	        
+	        medicalRecordToAdd = new MedicalRecordDTO(
+	        		"firstNameAdd",
+	        		"lastNameAdd",
+	                "03/06/1991",
+	                Arrays.asList("Test Medication1"),
+	                Arrays.asList("Test Allergy1"));
 	        
 	    }
 	    
@@ -213,6 +220,45 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                    medicalRecordGetUnknown.getLastName());
 
 	            assertEquals( HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+	        }  
+	        
+	    }
+	    
+	    
+	    //*************************************************************************************************
+	    
+	    
+	    @DisplayName("IT - ADD MEDICAL RECORD")
+	    @Nested
+	    class AddMedicalRecordIT {  
+	    	
+	        @BeforeEach
+	        public void init() {
+
+	        }
+	        @AfterEach
+	        public void finish() {
+	            restTemplate.delete(getRootUrl()
+	            		+ MEDICALRECORD_ID_URL,
+	            		medicalRecordToAdd.getFirstName(),
+	            		medicalRecordToAdd.getLastName());
+  
+	        }
+	        
+	        @Test
+	        @DisplayName("Check (Valid input Response Not NULL)"
+	        		+ " - Given a MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response not null")
+	        public void testAddMedicalRecordValidInputResponseNotNull() {
+
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertNotNull(response);
 	        }  
 	        
 	    }
