@@ -1,5 +1,6 @@
 package com.safetynet.alerts.IT;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -107,6 +108,25 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        					medicalRecordToGet.getLastName());
 
 	            assertEquals( HttpStatus.OK.value(), response.getStatusCodeValue());
+	        }
+	        
+	       
+	        @Test
+	        @DisplayName("Check (Valid Input ID expected returned)"
+	        		+ " - Given valid ID param,"
+	        		+ " when GET request,"
+	        		+ " then expected MedicalRecord returned")
+	        public void testGetRequestForValidIdInput() {
+
+	            response = restTemplate
+	            		.getForEntity(getRootUrl() +
+	                    MEDICALRECORD_ID_URL,
+	                    MedicalRecordDTO.class,
+	                    medicalRecordToGet.getFirstName(),
+	                    medicalRecordToGet.getLastName());
+
+	            assertThat(response.getBody())
+	            .usingRecursiveComparison().isEqualTo(medicalRecordToGet);
 	        }
 	        
 	        
