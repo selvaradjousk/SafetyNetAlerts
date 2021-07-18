@@ -40,7 +40,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    private ObjectMapper objectMapper;
 	    
 	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown,
-	    medicalRecordToAdd;
+	    medicalRecordToAdd, medicalRecordToAddIdNoFirstName;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -66,6 +66,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	                "03/06/1991",
 	                Arrays.asList("Test Medication1"),
 	                Arrays.asList("Test Allergy1"));
+	        
+	         medicalRecordToAddIdNoFirstName = new MedicalRecordDTO(
+	        		  "",
+	        		  "lastNameAdd",
+	        		  "01/01/1970",
+	        		  Arrays.asList("Test Medication1"),
+	        		  Arrays.asList("Test Allergy1"));
 	        
 	    }
 	    
@@ -312,7 +319,22 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         
 	            assertThat(response.getBody())
 	                    .usingRecursiveComparison().isEqualTo(medicalRecordToAdd);
-	        } 
+	        }
+	        
+	        @Test
+	        @DisplayName("Check (ID input No FirstName)"
+	        		+ " - Given a MedicalRecord with ID no firstname,"
+	        		+ " when POST request,"
+	        		+ " then return BAD REQUEST status")
+	        public void testMedicalRecordIdNoFirstName() {
+
+	            response = restTemplate.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAddIdNoFirstName,
+	                    MedicalRecordDTO.class);
+
+	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+	        }
 	        
 	    }
 
