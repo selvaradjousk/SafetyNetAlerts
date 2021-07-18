@@ -45,7 +45,8 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    medicalRecordToAdd, medicalRecordToAddIdNoFirstName,
 	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput,
 	    medicalRecordToAddIdNull, medicalRecordToUpdate,
-	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName;
+	    medicalRecordUpdated, medicalRecordUpdatedNoFirstName,
+	    medicalRecordUpdatedNoLastName;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -116,6 +117,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         medicalRecordUpdatedNoFirstName = new MedicalRecordDTO(
 	         		"",
 	         		"lastNamePut",
+	         		"01/01/1970",
+	         		Arrays.asList("Test Medication1"),
+	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
+	         
+	         medicalRecordUpdatedNoLastName = new MedicalRecordDTO(
+	         		"firstNamePut",
+	         		"",
 	         		"01/01/1970",
 	         		Arrays.asList("Test Medication1"),
 	         		Arrays.asList("Test Allergy1", "Test Allergy2"));
@@ -593,6 +601,30 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        assertNotNull(response.getBody());
 	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
 	    }
+	    
+	    @Test
+	    @DisplayName("Check (Update for NoLastname Id Valid Input)"
+	    		+ " - Given a MedicalRecord to update with no Lastname input,"
+	    		+ " when PUT request,"
+	    		+ " then MedicalRecord not updated")
+	      public void testMedicalRecordUpdateWithNoLastNameInput() {
+
+	       restTemplate.put(getRootUrl()
+	    		   + "/medicalRecord",
+	    		   medicalRecordUpdatedNoLastName);
+
+	       // Verify no modification is done due update
+	        response = restTemplate
+	        		.getForEntity(getRootUrl() +
+	                MEDICALRECORD_ID_URL,
+	                MedicalRecordDTO.class,
+	                medicalRecordToUpdate.getFirstName(),
+	                medicalRecordToUpdate.getLastName());
+
+	        assertNotNull(response.getBody());
+	        assertFalse((response.getBody().getAllergies()).toString().contains("Test Allergy2"));
+	    }
+	    
 	    
 	    }
 
