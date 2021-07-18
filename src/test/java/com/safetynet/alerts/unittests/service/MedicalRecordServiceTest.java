@@ -374,6 +374,19 @@ public class MedicalRecordServiceTest {
         inOrder.verify(medicalRecordDAOMock).deleteMedicalRecord(any(MedicalRecord.class));
     }
    
+	@Test
+    @DisplayName("Check (for non existing input)"
+    		+ " - Given a non existing medicalRecord,"
+    		+ " when request delete MedicalRecord,"
+    		+ " then throw DataNotFoundException")
+		public void testDeleteMedicalRecordFoeNonExistingMedicalRecord() {
+            when(medicalRecordDAOMock
+            		.getMedicalRecordByPersonId(anyString(), anyString()))
+            .thenReturn(null);
+
+            assertThrows(DataNotFoundException.class, ()
+        		-> medicalRecordService.deleteMedicalRecord(medicalRecord.getFirstName(), medicalRecord.getLastName()));
+    }
 
     }
 }
