@@ -406,6 +406,27 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	        
 	        
 
+	        @Test
+	        @DisplayName("Check (Existing one for update - response not null)"
+	        		+ " - Given a existing MedicalRecord,"
+	        		+ " when POST request,"
+	        		+ " then response not null ")
+	        public void testAddRequestForExistingMedicalRecordResponseNotNull() {
+
+	            restTemplate.postForEntity(getRootUrl()
+	            		+ "/medicalRecord",
+	            		medicalRecordToAdd,
+	            		MedicalRecordDTO.class);
+	            
+	            response = restTemplate
+	            		.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAdd,
+	                    MedicalRecordDTO.class);
+
+	            assertNotNull(response.getBody());
+	            assertNotNull( medicalRecordToAdd);
+	        }
 	        
 	    }
 
