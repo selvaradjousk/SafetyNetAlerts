@@ -41,7 +41,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	    
 	    MedicalRecordDTO medicalRecordToGet,  medicalRecordGetUnknown,
 	    medicalRecordToAdd, medicalRecordToAddIdNoFirstName,
-	    medicalRecordToAddIdNoLastName;
+	    medicalRecordToAddIdNoLastName, medicalRecordToAddIdNoInput;
 	    
 	    ResponseEntity<MedicalRecordDTO> response;
 	    
@@ -77,6 +77,13 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	         
 	         medicalRecordToAddIdNoLastName = new MedicalRecordDTO(
 	       		  "firstNameAdd",
+	       		  "",
+	       		  "01/01/1970",
+	       		  Arrays.asList("Test Medication1"),
+	       		  Arrays.asList("Test Allergy1"));
+	         
+	         medicalRecordToAddIdNoInput = new MedicalRecordDTO(
+	       		  "",
 	       		  "",
 	       		  "01/01/1970",
 	       		  Arrays.asList("Test Medication1"),
@@ -354,6 +361,21 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 	            response = restTemplate.postForEntity(getRootUrl() +
 	                    "/medicalRecord",
 	                    medicalRecordToAddIdNoLastName,
+	                    MedicalRecordDTO.class);
+
+	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+	        }
+	        
+	        @Test
+	        @DisplayName("Check (ID input No input)"
+	        		+ " - Given a MedicalRecord with ID no input,"
+	        		+ " when POST request,"
+	        		+ " then return BAD REQUEST status")
+	        public void testMedicalRecordIdNoInput() {
+
+	            response = restTemplate.postForEntity(getRootUrl() +
+	                    "/medicalRecord",
+	                    medicalRecordToAddIdNoInput,
 	                    MedicalRecordDTO.class);
 
 	            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
