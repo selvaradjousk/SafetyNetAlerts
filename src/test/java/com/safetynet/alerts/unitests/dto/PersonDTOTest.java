@@ -59,23 +59,23 @@ class PersonDTOTest {
         
     }
 	
-	@Test
-	public void fistNameIsLengthZero() {
-        Set<ConstraintViolation<PersonDTO>> constraintViolations =
-                validator.validate( personDTOLengthZero );
-        
-        assertEquals( 1, constraintViolations.size() );
-        assertEquals( "Length cannot be zero", constraintViolations.iterator().next().getMessage());
-	}
-	
-	@Test
-	public void fistNameIsNull() {
-        Set<ConstraintViolation<PersonDTO>> constraintViolations =
-                validator.validate( personDTONullCheck );
-        
-        assertEquals( 1, constraintViolations.size() );
-        assertEquals( "must not be null", constraintViolations.iterator().next().getMessage());
-	}
+//	@Test
+//	public void fistNameIsLengthZero() {
+//        Set<ConstraintViolation<PersonDTO>> constraintViolations =
+//                validator.validate( personDTOLengthZero );
+//        
+//        assertEquals( 1, constraintViolations.size() );
+//        assertEquals( "Length cannot be zero", constraintViolations.iterator().next().getMessage());
+//	}
+//	
+//	@Test
+//	public void fistNameIsNull() {
+//        Set<ConstraintViolation<PersonDTO>> constraintViolations =
+//                validator.validate( personDTONullCheck );
+//        
+//        assertEquals( 1, constraintViolations.size() );
+//        assertEquals( "must not be null", constraintViolations.iterator().next().getMessage());
+//	}
 	
 	@Test
 	public void fistNameIsValid() {

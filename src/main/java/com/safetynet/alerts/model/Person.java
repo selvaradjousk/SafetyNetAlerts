@@ -1,5 +1,8 @@
 package com.safetynet.alerts.model;
 
+
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,13 +27,13 @@ public class Person {
 /**
  * person first name.
  */
-	@NonNull
+	@NotBlank
 	private String firstName;
 
 /**
  * person last name.
  */
-	@NonNull
+	@NotBlank
 	private String lastName;
 
 /**

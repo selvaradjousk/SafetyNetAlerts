@@ -24,11 +24,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.controller.PersonController;
 import com.safetynet.alerts.dto.PersonDTO;
+import com.safetynet.alerts.exception.ExceptionHandlers;
 import com.safetynet.alerts.service.PersonService;
 
 @DisplayName("Person Endpoint Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(PersonController.class)
+@WebMvcTest(controllers= {PersonController.class, ExceptionHandlers.class})
 public class PersonControllerTest {
 
     @Autowired

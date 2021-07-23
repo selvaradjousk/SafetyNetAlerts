@@ -1,5 +1,9 @@
 package com.safetynet.alerts.controller;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.internal.constraintvalidators.bv.NotBlankValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IPersonService;
+
 
 /**
  * Provides methods for CRUD operations on Person data resource
@@ -49,9 +54,8 @@ public class PersonController {
      */
 	@GetMapping("/person")
 	public ResponseEntity<PersonDTO> getPerson(
-			@RequestParam("firstName") final String firstName,
-			@RequestParam("lastName") final String lastName) {
-
+			@Valid @NotBlank @RequestParam("firstName") final String firstName,
+			@Valid @NotBlank @RequestParam("lastName") final String lastName) {
         if (firstName == null
         		|| firstName.trim().length() == 0
         		|| lastName == null
