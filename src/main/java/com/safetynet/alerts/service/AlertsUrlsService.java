@@ -1,10 +1,13 @@
 package com.safetynet.alerts.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.FireDTO;
+import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 
@@ -64,10 +67,18 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 	}
 
 
-	
-
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)
+	@Override
+	public FloodDTO getHousesCoveredByStation(List<Integer> stations) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
+
 	
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
