@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.CommunityEmailDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
@@ -135,6 +136,18 @@ public class AlertsUrlsController {
 	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
-	
+	@GetMapping("/communityEmail")
+	public ResponseEntity<CommunityEmailDTO> getEmailsByCity(
+			@RequestParam("city") final String city) {
+
+		if (city.trim().length() == 0) {
+			throw new BadRequestException(
+					"Response Status: 404 Bad request - missing input values");
+		}
+		CommunityEmailDTO communityEmailDTO = alertsUrlsService
+				.getEmailsByCity(city);
+
+		return new ResponseEntity<>(communityEmailDTO, HttpStatus.OK);
+	}
 	
 }

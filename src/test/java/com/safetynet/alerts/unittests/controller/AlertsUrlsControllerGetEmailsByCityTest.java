@@ -38,8 +38,7 @@ class AlertsUrlsControllerGetEmailsByCityTest {
     private CommunityEmailDTO communityEmailEndpointUrlDTO;
     
     @Test
-    @DisplayName("GET COMMUNITY EMAIL"
-    		+ " - Given a valid city,"
+    @DisplayName("Given a valid city,"
     		+ " when GET CommunityEmail request,"
     		+ " then return - Status: 200 OK")
     public void testGetCommunityEmailRequestWithValidCityName() throws Exception {
