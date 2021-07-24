@@ -39,8 +39,7 @@ class AlertsUrlsControllerGetPersonsByStationTest {
     
 
     @Test
-    @DisplayName("GET PERSON BY STATION"
-    		+ " - Given a valid station number,"
+    @DisplayName("Given a VALID STATION NUMBER,"
     		+ " when GET request (/firestation?stationNumber=1),"
     		+ " then return - Status: 200 OK")
     public void testGetPersonsByStationRequestWithValidStationId() throws Exception {
@@ -58,6 +57,22 @@ class AlertsUrlsControllerGetPersonsByStationTest {
         verify(alertsService)
         .getPersonsByStation(anyInt());
         verify(alertsService, times(1))
+        .getPersonsByStation(anyInt());
+    }
+    
+    @Test
+    @DisplayName("Given an EMPTY STATION NUMBER,"
+    		+ " when GET request (/firestation?stationNumber=),"
+    		+ " then return - Status: 400 Bad Request")
+    public void testGetPersonsByStationRequestWithEmptyStationNumberAsInput() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/firestation?stationNumber=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(personsByStationEndpointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
         .getPersonsByStation(anyInt());
     }
 
