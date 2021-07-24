@@ -1,5 +1,6 @@
 package com.safetynet.alerts.service;
 
+import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 
 public interface IAlertsUrlsService {
@@ -10,7 +11,8 @@ public interface IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/childAlert?address=<address>
 	// i.e. childAlert(address)
-
+    ChildAlertDTO getChildByAddress(String address);
+    
 	// TODO - http://localhost:8080/phoneAlert?firestation=<firestation_number>
 	// i.e. phonealert(station_number)
 
