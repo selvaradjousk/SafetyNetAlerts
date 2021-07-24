@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.safetynet.alerts.model.MedicalRecord;
 
+@DisplayName("MEDICAL RECORD DO - Unit Tests")
 class MedicalRecordTest {
 
 	MedicalRecord toTest1 = new MedicalRecord("John", "Boyd", "03/06/1984",

@@ -23,7 +23,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
 
-@DisplayName("MedicalRecord Controller - Integration Tests")
+@DisplayName("MedicalRecord UPDATE Controller - Integration Tests")
 	@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 	public class MedicalRecordControllerUpdateRecordIT {
 

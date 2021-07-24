@@ -18,7 +18,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
@@ -27,18 +26,17 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.dao.FireStationDAO;
 import com.safetynet.alerts.dto.FireStationDTO;
+import com.safetynet.alerts.exception.DataAlreadyRegisteredException;
 import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.FireStation;
-import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.FireStationService;
 import com.safetynet.alerts.util.FireStationMapper;
 
-@DisplayName("FireStation Service - Unit Tests")
+@DisplayName("FIRESTATION SERVICE GET - Unit Tests")
 @ExtendWith(MockitoExtension.class)
-public class FireStationServiceTest {
+public class FireStationServiceGetTest {
 
     @Mock
     private FireStationDAO fireStationDaoMock;
@@ -210,177 +208,5 @@ public class FireStationServiceTest {
             		->  fireStationService.getFireStationByAddress(anyString()));
         }
         
-    }
-    
-    // ***********************************************************************************
-
-    @DisplayName("Test ADD New FIRESTATION")
-    @Nested
-    class TestAddNewFireStation {  
-    	
-        @BeforeEach
-        public void init() {
-        	
-            when(fireStationDaoMock
-            		.getStationById(anyInt(), anyString()))
-            .thenReturn(null);
-            
-            when(fireStationDaoMock
-            		.updateStation(any(FireStation.class)))
-            .thenReturn(testFireStation1);
-        }
-        
-        @Test
-        @DisplayName("Check <NotNull>"
-        		+ " - Given a FireStation,"
-        		+ " when Add FireStation,"
-        		+ " then FireStation should be saved")
-        public void testAddFireStationNotNull() {
-        	
-            FireStationDTO fireCreated = fireStationService
-            		.addNewFireStation(fireStationDTO);
-
-            assertNotNull(fireCreated);
-        }
-        
-        @Test
-        @DisplayName("Check <Validate> match of both same record instance>"
-        		+ " - Given a FireStation,"
-        		+ " when Add FireStation,"
-        		+ " then FireStation should be saved")
-        public void testAddFireStationMatchTestValueCheck() {
-        	
-            FireStationDTO fireCreated = fireStationService
-            		.addNewFireStation(fireStationDTO);
-
-            assertThat(fireCreated).usingRecursiveComparison().isEqualTo(fireStationDTO);
-        }
-        
-        @Test
-        @DisplayName("Check <Execution Order>"
-        		+ " - Given a FireStation,"
-        		+ " when Add FireStation,"
-        		+ " then FireStation should be saved")
-        public void testAddFireStationExecutionOrder() {
-        	
-            fireStationService
-            		.addNewFireStation(fireStationDTO);
-
-            InOrder inOrder = inOrder(fireStationDaoMock);
-            inOrder.verify(fireStationDaoMock).getStationById(anyInt(), anyString());
-            inOrder.verify(fireStationDaoMock).updateStation(any(FireStation.class));
-        }
-        }
-
-    @Test
-    @DisplayName("ADD FIRESTATION ERROR on Existing FireStation"
-    		+ " - Given a existing fireStation,"
-    		+ " when Add fireStation,"
-    		+ " then throw DataAlreadyRegisteredException")
-    public void testAddFireStationThatExistAlready() {
-        when(fireStationDaoMock
-        		.getStationById(anyInt(), anyString()))
-        .thenReturn(testFireStation1);
-
-        assertThrows(DataAlreadyRegisteredException.class, ()
-        		-> fireStationService.addNewFireStation(fireStationDTO));
-    }    
-    
-    // ***********************************************************************************
-
-    @DisplayName("Test UPDATE Existing FIRESTATION")
-    @Nested
-    class TestUpdateNewFireStationn {  
-        @BeforeEach
-        public void init() {
-        }
-        
-        @Test
-        @DisplayName("Check <Not Null>"
-        		+ " - Given a existing fireStation,"
-        		+ " when request update fireStation,"
-        		+ " then fireStation updated not null")
-        public void testUpdateFireStationNotNullCheck() {
-            when(fireStationDaoMock
-            		.getStationByAddress(anyString()))
-            .thenReturn(testFireStation1);
-
-            FireStationDTO fireStationUpdated = fireStationService
-            		.updateExistingStation(fireStationDTO);
-
-            assertNotNull(fireStationUpdated);
-        }
-        
-        @Test
-        @DisplayName("Check <Match Expected Valuel>"
-        		+ " - Given a existing fireStation,"
-        		+ " when request update fireStation,"
-        		+ " then fireStation updated correctly")
-        public void testUpdateFireStation() {
-            when(fireStationDaoMock
-            		.getStationByAddress(anyString()))
-            .thenReturn(testFireStation1);
-
-            FireStationDTO fireStationUpdated = fireStationService
-            		.updateExistingStation(fireStationDTO);
-
-            assertEquals(100, fireStationUpdated.getStationId());
-            verify(fireStationDaoMock).getStationByAddress(anyString());
-        }
-
-        @Test
-        @DisplayName("Check <for non existing fireStation>"
-        		+ " - Given a non existing fireStation,"
-        		+ " when request update fireStation,"
-        		+ " then fireStation should throw DataNotFoundException")
-    		public void testUpdateFireStationForRecordDoesNotExist() {
-            when(fireStationDaoMock.getStationByAddress(anyString())).thenReturn(null);
-
-            assertThrows(DataNotFoundException.class, ()
-            		-> fireStationService.updateExistingStation(fireStationDTO));
-        }  
-    }
-    
-    
-    // ***********************************************************************************
-
-    @DisplayName("Test DELETE FIRESTATION")
-    @Nested
-    class TestDeleteFireStationn {  
-        @BeforeEach
-        public void init() {
-        }
-    
-    @Test
-    @DisplayName("Check (existing firestation)"
-    		+ " - Given a existing fireStation,"
-    		+ " when request delete fireStation,"
-    		+ " then delete fireStation")
-		public void testDeleteFireStation() {
-        when(fireStationDaoMock
-        		.getStationById(anyInt(), anyString()))
-        .thenReturn(testFireStation1);
-
-        fireStationService.deleteExistingStation(testFireStation1.getStationId(), testFireStation1.getAddress());
-
-        InOrder inOrder = inOrder(fireStationDaoMock);
-        inOrder.verify(fireStationDaoMock).getStationById(anyInt(), anyString());
-        inOrder.verify(fireStationDaoMock).deleteStationByMapping(any(FireStation.class));
-    }
-    
-    
-    @Test
-    @DisplayName("Check (non existing FireStation Exception Thrown"
-    		+ " - Given a non existing fireStation,"
-    		+ " when request delete fireStation,"
-    		+ " then throw DataNotFoundException")
-		public void testDeleteFireStationFoeNonExistingMedicalRecord() {
-            when(fireStationDaoMock
-            		.getStationById(anyInt(), anyString()))
-            .thenReturn(null);
-
-            assertThrows(DataNotFoundException.class, ()
-            		-> fireStationService.deleteExistingStation(testFireStation1.getStationId(), testFireStation1.getAddress()));
-    }
     }
 }

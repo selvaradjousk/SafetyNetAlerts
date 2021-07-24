@@ -5,6 +5,7 @@ package com.safetynet.alerts.unittests.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.safetynet.alerts.model.FireStation;
@@ -13,6 +14,7 @@ import com.safetynet.alerts.model.FireStation;
  * @author Senthil
  *
  */
+@DisplayName("FIRESTATION DO - Unit Tests")
 class FireStationTest {
 	
 	FireStation toTest1 = new FireStation(3, "1509 Culver St");

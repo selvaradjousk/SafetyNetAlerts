@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.safetynet.alerts.model.Person;
@@ -13,6 +14,7 @@ import com.safetynet.alerts.model.Person;
  * @author Senthil
  *
  */
+@DisplayName("PERSON DO - Unit Tests")
 class PersonTest {
 	
 	Person toTest1 = new Person("firstname", "lastname", "address", "city", 123456789, "12345678", "email");
