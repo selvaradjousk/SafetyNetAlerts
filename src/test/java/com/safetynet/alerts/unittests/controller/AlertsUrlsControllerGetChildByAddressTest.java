@@ -61,4 +61,19 @@ class AlertsUrlsControllerGetChildByAddressTest {
         .getChildByAddress(anyString());
     }
 
+    @Test
+    @DisplayName("Given an EMPTY ADDRESS,"
+    		+ " when GET request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetChildAlertRequestWithEmptyAddressAsInput() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/childAlert?address=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(childAlertEndpointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
+        .getChildByAddress(anyString());
+    }
 }
