@@ -1,5 +1,7 @@
 package com.safetynet.alerts.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +12,13 @@ import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.CommunityEmailDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
+import com.safetynet.alerts.dto.MedicalRecordDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.model.PersonStation;
+import com.safetynet.alerts.util.ComputeAgeOfPerson;
 
 @Service
 public class AlertsUrlsService implements IAlertsUrlsService {
@@ -27,13 +31,18 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
     private final IMedicalRecordService iMedicalRecordService;
     
+    private final ComputeAgeOfPerson computeAgeOfPerson;
+    
+    private static final int AGE_LIMIT_TO_BE_ADULT = 19;
 
+    
     @Autowired
     public AlertsUrlsService(final IPersonService personService, final IFireStationService fireStationService,
-                         final IMedicalRecordService medicalRecordService) {
+                         final IMedicalRecordService medicalRecordService, final ComputeAgeOfPerson computeAgeOfPerson) {
         this.iPersonService = personService;
         this.iFireStationService = fireStationService;
         this.iMedicalRecordService = medicalRecordService;
+        this.computeAgeOfPerson = computeAgeOfPerson;
     }
 
 
@@ -43,6 +52,8 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 	public PersonsByStationDTO getPersonsByStation(int station) {
 		
 		// ************ TODO Steps ****************************
+        int adultCount = 0;
+        int childCount = 0;
 		
         // Retrieves person list
         List<Person> persons = iPersonService.getAllPersonList();
@@ -50,16 +61,34 @@ public class AlertsUrlsService implements IAlertsUrlsService {
         // Retrieves addresses covered by the given station number
         List<String> addresses = iFireStationService.getAddressesByStation(station);
         List<PersonStation> list = new ArrayList<>();
-        
-		// Identify persons in the person list to find the persons at the addresses
-			// - for a given address - Retrieving person medical record
-		 	// - Calculate the age of the person
-			// - Check the person is adult or a child and count accordingly
-			// - Add PersonStation with information on person covered by the fire station number to array list
-		// return PersonsByStationDTO with list of addresses and its adult and child count
-		return null;
-	}
+ 		
+        // Identify persons in the person list  to find the persons at the addresses.
+        for (Person person : persons) {
+            for (String address : addresses) {
 
+                if (person.getAddress().equals(address)) {
+                	
+                	// - for a given address - Retrieving person medical record
+                    MedicalRecordDTO medicalRecordDTO = retrieveMedicalRecordById(person);
+                    
+                    // - Check the person is adult or a child and count accordingly
+                    int age = getAgeOfPerson(medicalRecordDTO);
+                    
+                    // Check the person is adult or a child and count accordingly
+                    if (isChild(age)) {
+                        childCount++;
+                    } else {
+                        adultCount++;
+                    }
+                    // Add PersonStation with information on person covered by the fire station number to array list
+                    list.add(new PersonStation(person.getFirstName(), person.getLastName(), person.getAddress(),
+                            person.getPhone()));
+                }
+            }
+        }
+     // return PersonsByStationDTO with list of addresses and its adult and child count
+        return new PersonsByStationDTO(list, adultCount, childCount);
+    }
 
 	// TODO - http://localhost:8080/childAlert?address=<address>
 	// i.e. childAlert(address)
@@ -174,7 +203,34 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		// - etc
 	// Retrieving medical record based on person id
 	
+
+	private int getAgeOfPerson(MedicalRecordDTO medicalRecordDTO) {
+		// Format the birthDate
+		LocalDate birthDate = formatBirthDate(medicalRecordDTO);
+		
+		// Compute the person age
+		int age = computeAgeOfPerson.getAge(birthDate);
+		return age;
+	}
+    
+    
+	private MedicalRecordDTO retrieveMedicalRecordById(Person person) {
+		MedicalRecordDTO medicalRecordDTO = iMedicalRecordService.getMedicalRecordById(person.getFirstName(),
+		        person.getLastName());
+		return medicalRecordDTO;
+	}
 	
+
+	private LocalDate formatBirthDate(MedicalRecordDTO medicalRecordDTO) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+		LocalDate birthDate = LocalDate.parse(medicalRecordDTO.getBirthDate(), formatter);
+		return birthDate;
+	}
+	
+	private boolean isChild(int age) {
+		return age < AGE_LIMIT_TO_BE_ADULT;
+	}
 
     
 }
+
