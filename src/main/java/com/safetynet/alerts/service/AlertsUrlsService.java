@@ -1,5 +1,6 @@
 package com.safetynet.alerts.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
+import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.model.PersonStation;
 
 @Service
 public class AlertsUrlsService implements IAlertsUrlsService {
@@ -41,8 +44,13 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		
 		// ************ TODO Steps ****************************
 		
-		// Retrieves person list
-		// Retrieves addresses covered by the given station number
+        // Retrieves person list
+        List<Person> persons = iPersonService.getAllPersonList();
+        
+        // Retrieves addresses covered by the given station number
+        List<String> addresses = iFireStationService.getAddressesByStation(station);
+        List<PersonStation> list = new ArrayList<>();
+        
 		// Identify persons in the person list to find the persons at the addresses
 			// - for a given address - Retrieving person medical record
 		 	// - Calculate the age of the person
