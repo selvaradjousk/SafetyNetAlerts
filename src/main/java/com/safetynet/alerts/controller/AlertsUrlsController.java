@@ -15,8 +15,6 @@ public class AlertsUrlsController {
 		this.alertsUrlsService = alertsEndpointUrlsService;
 	}
 	
-	
-	
 	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
 	// i.e. personsByStation(station_number)
 

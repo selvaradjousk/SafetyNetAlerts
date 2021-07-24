@@ -2,6 +2,8 @@ package com.safetynet.alerts.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.safetynet.alerts.dto.PersonsByStationDTO;
+
 public class AlertsUrlsService implements IAlertsUrlsService {
 
     private final IPersonService iPersonService;
@@ -19,7 +21,14 @@ public class AlertsUrlsService implements IAlertsUrlsService {
         this.iPersonService = personService;
         this.iFireStationService = fireStationService;
         this.iMedicalRecordService = medicalRecordService;
-    } 
+    }
+
+
+	@Override
+	public PersonsByStationDTO getPersonsByStation(int station) {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 	
     
 	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
