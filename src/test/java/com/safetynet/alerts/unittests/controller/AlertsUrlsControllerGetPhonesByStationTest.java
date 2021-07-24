@@ -39,8 +39,7 @@ class AlertsUrlsControllerGetPhonesByStationTest {
     private PhoneAlertDTO phoneAlertEndpointUrlDTO;
     
     @Test
-    @DisplayName("GET PHONE ALERT"
-    		+ " - Given a valid station number,"
+    @DisplayName("Given a VALID station number,"
     		+ " when GET request,"
     		+ " then return - Status: 200 OK")
     public void testGetPhoneAlertRequestWithValidStationNumber() throws Exception {
@@ -56,6 +55,22 @@ class AlertsUrlsControllerGetPhonesByStationTest {
         verify(alertsService)
         .getPhonesByStation(anyInt());
         verify(alertsService, times(1))
+        .getPhonesByStation(anyInt());
+    }
+    
+    @Test
+    @DisplayName("Given a EMPTY station number value,"
+    		+ " when GET request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetPhoneAlertRequestWithoutStationNumber() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/phoneAlert?firestation=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(phoneAlertEndpointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
         .getPhonesByStation(anyInt());
     }
 }
