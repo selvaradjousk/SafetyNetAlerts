@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
+import com.safetynet.alerts.dto.PhoneAlertDTO;
 
 @Service
 public class AlertsUrlsService implements IAlertsUrlsService {
@@ -44,10 +45,13 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		return null;
 	}
 
-	
-
 	// TODO - http://localhost:8080/phoneAlert?firestation=<firestation_number>
 	// i.e. phonealert(station_number)
+	@Override
+	public PhoneAlertDTO getPhonesByStation(int station) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	// TODO - http://localhost:8080/fire?address=<address>
 	// i.e. fire(address)
