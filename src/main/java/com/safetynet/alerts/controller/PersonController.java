@@ -60,7 +60,7 @@ public class PersonController {
         		|| firstName.trim().length() == 0
         		|| lastName == null
                 || lastName.trim().length() == 0) {
-            throw new BadRequestException("Response Status: 400 Bad Request"
+            throw new BadRequestException("Response Status: 404 Bad Request"
             		+ " -> The parameter entered has missing values"
             		+ " or invalid");
         }
@@ -85,7 +85,7 @@ public class PersonController {
         		|| person.getFirstName().isEmpty()
         		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status: 400 Bad request"
+            throw new BadRequestException("Response Status: 404 Bad request"
             		+ " The request body is incomplete"
             		+ " or missing required entries");
         }
@@ -110,7 +110,7 @@ public class PersonController {
         		|| person.getFirstName().isEmpty()
         		|| person.getLastName() == null
                 || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status 400 Bad request"
+            throw new BadRequestException("Response Status 404 Bad request"
             		+ " The request body is incomplete"
             		+ " or missing required entries");
         }

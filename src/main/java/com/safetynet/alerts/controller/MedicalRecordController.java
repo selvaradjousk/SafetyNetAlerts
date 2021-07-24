@@ -37,7 +37,7 @@ public class MedicalRecordController {
     		   || lastName == null
                || lastName.trim().length() == 0) {
            throw new BadRequestException("Response: "
-           		+ "400 Bad request missing parameter values");
+           		+ "404 Bad request missing parameter values");
        }
        MedicalRecordDTO medDTO = medicalRecordService
     		   .getMedicalRecordById(firstName, lastName);
@@ -56,7 +56,7 @@ public class MedicalRecordController {
     		   || medicalRecord.getLastName() == null
     		   || medicalRecord.getLastName().isEmpty()) {
            throw new BadRequestException("Response:"
-           		+ " 400 Bad request missing info in request body");
+           		+ " 404 Bad request missing info in request body");
        }
        MedicalRecordDTO medicalRecordCreated = medicalRecordService
     		   .addNewMedicalRecord(medicalRecord);
@@ -74,7 +74,7 @@ public class MedicalRecordController {
     		   || medicalRecord.getLastName() == null ||
                medicalRecord.getLastName().isEmpty()) {
            throw new BadRequestException("Response:"
-              		+ " 400 Bad request missing info in request body");
+              		+ " 404 Bad request missing info in request body");
        }
        MedicalRecordDTO medicalRecordUpdated = medicalRecordService
     		   .updateMedicalRecord(medicalRecord);

@@ -1,9 +1,11 @@
 package com.safetynet.alerts.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 
+@Service
 public class AlertsUrlsService implements IAlertsUrlsService {
 
     private final IPersonService iPersonService;
@@ -24,6 +26,8 @@ public class AlertsUrlsService implements IAlertsUrlsService {
     }
 
 
+	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
+	// i.e. personsByStation(station_number)
 	@Override
 	public PersonsByStationDTO getPersonsByStation(int station) {
 		// TODO Auto-generated method stub
@@ -31,8 +35,7 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 	} 
 	
     
-	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
-	// i.e. personsByStation(station_number)
+
 
 	// TODO - http://localhost:8080/childAlert?address=<address>
 	// i.e. childAlert(address)
