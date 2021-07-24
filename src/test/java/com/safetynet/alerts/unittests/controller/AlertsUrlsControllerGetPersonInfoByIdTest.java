@@ -50,12 +50,12 @@ class AlertsUrlsControllerGetPersonInfoByIdTest {
     	personInfoEndPointUrlDTO = new PersonInfoDTO(
         		Arrays.asList(
         				new PersonInfo(
-        				"Boyd",
-        				"1509 Culver St",
-        				22,
-        				"jaboyd@email.com",
-        				Arrays.asList(""),
-        				Arrays.asList("peanut"))));
+        				"Last Name",
+        				"My Street",
+        				50,
+        				"myemail@email.com",
+        				Arrays.asList("some medication"),
+        				Arrays.asList("some allergy"))));
 
         when(alertsService
         		.getInfoPersonByIdentity(anyString(), anyString()))

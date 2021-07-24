@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
+import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.exception.BadRequestException;
@@ -116,6 +117,21 @@ public class AlertsUrlsController {
 	
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
+	@GetMapping("/personInfo")
+	public ResponseEntity<PersonInfoDTO> getPersonInfoByIdentity(
+			@RequestParam("firstName") final String firstName,
+			@RequestParam("lastName") final String lastName) {
+
+		if (firstName.trim().length() == 0
+				|| lastName.trim().length() == 0) {
+			throw new BadRequestException(
+					"Response Status: 404 Bad request - missing input values");
+		}
+		PersonInfoDTO personInfoDTO = alertsUrlsService
+				.getInfoPersonByIdentity(firstName, lastName);
+
+		return new ResponseEntity<>(personInfoDTO, HttpStatus.OK);
+	}
 	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
