@@ -2,8 +2,6 @@ package com.safetynet.alerts.unittests.controller;
 
 import static com.safetynet.alerts.testingtoolsconfig.DataPreparation.displayAsJsonString;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -23,7 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.safetynet.alerts.controller.AlertsUrlsController;
 import com.safetynet.alerts.dto.FireDTO;
-import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.service.AlertsUrlsService;
 
 @DisplayName("Alerts FIRE - GET PERSON BY ADDRESS Controller - Unit Tests")
@@ -41,8 +38,7 @@ class AlertsUrlsControllerGetPersonsByAddressTest {
     private FireDTO fireEndpointUrlDTO;
     
     @Test
-    @DisplayName("GET FIRE ALERT"
-    		+ " - Given an address,"
+    @DisplayName("Given a VALID address,"
     		+ " when GET Fire request,"
     		+ " then return - Status: 200 OK")
     public void testGetFireRequestWithValidAddress() throws Exception {
@@ -62,5 +58,18 @@ class AlertsUrlsControllerGetPersonsByAddressTest {
         .getPersonsByAddress(anyString());
     }
 
-    
+    @Test
+    @DisplayName("Given NO ADDRESS value supplied,"
+    		+ " when GET Fire request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetFireRequestWithEmptyAddressValue() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/fire?address=")
+        		.contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(fireEndpointUrlDTO)))
+                .andExpect(status().isBadRequest());
+
+        verify(alertsService, times(0))
+        .getPersonsByAddress(anyString());
+    }
 }
