@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.exception.BadRequestException;
@@ -77,6 +78,19 @@ public class AlertsUrlsController {
 	
 	// TODO - http://localhost:8080/fire?address=<address>
 	// i.e. fire(address)
+	@GetMapping("/fire")
+	public ResponseEntity<FireDTO> getPersonsByAddress(
+			@RequestParam("address") final String address) {
+
+		if (address.trim().length() == 0) {
+			throw new BadRequestException(
+					"Response Status: 404 Bad request - missing input values");
+		}
+		FireDTO fireDTO = alertsUrlsService
+				.getPersonsByAddress(address);
+
+		return new ResponseEntity<>(fireDTO, HttpStatus.OK);
+	}
 
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)
