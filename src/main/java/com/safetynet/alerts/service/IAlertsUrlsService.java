@@ -33,6 +33,7 @@ public interface IAlertsUrlsService {
     
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
+    PersonInfoDTO getInfoPersonByIdentity(String firstName, String lastName);
 	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)

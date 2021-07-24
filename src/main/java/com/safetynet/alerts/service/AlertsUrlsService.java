@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
+import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 
@@ -75,13 +76,15 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		return null;
 	}
 
-
-	
-
-
-	
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
+	@Override
+	public PersonInfoDTO getInfoPersonByIdentity(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
