@@ -59,6 +59,23 @@ class AlertsUrlsControllerGetHousesCoveredByStationTest {
         .getHousesCoveredByStation(anyList());
     }
     
-    
+
+    @Test
+    @DisplayName("GET FLOOD ALERT"
+    		+ " - Given no station number value entered,"
+    		+ " when GET Flood request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetFloodRequestWithNoStationNumberParameterValue() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/flood/stations?stations=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(floodEndpointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
+        .getHousesCoveredByStation(anyList());
+    }
+
 
 }
