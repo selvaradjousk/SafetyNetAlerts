@@ -1,9 +1,6 @@
 package com.safetynet.alerts.unittests.controller;
 
 import static com.safetynet.alerts.testingtoolsconfig.DataPreparation.displayAsJsonString;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -70,6 +67,22 @@ class AlertsUrlsControllerGetPersonInfoByIdTest {
         verify(alertsService)
         .getInfoPersonByIdentity(anyString(), anyString());
         verify(alertsService, times(1))
+        .getInfoPersonByIdentity(anyString(), anyString());
+    }
+    
+    @Test
+    @DisplayName("Given incomplete person Id,"
+    		+ " when PersonInfo request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetPersonInfoRequestWithInvalidPersonId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/personInfo?=firstName=John&lastName=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(personInfoEndPointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
         .getInfoPersonByIdentity(anyString(), anyString());
     }
 }
