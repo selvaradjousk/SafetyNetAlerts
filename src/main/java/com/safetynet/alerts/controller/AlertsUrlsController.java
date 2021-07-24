@@ -98,6 +98,20 @@ public class AlertsUrlsController {
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)
 
+	@GetMapping("/flood/stations")
+	public ResponseEntity<FloodDTO> getHouseholdsByStation(
+			@RequestParam("stations") final List<Integer> stations) {
+
+
+		if (stations.isEmpty()) {
+			throw new BadRequestException(
+					"Response Status: 404 Bad request - missing input values");
+		}
+		FloodDTO floodDTO = alertsUrlsService
+				.getHousesCoveredByStation(stations);
+
+		return new ResponseEntity<>(floodDTO, HttpStatus.OK);
+	}
 	
 	
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
