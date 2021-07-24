@@ -58,4 +58,20 @@ class AlertsUrlsControllerGetEmailsByCityTest {
         verify(alertsService, times(1))
         .getEmailsByCity(anyString());
     }
+    
+    @Test
+    @DisplayName("Given an EMPTY cityname input value,"
+    		+ " when GET CommunityEmail request,"
+    		+ " then return - Status: 404 Bad Request")
+    public void testGetCommunityEmailRequestWithNoInputOfCityName() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+        		.get("/communityEmail?city=")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(displayAsJsonString(communityEmailEndpointUrlDTO)))
+                .andExpect(status()
+                		.isBadRequest());
+
+        verify(alertsService, times(0))
+        .getEmailsByCity(anyString());
+    }
 }
