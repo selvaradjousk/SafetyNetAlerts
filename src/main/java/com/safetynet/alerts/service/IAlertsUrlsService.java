@@ -1,6 +1,7 @@
 package com.safetynet.alerts.service;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 
@@ -20,6 +21,7 @@ public interface IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/fire?address=<address>
 	// i.e. fire(address)
+    FireDTO getPersonsByAddress(String address);
 
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)

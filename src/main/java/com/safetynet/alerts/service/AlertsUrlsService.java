@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 
@@ -53,8 +54,17 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		return null;
 	}
 
+
 	// TODO - http://localhost:8080/fire?address=<address>
 	// i.e. fire(address)
+	@Override
+	public FireDTO getPersonsByAddress(String address) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)
