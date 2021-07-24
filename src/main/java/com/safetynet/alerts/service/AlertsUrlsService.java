@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.CommunityEmailDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
@@ -84,9 +85,16 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 		return null;
 	}
 
-
-	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
+	@Override
+	public CommunityEmailDTO getEmailsByCity(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
     
 }

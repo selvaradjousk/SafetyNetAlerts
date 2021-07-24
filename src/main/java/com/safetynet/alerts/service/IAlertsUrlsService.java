@@ -3,6 +3,7 @@ package com.safetynet.alerts.service;
 import java.util.List;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
+import com.safetynet.alerts.dto.CommunityEmailDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
@@ -37,5 +38,6 @@ public interface IAlertsUrlsService {
 	
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
+    CommunityEmailDTO getEmailsByCity(String city);
 	
 }
