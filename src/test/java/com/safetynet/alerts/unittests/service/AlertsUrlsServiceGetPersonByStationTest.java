@@ -161,7 +161,8 @@ class AlertsUrlsServiceGetPersonByStationTest {
 	    
 			// check result on getPersonsByStation() is not null
 	    @Test
-	    @DisplayName("Result NOT NULL - Given a station number,"
+	    @DisplayName("Result NOT NULL"
+	    		+ " - Given a station number,"
 	    		+ " when getPersonsByStation,"
 	    		+ " then return result not null")
 	    public void testGetPersonsByStationForValidInputResultNotNull() {

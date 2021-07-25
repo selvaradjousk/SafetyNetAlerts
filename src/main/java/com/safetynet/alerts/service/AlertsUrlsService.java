@@ -17,7 +17,9 @@ import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.model.Child;
+import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.model.PersonAddress;
 import com.safetynet.alerts.model.PersonStation;
 import com.safetynet.alerts.util.ComputeAgeOfPerson;
 
@@ -158,20 +160,34 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/fire?address=<address>
 	// i.e. fire(address)
-	@Override
-	public FireDTO getPersonsByAddress(String address) {
-		
-		// ************ TODO Steps ****************************
-		
-		// Retrieves person list based on address
-		// Identify persons in the person list with given last name based on address
-			// - for a given address - Retrieving person medical record
-		 	// - Calculate the age of the person
-			// - Add to ArrayList a PersonAddress with each person in a address
+    public FireDTO getPersonsByAddress(final String address) {
+
+    	// Retrieves person list based on address
+        List<Person> personsByAddress = iPersonService.getPersonsByAddress(address);
+        List<PersonAddress> persons = new ArrayList<>();
+
+     // Identify persons in the person list with given last name based on address.
+        for (Person person : personsByAddress) {
+
+        	// - for a given address - Retrieving person medical record
+            MedicalRecordDTO medicalRecordDTO = retrieveMedicalRecordById(person);
+
+            // - Calculate the age of the person
+            int age = getAgeOfPerson(medicalRecordDTO);
+
+            // - Add to ArrayList a PersonAddress with each person in a address
+            persons.add(new PersonAddress(person.getLastName(), person.getPhone(),
+                    age, medicalRecordDTO.getMedications(), medicalRecordDTO.getAllergies()));
+        }
+
 		// Retrieves fire station that covered the given address to get it station number
 		// return station and the persons list covered
-		return null;
-	}
+        FireStation fireStation = iFireStationService.getFireStationByAddress(address);
+        int station = fireStation.getStationId();
+
+	// return station and the persons list covered
+        return new FireDTO(station, persons);
+    }
 
 
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
