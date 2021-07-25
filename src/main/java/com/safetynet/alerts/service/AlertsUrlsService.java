@@ -276,17 +276,21 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
-	@Override
-	public CommunityEmailDTO getEmailsByCity(String city) {
-		
-		// ************ TODO Steps ****************************
-		
-		// Retrieves person list based on the city name
-		// Identify persons in the person list based on city
-			// - get persons email id
-		// return person list info with email id details. 
-		return null;
-	}
+    public CommunityEmailDTO getEmailsByCity(final String city) {
+    	
+    	// Retrieves person list based on the city name
+        List<Person> personsByCity = iPersonService
+        		.getPersonsByCity(city);
+        List<String> emails = new ArrayList<>();
+
+        // Identify persons in the person list based on city
+        for (Person person : personsByCity) {
+		// - get persons email id
+            emails.add(person.getEmail());
+        }
+	// return list info with email id details.
+        return new CommunityEmailDTO(emails);
+    }
 
 
 	// *********** REPEATED COMMON METHODS **********************
@@ -310,8 +314,10 @@ public class AlertsUrlsService implements IAlertsUrlsService {
     
     
 	private MedicalRecordDTO retrieveMedicalRecordById(Person person) {
-		MedicalRecordDTO medicalRecordDTO = iMedicalRecordService.getMedicalRecordById(person.getFirstName(),
-		        person.getLastName());
+		MedicalRecordDTO medicalRecordDTO = iMedicalRecordService
+				.getMedicalRecordById(
+						person.getFirstName(),
+						person.getLastName());
 		return medicalRecordDTO;
 	}
 	

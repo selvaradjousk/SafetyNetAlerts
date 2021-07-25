@@ -80,7 +80,24 @@ public class PersonDAO implements IPersonDAO {
         return personsByAddress;
     }
 	
-	
+	/**
+	 * get Person By City
+	 * @param city
+	 * @return personsByCity
+	 */
+	public List<Person> getPersonByCity(final String city) {
+
+        Collection<Person> persons = personsMap.values();
+        List<Person> personsByCity = new ArrayList<>();
+
+        for (Person person : persons) {
+            if (person.getCity().equals(city)) {
+                personsByCity.add(person);
+            }
+        }
+
+        return personsByCity;
+    }
 	
 
 	/**

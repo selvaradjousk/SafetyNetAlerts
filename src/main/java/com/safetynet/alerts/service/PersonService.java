@@ -89,11 +89,31 @@ public class PersonService implements IPersonService {
         List<Person> personsByAddress = personDAO.getPersonByAddress(address);
 
         if (personsByAddress.isEmpty()) {
-			throw new DataNotFoundException("Failed to get persons for address : " + address);
+			throw new DataNotFoundException("Failed to get persons for the address : " + address);
 		}
 
         return personsByAddress;
     }
+    
+    
+
+	/**
+	 * Get Person list by city
+	 * @param city
+	 * @return person list by city
+	 */
+    public List<Person> getPersonsByCity(final String city) {
+
+        List<Person> personsByCity = personDAO.getPersonByCity(city);
+
+		if (personsByCity.isEmpty()) {
+			throw new DataNotFoundException("Failed to get persons for the city : " + city);
+        }
+
+        return personsByCity;
+    }
+	
+	
 
     /**
      * Add new person.
@@ -164,4 +184,5 @@ public class PersonService implements IPersonService {
 
         personDAO.deletePerson(personToDelete);
     }
+
 }

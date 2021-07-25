@@ -27,13 +27,15 @@ public interface IPersonDAO {
 	List<Person> getPersonList();
 	
 	
-	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
-	// i.e. personsByStation(station_number)
+
+	/**
+	 * get Person By City
+	 * @param city
+	 * @return personsByCity
+	 */
+	public List<Person> getPersonByCity(final String city);
 	
-	
-	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
-	// i.e. personInfo(personId)
-	
+
 	/**
 	 * Gets person list by address
 	 * @param address

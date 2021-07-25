@@ -34,7 +34,13 @@ public interface IPersonService {
      */
 	List<Person> getPersonsByAddress(String address);
 	
-
+	/**
+	 * Get Person list by city
+	 * @param city
+	 * @return person list by city
+	 */
+	List<Person> getPersonsByCity(String city);
+	
     /**
      * Add new person.
      * @param newPerson
