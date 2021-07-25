@@ -12,12 +12,14 @@ import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.CommunityEmailDTO;
 import com.safetynet.alerts.dto.FireDTO;
 import com.safetynet.alerts.dto.FloodDTO;
+import com.safetynet.alerts.dto.HousesCoveredByStationDTO;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.model.Child;
 import com.safetynet.alerts.model.FireStation;
+import com.safetynet.alerts.model.House;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.model.PersonAddress;
 import com.safetynet.alerts.model.PersonStation;
@@ -192,22 +194,51 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
 	// i.e. flood(stations_list)
-	@Override
-	public FloodDTO getHousesCoveredByStation(List<Integer> stations) {
-		
-		// ************ TODO Steps ****************************
-		
-		// For each given fire station numbers retrieves addresses covered by it
-		// For each address check for address duplication in fire station records before adding to ArrayList.
-		// If not duplicated then Retrieves persons living at given address.
-			// - for a given address - Retrieving persons living at given address
-			// - For each person in the house Retrieving person medical record.
-		 	// - calculates age for each person.
-			// - Add to ArrayList a PersonAddress with each person in a address
-		// Add to houses object address and list of persons living there
-		// return houses coered by the station with (station number and houses covered info details. 
-		return null;
-	}
+    public FloodDTO getHousesCoveredByStation(final List<Integer> stations) {
+        List<HousesCoveredByStationDTO> housesCoveredByStationDTO = new ArrayList<>();
+        List<String> allAddresses = new ArrayList<>();
+
+        for (int station : stations) {
+
+            // For each given fire station numbers retrieves addresses covered by it.
+            List<String> addressesByStation = iFireStationService.getAddressesByStation(station);
+            List<House> houses = new ArrayList<>();
+
+            for (String address : addressesByStation) {
+
+		// For each address check for address duplication in fire station records
+		// before adding to ArrayList.
+                // Check If not duplicated then Retrieves persons living at given address.
+                if (!allAddresses.contains(address)) {
+                    allAddresses.add(address);
+
+                    // - for a given address - Retrieving persons living at given address
+                    List<Person> persons = iPersonService.getPersonsByAddress(address);
+                    List<PersonAddress> personAddress = new ArrayList<>();
+
+                    // Calculates age for each person from household.
+                    for (Person person : persons) {
+                    	
+                    	// - For each person in the house Retrieving person medical record.
+                        MedicalRecordDTO medicalRecordDTO = retrieveMedicalRecordById(person);
+                        
+                        // - calculates age for each person.
+                        int age = getAgeOfPerson(medicalRecordDTO);
+                        
+                        // - Add to ArrayList a PersonAddress with each person in a address 
+                        personAddress.add(new PersonAddress(person.getLastName(), person.getPhone(),
+                                age, medicalRecordDTO.getMedications(), medicalRecordDTO.getAllergies()));
+                    }
+                    // Add to House object with address and list of persons living there.
+                    houses.add(new House(address, personAddress));
+                }
+            }
+            housesCoveredByStationDTO.add(new HousesCoveredByStationDTO(station, houses));
+        }
+	// return houses covered by the station with (station number and houses covered info details.
+        return new FloodDTO(housesCoveredByStationDTO);
+    }
+
 
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
