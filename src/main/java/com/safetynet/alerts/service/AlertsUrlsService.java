@@ -133,18 +133,27 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/phoneAlert?firestation=<firestation_number>
 	// i.e. phonealert(station_number)
-	@Override
-	public PhoneAlertDTO getPhonesByStation(int station) {
-		
-		// ************ TODO Steps ****************************
-		
-		// Retrieves person list
-		// Retrieves addresses covered by the given station number
+    public PhoneAlertDTO getPhonesByStation(final int station) {
+    	
+    	// Retrieves person list
+        List<Person> persons = iPersonService.getAllPersonList();
+
+        // Retrieves addresses covered by the given station number
+        List<String> addresses = iFireStationService.getAddressesByStation(station);
+        List<String> phones = new ArrayList<>();
+
         // Identify persons in the person list based on addresses covered by station
-        //     to get their phone number and adds it to an ArrayList.
-		// return list of phones
-		return null;
-	}
+        // to get their phone number and adds it to an ArrayList.
+        for (Person person : persons) {
+            for (String address : addresses) {
+                if (person.getAddress().equals(address)) {
+                    phones.add(person.getPhone());
+                }
+            }
+        }
+	// return list of phones
+        return new PhoneAlertDTO(phones);
+    }
 
 
 	// TODO - http://localhost:8080/fire?address=<address>

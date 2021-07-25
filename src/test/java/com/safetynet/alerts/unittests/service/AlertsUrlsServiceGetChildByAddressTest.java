@@ -12,7 +12,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +24,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.safetynet.alerts.dto.ChildAlertDTO;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
-import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.AlertsUrlsService;
 import com.safetynet.alerts.service.FireStationService;
@@ -54,14 +52,13 @@ class AlertsUrlsServiceGetChildByAddressTest {
 	    @Mock
 	    private ComputeAgeOfPerson computeAgeOfPerson;
 
-	    private static List<Person> personList, expectedPersonsList;
+
 	    private static Person person1;
 	    private static Person person2;
-	    private static Person person3;
+
 
 	    private static MedicalRecordDTO medicalRecord1;
 	    private static MedicalRecordDTO medicalRecord2;
-	    private static MedicalRecordDTO medicalRecord3;
 
 	    @BeforeEach
 	    public void setUp() {
@@ -84,16 +81,7 @@ class AlertsUrlsServiceGetChildByAddressTest {
 	                "8765432109",
 	                "myemai2@email.com");
 	        
-	        person3 = new Person(
-	        		"Test FirstName3",
-	        		"Test LastName3",
-	        		"Test another Street Name",
-	        		"Test City",
-	                11111,
-	                "77654321098",
-	                "myemai3@email.com");
-	        
-	        personList = Arrays.asList(person1, person2, person3);
+       
 
 	        medicalRecord1 = new MedicalRecordDTO(
 	        		"Test First Name1",
@@ -109,13 +97,7 @@ class AlertsUrlsServiceGetChildByAddressTest {
 	                Arrays.asList("medication3"),
 	                Arrays.asList(""));
 	        
-	        medicalRecord3 = new MedicalRecordDTO(
-	        		"Test FirstName3",
-	        		"Test LastName3",
-	        		"01/01/2000",
-	                Arrays.asList(""),
-	                Arrays.asList("my allergy"));
-	        
+        
 	    	
 	        when(personService
 	        		.getPersonsByAddress(anyString()))
