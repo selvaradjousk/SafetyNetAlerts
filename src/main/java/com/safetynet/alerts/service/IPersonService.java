@@ -25,6 +25,15 @@ public interface IPersonService {
      * @return person list
      */
 	List<Person> getAllPersonList();
+	
+	
+    /**
+     * Get list of persons by address.
+     * @param address
+     * @return person list
+     */
+	List<Person> getPersonsByAddress(String address);
+	
 
     /**
      * Add new person.

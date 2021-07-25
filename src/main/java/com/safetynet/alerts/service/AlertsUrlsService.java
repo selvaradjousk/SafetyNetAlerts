@@ -16,6 +16,7 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
+import com.safetynet.alerts.model.Child;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.model.PersonStation;
 import com.safetynet.alerts.util.ComputeAgeOfPerson;
@@ -46,7 +47,7 @@ public class AlertsUrlsService implements IAlertsUrlsService {
     }
 
 
-	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
+	// TODO - DONE  http://localhost:8080/firestation?stationNumber=<station_number>
 	// i.e. personsByStation(station_number)
 	@Override
 	public PersonsByStationDTO getPersonsByStation(int station) {
@@ -90,23 +91,45 @@ public class AlertsUrlsService implements IAlertsUrlsService {
         return new PersonsByStationDTO(list, adultCount, childCount);
     }
 
-	// TODO - http://localhost:8080/childAlert?address=<address>
+	// TODO - DONE  http://localhost:8080/childAlert?address=<address>
 	// i.e. childAlert(address)
-	@Override
-	public ChildAlertDTO getChildByAddress(String address) {
+    public ChildAlertDTO getChildByAddress(final String address) {
+    	
+    	// Retrieves person list based on address
+        List<Person> personsByAddress = iPersonService.getPersonsByAddress(address);
+        List<Child> childList = new ArrayList<>();
+        List<String> adultList = new ArrayList<>();
+
+        // Identify persons in the person list with given last name based on address.
+        for (Person person : personsByAddress) {
+
+        	
+        	// - for a given address - Retrieving person medical record
+            MedicalRecordDTO medicalRecordDTO = retrieveMedicalRecordById(person);
+            
+            // - Calculate the age of the person
+            int age = getAgeOfPerson(medicalRecordDTO);
+            
+
+            // - Check the person is adult or a child and count accordingly
+            if (isChild(age)) {
+            	// if child add to child list
+                childList.add(new Child(
+                		person.getFirstName(),
+                		person.getLastName(), age));
+            } else {
+            	// if adult add to adult list
+                adultList.add(
+                		"FirstName : " + person.getFirstName()
+                		+ " LastName : " + person.getLastName());
+            }
+        }
+        // return Child and Adult list information
+        return new ChildAlertDTO(childList, adultList);
+    }
+	
 		
-		// ************ TODO Steps ****************************
-		
-		// Retrieves person list based on address
-		// Identify persons in the person list with given last name based on address.
-			// - for a given address - Retrieving person medical record
-		 	// - Calculate the age of the person
-			// - Check the person is adult or a child and count accordingly
-				// if child add to child list
-				// if adult add to adult list
-		// return Child and Adult list information
-		return null;
-	}
+
 
 	// TODO - http://localhost:8080/phoneAlert?firestation=<firestation_number>
 	// i.e. phonealert(station_number)

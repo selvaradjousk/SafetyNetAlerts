@@ -60,6 +60,28 @@ public class PersonDAO implements IPersonDAO {
         return new ArrayList<>(personList);
 
     }
+	
+	
+	/**
+	 * Get person list by address
+	 * @param address
+	 * @return personsByAddress
+	 */
+	public List<Person> getPersonByAddress(final String address) {
+        Collection<Person> persons = personsMap.values();
+        List<Person> personsByAddress = new ArrayList<>();
+
+        for (Person person : persons) {
+            if (person.getAddress().equals(address)) {
+                personsByAddress.add(person);
+            }
+        }
+
+        return personsByAddress;
+    }
+	
+	
+	
 
 	/**
 	 * Saves the requested Person data resource form the Map list.

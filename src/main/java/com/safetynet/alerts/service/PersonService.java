@@ -77,6 +77,23 @@ public class PersonService implements IPersonService {
         }
        return listOfPerson;
    }
+    
+    
+    /**
+     * Get person by address.
+     * @param address
+     * @return personByAddress
+     */
+    public List<Person> getPersonsByAddress(final String address) {
+
+        List<Person> personsByAddress = personDAO.getPersonByAddress(address);
+
+        if (personsByAddress.isEmpty()) {
+			throw new DataNotFoundException("Failed to get persons for address : " + address);
+		}
+
+        return personsByAddress;
+    }
 
     /**
      * Add new person.

@@ -34,7 +34,13 @@ public interface IPersonDAO {
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
 	
-
+	/**
+	 * Gets person list by address
+	 * @param address
+	 * @return personsByAddress
+	 */
+	List<Person> getPersonByAddress(String address);
+	
 	/**
 	 * Saves the requested Person data resource form the Map list.
 	 * @param person identifier for the person to be saved
