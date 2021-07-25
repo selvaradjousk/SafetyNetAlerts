@@ -22,6 +22,7 @@ import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.model.House;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.model.PersonAddress;
+import com.safetynet.alerts.model.PersonInfo;
 import com.safetynet.alerts.model.PersonStation;
 import com.safetynet.alerts.util.ComputeAgeOfPerson;
 
@@ -242,21 +243,36 @@ public class AlertsUrlsService implements IAlertsUrlsService {
 
 	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
 	// i.e. personInfo(personId)
-	@Override
-	public PersonInfoDTO getInfoPersonByIdentity(String firstName, String lastName) {
-		
-		// ************ TODO Steps ****************************
-		
-		// Retrieves person list based on person id
-		// Identify persons in the person list to get persons with the given last name.
-		// Check / Scan for the presence of lastname
-			// - for a given address - Retrieving persons living at given address
-			// - For each person Retrieving person medical record.
-		 	// - calculates age for each person.
-			// Add a new PersonInfo object with each person data based on last name
-		// return person info details. 
-		return null;
-	}
+    public PersonInfoDTO getInfoPersonByIdentity(
+    		final String firstName,
+    		final String lastName) {
+    	
+    	// Retrieves person list
+        List<Person> persons = iPersonService.getAllPersonList();
+        List<PersonInfo> personsInfo = new ArrayList<>();
+
+        // - for a given address - Retrieving persons living at given address
+        for (Person person : persons) {
+
+            // Calculates person's age by retrieving his medical record to obtain his date of birth.
+            if (person.getLastName().equals(lastName)) {
+            	
+            	
+            	// - For each person Retrieving person medical record.
+                MedicalRecordDTO medicalRecordDTO = retrieveMedicalRecordById(person);
+                
+                // - calculates age for each person.
+                int age = getAgeOfPerson(medicalRecordDTO);
+                
+
+                // Add a new PersonInfo object with each person data based on last name
+                personsInfo.add(new PersonInfo(person.getLastName(), person.getAddress(),
+                        age, person.getEmail(), medicalRecordDTO.getMedications(), medicalRecordDTO.getAllergies()));
+            }
+        }
+	// return person info details.
+        return new PersonInfoDTO(personsInfo);
+    }
 
 	// TODO - http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
