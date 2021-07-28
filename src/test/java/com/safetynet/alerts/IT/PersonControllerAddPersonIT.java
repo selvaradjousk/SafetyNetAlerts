@@ -154,7 +154,7 @@ public void testAddPersonRequestWithValidPersonResponseStatusCreated() {
   //When Post created CHECKs
     assertEquals((HttpStatus.CREATED), response.getStatusCode());
     assertEquals(201, response.getStatusCodeValue());
-    assertEquals("request status", HttpStatus.CREATED.value(), response.getStatusCodeValue());
+    assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
 }
 
 @Test
@@ -211,7 +211,7 @@ public void testAddPersontRequestExistingPerson() {
        				PersonDTO.class);
 
     assertThat(response.getBody()).isNotSameAs(testPersonToBeAdded);
-    assertEquals("request status", HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
+    assertEquals(HttpStatus.CONFLICT.value(), response.getStatusCodeValue());
 
 }
 
@@ -228,7 +228,7 @@ public void testAddPersonMissingId() {
     				personToAddMissingId,
     				PersonDTO.class);
 
-    assertEquals("request status", HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+    assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
     assertNull(response.getBody().getFirstName());       
            
 }

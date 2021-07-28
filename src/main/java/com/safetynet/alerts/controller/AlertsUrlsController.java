@@ -31,7 +31,7 @@ public class AlertsUrlsController {
 	
 	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
 	// i.e. personsByStation(station_number)
-	@GetMapping("/firestation")
+	@GetMapping("/fireStation")
 	public ResponseEntity<PersonsByStationDTO> getPersonsByStation(
 			@RequestParam("stationNumber") final Integer station) {
 		

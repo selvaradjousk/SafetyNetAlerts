@@ -48,7 +48,7 @@ class AlertsUrlsControllerGetPersonsByStationTest {
         .thenReturn(any(PersonsByStationDTO.class));
 
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/firestation?stationNumber=1")
+        		.get("/fireStation?stationNumber=1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(displayAsJsonString(personsByStationEndpointUrlDTO)))
                 .andExpect(status()
@@ -62,11 +62,11 @@ class AlertsUrlsControllerGetPersonsByStationTest {
     
     @Test
     @DisplayName("Given an EMPTY STATION NUMBER,"
-    		+ " when GET request (/firestation?stationNumber=),"
+    		+ " when GET request (/fireStation?stationNumber=),"
     		+ " then return - Status: 400 Bad Request")
     public void testGetPersonsByStationRequestWithEmptyStationNumberAsInput() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-        		.get("/firestation?stationNumber=")
+        		.get("/fireStation?stationNumber=")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(displayAsJsonString(personsByStationEndpointUrlDTO)))
                 .andExpect(status()

@@ -138,7 +138,7 @@ class PersonControllerGetPersonIT {
         public void testGetPersonRequestWithValidPersonResponseStatusOk() {
             assertEquals((HttpStatus.OK), response.getStatusCode());
             assertEquals(200, response.getStatusCodeValue());
-            assertEquals("request status", HttpStatus.OK.value(), response.getStatusCodeValue());
+            assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
        }  
         
         
@@ -169,7 +169,7 @@ class PersonControllerGetPersonIT {
                     "",
                     personToAddMissingId.getLastName());
         	
-            assertEquals("request status", HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
+            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
             assertNull(response.getBody().getFirstName());
             
         }   

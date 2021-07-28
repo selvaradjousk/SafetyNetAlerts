@@ -1,8 +1,8 @@
 package com.safetynet.alerts.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -109,7 +109,7 @@ public void testDeletePersonRequestWithValidPersonResponseNull() {
     
     // person is not found - confirms delete process
     assertEquals(404, response.getStatusCodeValue());
-    assertEquals("request status", HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
+    assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
 }
 
 @Test
