@@ -10,25 +10,47 @@ import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.util.MedicalRecordMapper;
 
+/**
+ * MedicalRecord Service class.
+ * @author Senthil
+ *
+ */
 @Service
 public class MedicalRecordService implements IMedicalRecordService {
 
-
+    /**
+     * IMedicalRecordDAO instance.
+     */
     private final IMedicalRecordDAO medicalRecordDAO;
 
+    /**
+     * MedicalRecordMapper instance.
+     */
     private final MedicalRecordMapper medicalRecordMapper;
 
+    /**
+     * Class Constructor.
+     *
+     * @param medicalEndpointRecordDAO the medical endpoint record DAO
+     * @param medicalRecordEndpointMapper the medical record endpoint mapper
+     */
     @Autowired
     public MedicalRecordService(
-    		final IMedicalRecordDAO medicalRecordDAO,
+    		final IMedicalRecordDAO medicalEndpointRecordDAO,
     		final MedicalRecordMapper
-    		medicalRecordMapper) {
-        this.medicalRecordDAO = medicalRecordDAO;
-        this.medicalRecordMapper = medicalRecordMapper;
+    		medicalRecordEndpointMapper) {
+        this.medicalRecordDAO = medicalEndpointRecordDAO;
+        this.medicalRecordMapper = medicalRecordEndpointMapper;
     }
 
 
-
+    /**
+     * get medical Record by id.
+     *
+     * @param firstName the first name
+     * @param lastName the last name
+     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecord)
+     */
      public MedicalRecordDTO getMedicalRecordById(
     		 final String firstName,
     		 final String lastName) {
@@ -36,13 +58,20 @@ public class MedicalRecordService implements IMedicalRecordService {
         		.getMedicalRecordByPersonId(firstName, lastName);
 
         if (medicalRecord == null) {
-            throw new DataNotFoundException( firstName + " " + lastName
+            throw new DataNotFoundException(firstName + " " + lastName
             		+ ": Not able to retrieve this medicalRecord.");
         }
 
-        return medicalRecordMapper.toMedicalRecordDTO(medicalRecord);
+        return medicalRecordMapper
+        		.toMedicalRecordDTO(medicalRecord);
     }
-	
+
+     /**
+      * Adds new medical Record.
+      *
+      * @param medicalRecord the medical record
+      * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved)
+      */
      public MedicalRecordDTO addNewMedicalRecord(
     		 final MedicalRecordDTO medicalRecord) {
          MedicalRecord medicalRecordFound = medicalRecordDAO
@@ -59,26 +88,44 @@ public class MedicalRecordService implements IMedicalRecordService {
         MedicalRecord medicalRecordSaved = medicalRecordDAO
         		.updateMedicalRecord(medicalRecordToSave);
 
-        return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved);
+        return medicalRecordMapper
+        		.toMedicalRecordDTO(medicalRecordSaved);
     }
 
 
+     /**
+      * updates medical Record.
+      *
+      * @param medicalRecord the medical record
+      * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound)
+      */
     public MedicalRecordDTO updateMedicalRecord(
     		final MedicalRecordDTO medicalRecord) {
         MedicalRecord medicalRecordFound = medicalRecordDAO
-        		.getMedicalRecordByPersonId(medicalRecord.getFirstName(),
-                medicalRecord.getLastName());
+        		.getMedicalRecordByPersonId(
+        				medicalRecord.getFirstName(),
+        				medicalRecord.getLastName());
 
         if (medicalRecordFound == null) {
             throw new DataNotFoundException("MedicalRecord not found");
         }
-        medicalRecordFound.setBirthDate(medicalRecord.getBirthDate());
-        medicalRecordFound.setMedications(medicalRecord.getMedications());
-        medicalRecordFound.setAllergies(medicalRecord.getAllergies());
+        medicalRecordFound.setBirthDate(medicalRecord
+        		.getBirthDate());
+        medicalRecordFound.setMedications(medicalRecord
+        		.getMedications());
+        medicalRecordFound.setAllergies(medicalRecord
+        		.getAllergies());
 
-        return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound);
+        return medicalRecordMapper
+        		.toMedicalRecordDTO(medicalRecordFound);
     }
 
+    /**
+     * Delete medical Record.
+     *
+     * @param firstName the first name
+     * @param lastName the last name
+     */
     public void deleteMedicalRecord(
     		final String firstName,
     		final String lastName) {

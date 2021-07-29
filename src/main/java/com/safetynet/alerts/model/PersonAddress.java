@@ -6,19 +6,39 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Person Address DO.
+ * @author Senthil
+ *
+ */
 @Getter
 @Setter
 @AllArgsConstructor
 public class PersonAddress {
 
+    /**
+     * last name.
+     */
     private String lastName;
 
+    /**
+     * phone.
+     */
     private String phone;
 
+    /**
+     * age.
+     */
     private int age;
 
-    List<String> medications;
+    /**
+     * medications list.
+     */
+    private List<String> medications;
 
-    List<String> allergies;
+    /**
+     * allergies list.
+     */
+    private List<String> allergies;
 
 }

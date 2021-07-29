@@ -9,7 +9,6 @@ import lombok.ToString;
 
 /**
  * Fire station DO.
- * 
  * @author Senthil
  *
  */

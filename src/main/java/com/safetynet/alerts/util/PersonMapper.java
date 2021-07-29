@@ -7,7 +7,7 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
 
 /**
- * MApper for PErson Data resource.
+ * Mapper for PErson Data resource.
  * @author Senthil
  *
  */
@@ -15,9 +15,10 @@ import com.safetynet.alerts.model.Person;
 public class PersonMapper {
 
     /**
-     * Person DTO toPerson DO.
-     * @param personDTO
-     * @return Person
+     * To person.
+     *
+     * @param personDTO the person DTO
+     * @return the person
      */
     public Person toPerson(final PersonDTO personDTO) {
 
@@ -31,9 +32,10 @@ public class PersonMapper {
     }
 
     /**
-     * Person DO toPerson DTO.
-     * @param person
-     * @return PersonDTO
+     * To person DTO.
+     *
+     * @param person the person
+     * @return the person DTO
      */
     public PersonDTO toPersonDTO(final Person person) {
 

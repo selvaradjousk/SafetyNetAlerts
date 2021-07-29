@@ -19,8 +19,9 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
     /**
      * Handle Bad Request method.
-     * @param ex
-     * @param request
+     *
+     * @param ex the ex
+     * @param request the request
      * @return  HTTP status
      */
     @ExceptionHandler(BadRequestException.class)
@@ -38,8 +39,9 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
     /**
      * Handle Not Found.
-     * @param ex
-     * @param request
+     *
+     * @param ex the ex
+     * @param request the request
      * @return HTTP status
      */
     @ExceptionHandler(DataNotFoundException.class)
@@ -57,8 +59,9 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
     /**
      * Handle Conflict.
-     * @param ex
-     * @param request
+     *
+     * @param ex the ex
+     * @param request the request
      * @return HTTP conflict status
      */
     @ExceptionHandler(DataAlreadyRegisteredException.class)

@@ -32,15 +32,15 @@ public class PersonService implements IPersonService {
 
     /**
      * Person service constructor.
-     * @param personDAO
-     * @param personMapper
+     * @param personEndpointDAO
+     * @param personEndpointMapper
      */
     @Autowired
     public PersonService(
-    		final IPersonDAO personDAO,
-    		final PersonMapper personMapper) {
-        this.personDAO = personDAO;
-        this.personMapper = personMapper;
+    		final IPersonDAO personEndpointDAO,
+    		final PersonMapper personEndpointMapper) {
+        this.personDAO = personEndpointDAO;
+        this.personMapper = personEndpointMapper;
     }
 
     /**
@@ -77,8 +77,7 @@ public class PersonService implements IPersonService {
         }
        return listOfPerson;
    }
-    
-    
+
     /**
      * Get person by address.
      * @param address
@@ -86,34 +85,36 @@ public class PersonService implements IPersonService {
      */
     public List<Person> getPersonsByAddress(final String address) {
 
-        List<Person> personsByAddress = personDAO.getPersonByAddress(address);
+        List<Person> personsByAddress = personDAO
+        		.getPersonByAddress(address);
 
         if (personsByAddress.isEmpty()) {
-			throw new DataNotFoundException("Failed to get persons for the address : " + address);
+			throw new DataNotFoundException(
+					"Failed to get persons"
+					+ " for the address : " + address);
 		}
 
         return personsByAddress;
     }
-    
-    
 
 	/**
-	 * Get Person list by city
+	 * Get Person list by city.
 	 * @param city
 	 * @return person list by city
 	 */
     public List<Person> getPersonsByCity(final String city) {
 
-        List<Person> personsByCity = personDAO.getPersonByCity(city);
+        List<Person> personsByCity = personDAO
+        		.getPersonByCity(city);
 
 		if (personsByCity.isEmpty()) {
-			throw new DataNotFoundException("Failed to get persons for the city : " + city);
+			throw new DataNotFoundException(
+					"Failed to get persons"
+					+ " for the city : " + city);
         }
 
         return personsByCity;
     }
-	
-	
 
     /**
      * Add new person.
@@ -133,8 +134,10 @@ public class PersonService implements IPersonService {
 					+ " already registered");
         }
 
-        Person personToSave = personMapper.toPerson(newPerson);
-        Person personSaved = personDAO.savePerson(personToSave);
+        Person personToSave = personMapper
+        		.toPerson(newPerson);
+        Person personSaved = personDAO
+        		.savePerson(personToSave);
 
         return personMapper.toPersonDTO(personSaved);
     }

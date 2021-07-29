@@ -9,7 +9,8 @@ public class BadRequestException extends RuntimeException {
 
     /**
      * Bad Request Exception method.
-     * @param message
+     *
+     * @param message the message
      */
     public BadRequestException(final String message) {
         super(message);

@@ -2,13 +2,45 @@ package com.safetynet.alerts.service;
 
 import com.safetynet.alerts.dto.MedicalRecordDTO;
 
+/**
+ * The Interface IMedicalRecordService.
+ */
 public interface IMedicalRecordService {
 
-    MedicalRecordDTO addNewMedicalRecord(MedicalRecordDTO newMedicalRecord);
+    /**
+     * Adds new medical Record.
+     *
+     * @param newMedicalRecord the new medical record
+     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved)
+     */
+    MedicalRecordDTO addNewMedicalRecord(
+    		MedicalRecordDTO newMedicalRecord);
 
-    MedicalRecordDTO updateMedicalRecord(MedicalRecordDTO existingMedicalRecord);
+    /**
+     * updates medical Record.
+     *
+     * @param existingMedicalRecord the existing medical record
+     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound)
+     */
+    MedicalRecordDTO updateMedicalRecord(
+    		MedicalRecordDTO existingMedicalRecord);
 
-    void deleteMedicalRecord(String firstName, String lastName);
+    /**
+     * Delete medical Record.
+     *
+     * @param firstName the first name
+     * @param lastName the last name
+     */
+    void deleteMedicalRecord(
+    		String firstName, String lastName);
 
-    MedicalRecordDTO getMedicalRecordById(String firstName, String lastName);
+    /**
+     * get medical Record by id.
+     *
+     * @param firstName the first name
+     * @param lastName the last name
+     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecord)
+     */
+    MedicalRecordDTO getMedicalRecordById(
+    		String firstName, String lastName);
 }

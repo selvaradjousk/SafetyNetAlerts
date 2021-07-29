@@ -10,34 +10,70 @@ import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 
+/**
+ * Alerts Service interface.
+ * @author Senthil
+ *
+ */
 public interface IAlertsUrlsService {
-	
-	// TODO - http://localhost:8080/firestation?stationNumber=<station_number>
-	// i.e. personsByStation(station_number)
+
+    /**
+     * Gets Persons By Station.
+     *
+     * @param station the station
+     * @return PersonsByStationDTO(list, adultCount, childCount)
+     */
     PersonsByStationDTO getPersonsByStation(int station);
 
-	// TODO - http://localhost:8080/childAlert?address=<address>
-	// i.e. childAlert(address)
+    /**
+     * Get child by address.
+     *
+     * @param address the address
+     * @return ChildAlertDTO(childList, adultList)
+     */
     ChildAlertDTO getChildByAddress(String address);
-    
-	// TODO - http://localhost:8080/phoneAlert?firestation=<firestation_number>
-	// i.e. phonealert(station_number)
+
+    /**
+     * Gets phone by station.
+     *
+     * @param station the station
+     * @return PhoneAlertDTO(phones)
+     */
     PhoneAlertDTO getPhonesByStation(int station);
 
-	// TODO - http://localhost:8080/fire?address=<address>
-	// i.e. fire(address)
+    /**
+     * Gets persons by address.
+     *
+     * @param address the address
+     * @return FireDTO(station, persons)
+     */
     FireDTO getPersonsByAddress(String address);
 
-	// TODO - http://localhost:8080/flood/stations?stations=<a list of station_numbers>
-	// i.e. flood(stations_list)
+    /**
+     * Gets houses covered by station.
+     *
+     * @param stations the stations
+     * @return FloodDTO(housesCoveredByStationDTO)
+     */
     FloodDTO getHousesCoveredByStation(List<Integer> stations);
-    
-	// TODO - http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
-	// i.e. personInfo(personId)
+
+    /**
+     * Get person info by id.
+     *
+     * @param firstName the first name
+     * @param lastName the last name
+     * @return PersonInfoDTO(personsInfo)
+     */
     PersonInfoDTO getInfoPersonByIdentity(String firstName, String lastName);
-	
-	// TODO - http://localhost:8080/communityEmail?city=<city>
+
+	// http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
-    CommunityEmailDTO getEmailsByCity(String city);
-	
+    /**
+	 * Get community email by city.
+	 *
+	 * @param city the city
+	 * @return CommunityEmailDTO(emails)
+	 */
+    CommunityEmailDTO getEmailsByCity(
+    		String city);
 }

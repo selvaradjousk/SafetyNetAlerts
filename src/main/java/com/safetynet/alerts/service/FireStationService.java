@@ -14,25 +14,49 @@ import com.safetynet.alerts.exception.DataNotFoundException;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.util.FireStationMapper;
 
+/**
+ * Firestation service class.
+ * @author Senthil
+ *
+ */
 @Service
 public class FireStationService implements IFireStationService {
 
-
+    /**
+     *  firestation DAO interface instance.
+     */
     private final IFireStationDAO fireStationDAO;
-    private final FireStationMapper fireStationMapper;
-    
 
+    /**
+     *  firestation mapper instance.
+     */
+    private final FireStationMapper fireStationMapper;
+
+    /**
+     * Firestation Service class constructor.
+     *
+     * @param fireStationEndpointDAO the fire station endpoint DAO
+     * @param fireStationEndpointMapper the fire station endpoint mapper
+     */
     @Autowired
-    public FireStationService(final IFireStationDAO fireStationDAO,
-                             final FireStationMapper fireStationMapper) {
-        this.fireStationDAO = fireStationDAO;
+    public FireStationService(
+    		final IFireStationDAO fireStationEndpointDAO,
+    		final FireStationMapper fireStationEndpointMapper) {
+        this.fireStationDAO = fireStationEndpointDAO;
 		this.fireStationMapper = new FireStationMapper();
     }
 
+    /**
+     * Gets firestation by Id.
+     *
+     * @param stationId the station id
+     * @param address the address
+     * @return fireStationMapper.toFireStationDTO(fireStation)
+     */
     public FireStationDTO getFireStationById(
     		final Integer stationId,
     		final String address) {
-    	
+
         FireStation fireStation = fireStationDAO
         		.getStationById(stationId, address);
 
@@ -44,9 +68,15 @@ public class FireStationService implements IFireStationService {
 
         return fireStationMapper.toFireStationDTO(fireStation);
     }
-    
 
-    public FireStation getFireStationByAddress(final String address) {
+    /**
+     * Gets firestation by addresses.
+     *
+     * @param address the address
+     * @return fireStation
+     */
+    public FireStation getFireStationByAddress(
+    		final String address) {
         FireStation fireStation = fireStationDAO
         		.getStationByAddress(address);
 
@@ -59,15 +89,21 @@ public class FireStationService implements IFireStationService {
         return fireStation;
     }
 
-
-    public List<String> getAddressesByStation(final int station) {
+    /**
+     * Gets addresses by firestation Id.
+     * @param station Id
+     * @return addresses
+     */
+    public List<String> getAddressesByStation(
+    		final int station) {
         List<FireStation> fireStations = fireStationDAO
         		.getStationsByStationIds(station);
         List<String> addresses = new ArrayList<>();
 
         if (fireStations.isEmpty()) {
             throw new DataNotFoundException("Failed to get"
-            		+ " the addresses mapped to station : " + station);
+            		+ " the addresses mapped"
+            		+ " to station : " + station);
         }
 
         for (FireStation fireStation : fireStations) {
@@ -77,9 +113,15 @@ public class FireStationService implements IFireStationService {
         return addresses;
     }
 
+    /**
+     * adds new firestation.
+     *
+     * @param fireStationDTO the fire station DTO
+     * @return fireStationMapper.toFireStationDTO(fireSaved)
+     */
     public FireStationDTO addNewFireStation(
     		final FireStationDTO fireStationDTO) {
-    	
+
         FireStation fireFound = fireStationDAO
         		.getStationById(
         				fireStationDTO.getStationId(),
@@ -96,15 +138,23 @@ public class FireStationService implements IFireStationService {
 
         return fireStationMapper.toFireStationDTO(fireSaved);
     }
-	
+
+    /**
+     * updates existing firestation.
+     *
+     * @param fireStationDTO the fire station DTO
+     * @return fireStationMapper.toFireStationDTO(fireToUpdate)
+     */
     public FireStationDTO updateExistingStation(
     		final FireStationDTO fireStationDTO) {
-    	
+
         FireStation fireToUpdate = fireStationDAO
-        		.getStationByAddress(fireStationDTO.getAddress());
+        		.getStationByAddress(fireStationDTO
+        				.getAddress());
 
         if (fireToUpdate == null) {
-            throw new DataNotFoundException("FireStation not found");
+            throw new DataNotFoundException("FireStation"
+            		+ " not found");
         }
 
         fireToUpdate.setStationId(fireStationDTO
@@ -112,13 +162,22 @@ public class FireStationService implements IFireStationService {
 
         return fireStationMapper.toFireStationDTO(fireToUpdate);
     }
-	
 
-    public void deleteExistingStation(final Integer stationId, final String address) {
-        FireStation fireStationToDelete = fireStationDAO.getStationById(stationId, address);
+    /**
+     * Deletes existing firestation.
+     *
+     * @param stationId the station id
+     * @param address the address
+     */
+    public void deleteExistingStation(
+    		final Integer stationId,
+    		final String address) {
+        FireStation fireStationToDelete = fireStationDAO
+        		.getStationById(stationId, address);
 
         if (fireStationToDelete == null) {
-            throw new DataNotFoundException("FireStation not found");
+            throw new DataNotFoundException("FireStation"
+            		+ " not found");
         }
 
         fireStationDAO.deleteStationByMapping(fireStationToDelete);

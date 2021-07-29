@@ -5,54 +5,55 @@ import java.util.List;
 import com.safetynet.alerts.model.Person;
 
 /**
- * Interface class Data Access Objects for Person resources.
+ * The Interface IPersonDAO.
  * @author Senthil
- *
  */
 public interface IPersonDAO {
 
 	/**
-	 * Gets a Person data resource from the Map list
-	 *  on it key value sent.
-	 * @param firstName identifier for the person to be found
-	 * @param lastName identifier for the person to be found
-	 * @return the person data
+	 * Gets the person by name.
+	 *
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @return the person by name
 	 */
 	Person getPersonByName(String firstName, String lastName);
 
 	/**
-	 * Gets the Person data resource list form the Map.
-	 * @return person list
+	 * Gets the person list.
+	 *
+	 * @return the person list
 	 */
 	List<Person> getPersonList();
-	
-	
 
 	/**
-	 * get Person By City
-	 * @param city
-	 * @return personsByCity
+	 * Gets the person by city.
+	 *
+	 * @param city the city
+	 * @return the person by city
 	 */
-	public List<Person> getPersonByCity(final String city);
-	
+	List<Person> getPersonByCity(String city);
 
 	/**
-	 * Gets person list by address
-	 * @param address
-	 * @return personsByAddress
+	 * Gets the person by address.
+	 *
+	 * @param address the address
+	 * @return the person by address
 	 */
 	List<Person> getPersonByAddress(String address);
-	
+
 	/**
-	 * Saves the requested Person data resource form the Map list.
-	 * @param person identifier for the person to be saved
-	 * @return person saved
+	 * Save person.
+	 *
+	 * @param person the person
+	 * @return the person
 	 */
 	Person savePerson(Person person);
 
 	/**
-	 * Deletes the requested Person data resource form the Map list.
-	 * @param person identifier for the person to be deleted
+	 * Delete person.
+	 *
+	 * @param person the person
 	 */
 	void deletePerson(Person person);
 

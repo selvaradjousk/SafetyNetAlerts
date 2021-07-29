@@ -20,7 +20,6 @@ import com.safetynet.alerts.util.DataFileReader;
 @Repository
 public class PersonDAO implements IPersonDAO {
 
-
 	/**
 	 * Mapping Person data resource.
 	 */
@@ -39,9 +38,10 @@ public class PersonDAO implements IPersonDAO {
 
 	/**
 	 * Gets a Person data resource from the Map list on it key value sent.
+	 *
 	 * @param firstName identifier for the person to be found
 	 * @param lastName identifier for the person to be found
-	 * @return personsMap.get(firstName + lastName) list the persons
+	 * @return the person by name
 	 */
 	@Override
 	public Person getPersonByName(
@@ -52,7 +52,8 @@ public class PersonDAO implements IPersonDAO {
 
 	/**
 	 * Gets the Person data resource list form the Map.
-	 * @return ArrayList<>(personList) list the persons
+	 *
+	 * @return the person list
 	 */
 	@Override
 	public List<Person> getPersonList() {
@@ -60,11 +61,11 @@ public class PersonDAO implements IPersonDAO {
         return new ArrayList<>(personList);
 
     }
-	
-	
+
 	/**
-	 * Get person list by address
-	 * @param address
+	 * Get person list by address.
+	 *
+	 * @param address the address
 	 * @return personsByAddress
 	 */
 	public List<Person> getPersonByAddress(final String address) {
@@ -79,10 +80,11 @@ public class PersonDAO implements IPersonDAO {
 
         return personsByAddress;
     }
-	
+
 	/**
-	 * get Person By City
-	 * @param city
+	 * get Person By City.
+	 *
+	 * @param city the city
 	 * @return personsByCity
 	 */
 	public List<Person> getPersonByCity(final String city) {
@@ -98,7 +100,6 @@ public class PersonDAO implements IPersonDAO {
 
         return personsByCity;
     }
-	
 
 	/**
 	 * Saves the requested Person data resource form the Map list.

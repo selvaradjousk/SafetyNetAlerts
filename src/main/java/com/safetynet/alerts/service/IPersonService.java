@@ -14,8 +14,9 @@ public interface IPersonService {
 
     /**
      * Get person by id.
-     * @param firstName
-     * @param lastName
+     *
+     * @param firstName the first name
+     * @param lastName the last name
      * @return person
      */
 	PersonDTO getPersonById(String firstName, String lastName);
@@ -25,40 +26,44 @@ public interface IPersonService {
      * @return person list
      */
 	List<Person> getAllPersonList();
-	
-	
+
     /**
      * Get list of persons by address.
-     * @param address
+     *
+     * @param address the address
      * @return person list
      */
 	List<Person> getPersonsByAddress(String address);
-	
+
 	/**
-	 * Get Person list by city
-	 * @param city
+	 * Get Person list by city.
+	 *
+	 * @param city the city
 	 * @return person list by city
 	 */
 	List<Person> getPersonsByCity(String city);
-	
+
     /**
      * Add new person.
-     * @param newPerson
+     *
+     * @param newPerson the new person
      * @return newPerson saved
      */
     PersonDTO addNewPerson(PersonDTO newPerson);
 
     /**
      * Update existing person.
-     * @param person
+     *
+     * @param person the person
      * @return person found
      */
 	PersonDTO updateExistingPerson(PersonDTO person);
 
     /**
      * Delete existing person.
-     * @param firstName
-     * @param lastName
+     *
+     * @param firstName the first name
+     * @param lastName the last name
      */
 	void deleteExistingPerson(String firstName, String lastName);
 }

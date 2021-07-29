@@ -5,10 +5,21 @@ import java.time.Period;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Class performs computation of person age.
+ * @author Senthil
+ *
+ */
 @Component
 public class ComputeAgeOfPerson {
 
 
+    /**
+     * Gets the age.
+     *
+     * @param birthDate the birth date
+     * @return the age
+     */
     public int getAge(final LocalDate birthDate) {
 
         LocalDate currentDate = LocalDate.now();

@@ -3,7 +3,6 @@ package com.safetynet.alerts.controller;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.internal.constraintvalidators.bv.NotBlankValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +35,12 @@ public class PersonController {
 
 	/**
 	 * Constructor for PersonController Class.
-	 * @param personService
+	 * @param personEndpointService
 	 */
 	@Autowired
 	public PersonController(
-			final IPersonService personService) {
-		this.personService = personService;
+			final IPersonService personEndpointService) {
+		this.personService = personEndpointService;
 	}
 
     /**
@@ -54,8 +53,10 @@ public class PersonController {
      */
 	@GetMapping("/person")
 	public ResponseEntity<PersonDTO> getPerson(
-			@Valid @NotBlank @RequestParam("firstName") final String firstName,
-			@Valid @NotBlank @RequestParam("lastName") final String lastName) {
+			@Valid @NotBlank @RequestParam("firstName")
+			final String firstName,
+			@Valid @NotBlank @RequestParam("lastName")
+			final String lastName) {
         if (firstName == null
         		|| firstName.trim().length() == 0
         		|| lastName == null
@@ -104,7 +105,7 @@ public class PersonController {
      */
     @PutMapping("/person")
     public ResponseEntity<PersonDTO> updateExistingPerson(
-    		@RequestBody final PersonDTO person) throws BadRequestException{
+    		@RequestBody final PersonDTO person) throws BadRequestException {
 
         if (person.getFirstName() == null
         		|| person.getFirstName().isEmpty()

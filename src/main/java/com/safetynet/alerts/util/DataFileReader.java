@@ -47,8 +47,9 @@ public class DataFileReader {
     private String dataFilePath;
 
     /**
-     * Read json data to DO.
-     * @throws IOException
+     * Read json data to POJO.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @PostConstruct
     public void readJsonDataToPOJO() throws IOException {
@@ -69,8 +70,9 @@ public class DataFileReader {
     }
 
 	/**
-	 * Read MedicalRecord Data.
-	 * @param readJsonData
+	 * Read medical record data.
+	 *
+	 * @param readJsonData the read json data
 	 */
 	private void readMedicalRecordData(final JsonNode readJsonData) {
 		// Transfers the all medical record details
@@ -102,9 +104,10 @@ public class DataFileReader {
 	}
 
 	/**
-	 * Read Medication Data.
-	 * @param jsonNodeMedicalRecord
-	 * @param medicationsList
+	 * Read medication data.
+	 *
+	 * @param jsonNodeMedicalRecord the json node medical record
+	 * @param medicationsList the medications list
 	 */
 	private void readMedicationData(
 			final JsonNode jsonNodeMedicalRecord,
@@ -117,9 +120,10 @@ public class DataFileReader {
 	}
 
 	/**
-	 * Read Allergies Data.
-	 * @param jsonNodeMedicalRecord
-	 * @param allergiesList
+	 * Read allergies data.
+	 *
+	 * @param jsonNodeMedicalRecord the json node medical record
+	 * @param allergiesList the allergies list
 	 */
 	private void readAllergiesData(
 			final JsonNode jsonNodeMedicalRecord,
@@ -132,8 +136,9 @@ public class DataFileReader {
 	}
 
 	/**
-	 * Read FireStation Data.
-	 * @param readJsonData
+	 * Read fire station data.
+	 *
+	 * @param readJsonData the read json data
 	 */
 	private void readFireStationData(final JsonNode readJsonData) {
 		// Transfers the all Firestation details
@@ -151,8 +156,9 @@ public class DataFileReader {
 	}
 
 	/**
-	 * Read Person Data.
-	 * @param readJsonData
+	 * Read person data.
+	 *
+	 * @param readJsonData the read json data
 	 */
 	private void readPersonData(final JsonNode readJsonData) {
 		// Transfers the all person details
@@ -174,24 +180,27 @@ public class DataFileReader {
 	}
 
     /**
-     * Get Person List.
-     * @return person list
+     * Gets the person list.
+     *
+     * @return the person list
      */
     public List<Person> getPersonList() {
         return personList;
     }
 
     /**
-     * Get FireStation List.
-     * @return fire station list
+     * Gets the fire station list.
+     *
+     * @return the fire station list
      */
     public List<FireStation> getFireStationList() {
         return fireStationList;
     }
 
     /**
-     * Get Medical Record List.
-     * @return medical record list
+     * Gets the medical record list.
+     *
+     * @return the medical record list
      */
     public List<MedicalRecord> getMedicalRecordList() {
         return medicalRecordList;

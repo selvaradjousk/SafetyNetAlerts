@@ -15,18 +15,33 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IMedicalRecordService;
 
+/**
+ * The Class MedicalRecordController.
+ */
 @RestController
 public class MedicalRecordController {
 
+    /** The medical record service. */
     private final IMedicalRecordService medicalRecordService;
 
-
+   /**
+    * Instantiates a new medical record controller.
+    *
+    * @param medicalRecordEndPointService the medical record service
+    */
    @Autowired
    public MedicalRecordController(
-		   final IMedicalRecordService medicalRecordService) {
-       this.medicalRecordService = medicalRecordService;
+		   final IMedicalRecordService medicalRecordEndPointService) {
+       this.medicalRecordService = medicalRecordEndPointService;
    }
 
+   /**
+    * Gets the medical record.
+    *
+    * @param firstName the first name
+    * @param lastName the last name
+    * @return the medical record
+    */
    @GetMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> getMedicalRecord(
 		   @RequestParam("firstName") final String firstName,
@@ -44,15 +59,19 @@ public class MedicalRecordController {
 
        return new ResponseEntity<>(medDTO, HttpStatus.OK);
    }
-   
-   
 
+   /**
+    * Creates the medical record.
+    *
+    * @param medicalRecord the medical record
+    * @return the response entity
+    */
    @PostMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> createMedicalRecord(
 		   @RequestBody final MedicalRecordDTO medicalRecord) {
 
-       if (medicalRecord.getFirstName() == null ||
-    		   medicalRecord.getFirstName().isEmpty()
+       if (medicalRecord.getFirstName() == null
+    		   || medicalRecord.getFirstName().isEmpty()
     		   || medicalRecord.getLastName() == null
     		   || medicalRecord.getLastName().isEmpty()) {
            throw new BadRequestException("Response:"
@@ -63,16 +82,21 @@ public class MedicalRecordController {
 
         return new ResponseEntity<>(medicalRecordCreated, HttpStatus.CREATED);
    }
-   
-   
+
+   /**
+    * Update medical record.
+    *
+    * @param medicalRecord the medical record
+    * @return the response entity
+    */
    @PutMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> updateMedicalRecord(
 		   @RequestBody final MedicalRecordDTO medicalRecord) {
 
        if (medicalRecord.getFirstName() == null
     		   || medicalRecord.getFirstName().isEmpty()
-    		   || medicalRecord.getLastName() == null ||
-               medicalRecord.getLastName().isEmpty()) {
+    		   || medicalRecord.getLastName() == null
+    		   || medicalRecord.getLastName().isEmpty()) {
            throw new BadRequestException("Response:"
               		+ " 404 Bad request missing info in request body");
        }
@@ -80,10 +104,15 @@ public class MedicalRecordController {
     		   .updateMedicalRecord(medicalRecord);
 
          return new ResponseEntity<>(medicalRecordUpdated, HttpStatus.OK);
-
    }
-   
-   
+
+   /**
+    * Delete medical record.
+    *
+    * @param firstName the first name
+    * @param lastName the last name
+    * @return the response entity
+    */
    @DeleteMapping("/medicalRecord")
    public ResponseEntity<Void> deleteMedicalRecord(
 		   @RequestParam("firstName") final String firstName,
@@ -101,5 +130,4 @@ public class MedicalRecordController {
 
        return new ResponseEntity<>(HttpStatus.OK);
    }
-   
 }
