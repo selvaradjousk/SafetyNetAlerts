@@ -1,8 +1,13 @@
 package com.safetynet.alerts.controller;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +24,7 @@ import com.safetynet.alerts.service.IFireStationService;
  * The Class FireStationController.
  */
 @RestController
+@Validated
 public class FireStationController {
 
    /** The fire station service. */
@@ -44,10 +50,11 @@ public class FireStationController {
     */
    @GetMapping("/firestation")
    public ResponseEntity<FireStationDTO> getFireStation(
-		   @RequestParam("station") final Integer station,
-		   @RequestParam("address") final String address) {
+		   @RequestParam("station")
+		   @Valid @NotNull final Integer station,
+		   @RequestParam("address")
+		   @Valid @NotBlank final String address) {
 
-       fireStationValidityCheckForDeleteAndGet(station, address);
        FireStationDTO fireDTO = fireStationService
     		   .getFireStationById(station, address);
 
@@ -97,10 +104,11 @@ public class FireStationController {
     */
    @DeleteMapping("/firestation")
    public ResponseEntity<Void> deleteFireStation(
-		   @RequestParam("station") final Integer station,
-		   @RequestParam("address") final String address) {
+		   @RequestParam("station")
+		   @Valid @NotNull final Integer station,
+		   @RequestParam("address")
+		   @Valid @NotBlank final String address) {
 
-       fireStationValidityCheckForDeleteAndGet(station, address);
        fireStationService.deleteExistingStation(station, address);
 
        return new ResponseEntity<>(HttpStatus.OK);
@@ -122,28 +130,6 @@ public class FireStationController {
 				|| fireStationAddressIsEmpty) {
           throw new BadRequestException("Response Status:"
           		+ " 400 Bad request - invalid or empty request body");
-      }
-	}
-
-	/**
-	 * Fire station validity check for delete and get.
-	 *
-	 * @param station the station
-	 * @param address the address
-	 */
-	private void fireStationValidityCheckForDeleteAndGet(
-			final Integer station,
-			final String address) {
-		boolean fireStationAddressIsNull = (address == null);
-		boolean fireStationAddressLengthIsZero
-		= (address.trim().length() == 0);
-		boolean stationIdIsNull = (station == null);
-
-		if (fireStationAddressIsNull
-				|| fireStationAddressLengthIsZero
-				|| stationIdIsNull) {
-          throw new BadRequestException("Response Status:"
-          		+ " 400 Bad request - invalid parameter input");
       }
 	}
 }

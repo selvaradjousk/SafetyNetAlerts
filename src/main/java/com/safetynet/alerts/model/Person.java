@@ -1,7 +1,10 @@
 package com.safetynet.alerts.model;
 
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,13 +29,17 @@ public class Person {
 /**
  * person first name.
  */
-	@NotBlank
+	@Length(min=1, message = "Length cannot be zero")
+	@NotNull(message = "must not be null")
+	@NotEmpty
 	private String firstName;
 
 /**
  * person last name.
  */
-	@NotBlank
+	@Length(min=1)
+	@NotNull
+	@NotEmpty
 	private String lastName;
 
 /**

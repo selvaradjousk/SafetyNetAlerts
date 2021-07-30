@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ import com.safetynet.alerts.service.IPersonService;
  *
  */
 @RestController
+@Validated
 public class PersonController {
 
 	/**
@@ -53,18 +55,11 @@ public class PersonController {
      */
 	@GetMapping("/person")
 	public ResponseEntity<PersonDTO> getPerson(
-			@Valid @NotBlank @RequestParam("firstName")
-			final String firstName,
-			@Valid @NotBlank @RequestParam("lastName")
-			final String lastName) {
-        if (firstName == null
-        		|| firstName.trim().length() == 0
-        		|| lastName == null
-                || lastName.trim().length() == 0) {
-            throw new BadRequestException("Response Status: 404 Bad Request"
-            		+ " -> The parameter entered has missing values"
-            		+ " or invalid");
-        }
+			@RequestParam("firstName")
+			@Valid @NotBlank final String firstName,
+			@RequestParam("lastName")
+			@Valid @NotBlank final String lastName) {
+
 		PersonDTO personDTO = personService
 				.getPersonById(firstName, lastName);
 
@@ -80,16 +75,8 @@ public class PersonController {
      */
     @PostMapping("/person")
     public ResponseEntity<PersonDTO> addNewPerson(
-    		@RequestBody final PersonDTO person) {
+    		@Valid @RequestBody final PersonDTO person) {
 
-        if (person.getFirstName() == null
-        		|| person.getFirstName().isEmpty()
-        		|| person.getLastName() == null
-                || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status: 404 Bad request"
-            		+ " The request body is incomplete"
-            		+ " or missing required entries");
-        }
         PersonDTO personAdded = personService
         		.addNewPerson(person);
 
@@ -105,16 +92,9 @@ public class PersonController {
      */
     @PutMapping("/person")
     public ResponseEntity<PersonDTO> updateExistingPerson(
-    		@RequestBody final PersonDTO person) throws BadRequestException {
+    		@Valid @RequestBody
+    		final PersonDTO person) throws BadRequestException {
 
-        if (person.getFirstName() == null
-        		|| person.getFirstName().isEmpty()
-        		|| person.getLastName() == null
-                || person.getLastName().isEmpty()) {
-            throw new BadRequestException("Response Status 404 Bad request"
-            		+ " The request body is incomplete"
-            		+ " or missing required entries");
-        }
         PersonDTO personUpdated = personService
         		.updateExistingPerson(person);
 
@@ -130,17 +110,11 @@ public class PersonController {
      */
     @DeleteMapping("/person")
     public ResponseEntity<Void> deletePerson(
-    		@RequestParam("firstName") final String firstName,
-    		@RequestParam("lastName") final String lastName) {
+    		@RequestParam("firstName")
+    		@Valid @NotBlank final String firstName,
+    		@RequestParam("lastName")
+    		@Valid @NotBlank final String lastName) {
 
-		if (firstName == null
-				|| firstName.trim().length() == 0
-				|| lastName == null
-                || lastName.trim().length() == 0) {
-            throw new BadRequestException("Response Status: 400 Bad request:"
-            		+ " The request body is incomplete "
-            		+ "or missing required parameters entry");
-        }
         personService.deleteExistingPerson(firstName, lastName);
 
         return new ResponseEntity<>(HttpStatus.OK);

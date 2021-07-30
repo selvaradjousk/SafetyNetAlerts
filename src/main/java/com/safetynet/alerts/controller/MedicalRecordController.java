@@ -1,8 +1,12 @@
 package com.safetynet.alerts.controller;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.dto.MedicalRecordDTO;
-import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IMedicalRecordService;
 
 /**
  * The Class MedicalRecordController.
  */
 @RestController
+@Validated
 public class MedicalRecordController {
 
     /** The medical record service. */
@@ -44,16 +48,11 @@ public class MedicalRecordController {
     */
    @GetMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> getMedicalRecord(
-		   @RequestParam("firstName") final String firstName,
-		   @RequestParam("lastName") final String lastName) {
+		   @RequestParam("firstName")
+		   @Valid @NotBlank final String firstName,
+		   @RequestParam("lastName")
+		   @Valid @NotBlank final String lastName) {
 
-       if (firstName == null
-    		   || firstName.trim().length() == 0
-    		   || lastName == null
-               || lastName.trim().length() == 0) {
-           throw new BadRequestException("Response: "
-           		+ "404 Bad request missing parameter values");
-       }
        MedicalRecordDTO medDTO = medicalRecordService
     		   .getMedicalRecordById(firstName, lastName);
 
@@ -68,15 +67,9 @@ public class MedicalRecordController {
     */
    @PostMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> createMedicalRecord(
-		   @RequestBody final MedicalRecordDTO medicalRecord) {
+		   @Valid @RequestBody
+		   final MedicalRecordDTO medicalRecord) {
 
-       if (medicalRecord.getFirstName() == null
-    		   || medicalRecord.getFirstName().isEmpty()
-    		   || medicalRecord.getLastName() == null
-    		   || medicalRecord.getLastName().isEmpty()) {
-           throw new BadRequestException("Response:"
-           		+ " 404 Bad request missing info in request body");
-       }
        MedicalRecordDTO medicalRecordCreated = medicalRecordService
     		   .addNewMedicalRecord(medicalRecord);
 
@@ -91,15 +84,8 @@ public class MedicalRecordController {
     */
    @PutMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> updateMedicalRecord(
-		   @RequestBody final MedicalRecordDTO medicalRecord) {
+		  @Valid @RequestBody final MedicalRecordDTO medicalRecord) {
 
-       if (medicalRecord.getFirstName() == null
-    		   || medicalRecord.getFirstName().isEmpty()
-    		   || medicalRecord.getLastName() == null
-    		   || medicalRecord.getLastName().isEmpty()) {
-           throw new BadRequestException("Response:"
-              		+ " 404 Bad request missing info in request body");
-       }
        MedicalRecordDTO medicalRecordUpdated = medicalRecordService
     		   .updateMedicalRecord(medicalRecord);
 
@@ -115,16 +101,11 @@ public class MedicalRecordController {
     */
    @DeleteMapping("/medicalRecord")
    public ResponseEntity<Void> deleteMedicalRecord(
-		   @RequestParam("firstName") final String firstName,
-		   @RequestParam("lastName") final String lastName) {
+		   @RequestParam("firstName")
+		   @Valid @NotBlank final String firstName,
+		   @RequestParam("lastName")
+		   @Valid @NotBlank final String lastName) {
 
-       if (firstName == null
-    		   || firstName.trim().length() == 0
-    		   || lastName == null
-               || lastName.trim().length() == 0) {
-           throw new BadRequestException("Response: "
-              		+ "400 Bad request missing parameter values");
-       }
        medicalRecordService
        .deleteMedicalRecord(firstName, lastName);
 

@@ -22,13 +22,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.safetynet.alerts.controller.AlertsUrlsController;
 import com.safetynet.alerts.dto.PersonInfoDTO;
+import com.safetynet.alerts.exception.ExceptionHandlers;
 import com.safetynet.alerts.model.PersonInfo;
 import com.safetynet.alerts.service.AlertsUrlsService;
 
 
 @DisplayName("Alerts GET PERSON INFO BY ID Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(AlertsUrlsController.class)
+@WebMvcTest(controllers= {AlertsUrlsController.class, ExceptionHandlers.class})
 class AlertsUrlsControllerGetPersonInfoByIdTest {
 
     @Autowired

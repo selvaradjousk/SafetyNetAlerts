@@ -1,6 +1,9 @@
 package com.safetynet.alerts.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,13 +26,15 @@ public class PersonDTO {
     /**
      * Person first name.
      */
-	@NotBlank
+	@Length(min=1, message = "Length cannot be zero")
+	@NotNull(message = "must not be null")
 	private String firstName;
 
 	/**
      * Person last name.
      */
-	@NotBlank
+	@Length(min=1)
+	@NotNull
 	private String lastName;
 
     /**

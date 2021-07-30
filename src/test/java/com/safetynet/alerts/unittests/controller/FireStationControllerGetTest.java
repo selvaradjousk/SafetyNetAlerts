@@ -22,11 +22,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.controller.FireStationController;
 import com.safetynet.alerts.dto.FireStationDTO;
+import com.safetynet.alerts.exception.ExceptionHandlers;
 import com.safetynet.alerts.service.FireStationService;
 
 @DisplayName("FIRESTATION GET Endpoint Controller - Unit Tests")
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(FireStationController.class)
+@WebMvcTest(controllers= {FireStationController.class, ExceptionHandlers.class})
 public class FireStationControllerGetTest {
 
     @Autowired

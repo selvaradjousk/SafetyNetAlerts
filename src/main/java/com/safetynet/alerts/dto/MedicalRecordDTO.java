@@ -2,6 +2,11 @@ package com.safetynet.alerts.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,11 +28,17 @@ public class MedicalRecordDTO {
     /**
      * first name.
      */
+	@Length(min=1)
+	@NotNull
+	@NotEmpty
     private String firstName;
 
     /**
      * last name.
      */
+	@Length(min=1)
+	@NotNull
+	@NotEmpty
     private String lastName;
 
     /**

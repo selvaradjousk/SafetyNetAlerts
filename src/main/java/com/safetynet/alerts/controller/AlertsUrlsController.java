@@ -2,9 +2,15 @@ package com.safetynet.alerts.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +22,13 @@ import com.safetynet.alerts.dto.FloodDTO;
 import com.safetynet.alerts.dto.PersonInfoDTO;
 import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
-import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IAlertsUrlsService;
 
 /**
  * The Class AlertsUrlsController.
  */
 @RestController
+@Validated
 public class AlertsUrlsController {
 
 	/** The alerts urls service. */
@@ -47,13 +53,9 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/fireStation")
 	public ResponseEntity<PersonsByStationDTO> getPersonsByStation(
-			@RequestParam("stationNumber") final Integer station) {
+			@RequestParam("stationNumber")
+			@Valid @NotNull final Integer station) {
 
-		if (station == null) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for station number");
-		}
 		PersonsByStationDTO personsByStationDTO = alertsUrlsService
 				.getPersonsByStation(station);
 
@@ -68,13 +70,9 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/childAlert")
 	public ResponseEntity<ChildAlertDTO> getChildByAddress(
-			@RequestParam("address") final String address) {
+			@RequestParam("address")
+			@Valid @NotBlank final String address) {
 
-		if (address.trim().length() == 0) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for child address");
-		}
 		ChildAlertDTO childAlertDTO = alertsUrlsService
 				.getChildByAddress(address);
 
@@ -89,14 +87,9 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/phoneAlert")
 	public ResponseEntity<PhoneAlertDTO> getPhonesByStation(
-			@RequestParam("firestation") final Integer station) {
+			@RequestParam("firestation")
+			@Valid @NotNull final Integer station) {
 
-
-		if (station == null) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for stations");
-		}
 		PhoneAlertDTO phoneAlertDTO = alertsUrlsService
 				.getPhonesByStation(station);
 
@@ -111,13 +104,9 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/fire")
 	public ResponseEntity<FireDTO> getPersonsByAddress(
-			@RequestParam("address") final String address) {
+			@RequestParam("address")
+			@Valid @NotBlank final String address) {
 
-		if (address.trim().length() == 0) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for address");
-		}
 		FireDTO fireDTO = alertsUrlsService
 				.getPersonsByAddress(address);
 
@@ -133,13 +122,8 @@ public class AlertsUrlsController {
 	@GetMapping("/flood/stations")
 	public ResponseEntity<FloodDTO> getHouseholdsByStation(
 			@RequestParam("stations")
-			final List<Integer> stations) {
+			@Valid @NotEmpty final List<Integer> stations) {
 
-		if (stations.isEmpty()) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for station numbers");
-		}
 		FloodDTO floodDTO = alertsUrlsService
 				.getHousesCoveredByStation(stations);
 
@@ -155,15 +139,11 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/personInfo")
 	public ResponseEntity<PersonInfoDTO> getPersonInfoByIdentity(
-			@RequestParam("firstName") final String firstName,
-			@RequestParam("lastName") final String lastName) {
+			@RequestParam("firstName")
+			@Valid @NotBlank final String firstName,
+			@RequestParam("lastName")
+			@Valid @NotBlank final String lastName) {
 
-		if (firstName.trim().length() == 0
-				|| lastName.trim().length() == 0) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for person id");
-		}
 		PersonInfoDTO personInfoDTO = alertsUrlsService
 				.getInfoPersonByIdentity(firstName, lastName);
 
@@ -178,13 +158,9 @@ public class AlertsUrlsController {
 	 */
 	@GetMapping("/communityEmail")
 	public ResponseEntity<CommunityEmailDTO> getEmailsByCity(
-			@RequestParam("city") final String city) {
+			@RequestParam("city")
+			@Valid @NotBlank final String city) {
 
-		if (city.trim().length() == 0) {
-			throw new BadRequestException(
-					"Response Status: 404 Bad request"
-					+ " - missing input values for email");
-		}
 		CommunityEmailDTO communityEmailDTO = alertsUrlsService
 				.getEmailsByCity(city);
 
