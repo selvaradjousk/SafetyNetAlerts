@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
-	
     /**
      * Handle constraint violation exception.
      *
@@ -28,7 +27,9 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
      * @return the response entity
      */
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity handleConstraintViolationException(final ConstraintViolationException ex,final WebRequest request) {
+    public ResponseEntity handleConstraintViolationException(
+    		final ConstraintViolationException ex,
+    		final WebRequest request) {
 
         ExceptionDetails exceptionDetails = new ExceptionDetails(
                 LocalDateTime.now(),
@@ -37,8 +38,7 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
-    
-    
+
     /**
      * Handle Bad Request method.
      *

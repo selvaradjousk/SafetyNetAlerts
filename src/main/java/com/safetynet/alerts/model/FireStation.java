@@ -35,7 +35,7 @@ public class FireStation {
 	/**
 	 * fire station address.
 	 */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
 	private String address;
 }

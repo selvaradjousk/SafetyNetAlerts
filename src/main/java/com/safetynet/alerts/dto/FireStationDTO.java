@@ -33,7 +33,7 @@ public class FireStationDTO {
     /**
      * FireStation Address.
      */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
     private String address;
 }

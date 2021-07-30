@@ -23,7 +23,7 @@ public class PersonAddress {
     /**
      * last name.
      */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
     private String lastName;
 

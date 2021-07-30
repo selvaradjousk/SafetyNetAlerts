@@ -28,7 +28,7 @@ public class MedicalRecord {
 /**
  * person first name.
  */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
 	@NotEmpty
     private String firstName;
@@ -36,7 +36,7 @@ public class MedicalRecord {
 /**
  * person last name.
  */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
 	@NotEmpty
     private String lastName;

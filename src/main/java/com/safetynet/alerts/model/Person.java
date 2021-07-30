@@ -29,7 +29,7 @@ public class Person {
 /**
  * person first name.
  */
-	@Length(min=1, message = "Length cannot be zero")
+	@Length(min = 1, message = "Length cannot be zero")
 	@NotNull(message = "must not be null")
 	@NotEmpty
 	private String firstName;
@@ -37,7 +37,7 @@ public class Person {
 /**
  * person last name.
  */
-	@Length(min=1)
+	@Length(min = 1)
 	@NotNull
 	@NotEmpty
 	private String lastName;
