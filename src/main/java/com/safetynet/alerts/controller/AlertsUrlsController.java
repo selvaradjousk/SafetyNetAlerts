@@ -24,9 +24,12 @@ import com.safetynet.alerts.dto.PersonsByStationDTO;
 import com.safetynet.alerts.dto.PhoneAlertDTO;
 import com.safetynet.alerts.service.IAlertsUrlsService;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * The Class AlertsUrlsController.
  */
+@Log4j2
 @RestController
 @Validated
 public class AlertsUrlsController {
@@ -55,10 +58,12 @@ public class AlertsUrlsController {
 	public ResponseEntity<PersonsByStationDTO> getPersonsByStation(
 			@RequestParam("stationNumber")
 			@Valid @NotNull final Integer station) {
-
+		log.debug("GET Request - /fireStation"
+				+ " for station number {}", station);
 		PersonsByStationDTO personsByStationDTO = alertsUrlsService
 				.getPersonsByStation(station);
-
+		log.info("GET Request - /fireStation for station number {}"
+				+ " - 200 OK", station);
 		return new ResponseEntity<>(personsByStationDTO, HttpStatus.OK);
 	}
 
@@ -72,10 +77,11 @@ public class AlertsUrlsController {
 	public ResponseEntity<ChildAlertDTO> getChildByAddress(
 			@RequestParam("address")
 			@Valid @NotBlank final String address) {
-
+		log.debug("GET Request - /childAlert for address {}", address);
 		ChildAlertDTO childAlertDTO = alertsUrlsService
 				.getChildByAddress(address);
-
+		log.debug("GET Request - /childAlert for address {}"
+				+ " - 200 OK", address);
 		return new ResponseEntity<>(childAlertDTO, HttpStatus.OK);
 	}
 
@@ -89,10 +95,13 @@ public class AlertsUrlsController {
 	public ResponseEntity<PhoneAlertDTO> getPhonesByStation(
 			@RequestParam("firestation")
 			@Valid @NotNull final Integer station) {
-
+		log.debug("GET Request - /phoneAlert for"
+				+ " station number {}", station);
 		PhoneAlertDTO phoneAlertDTO = alertsUrlsService
 				.getPhonesByStation(station);
-
+		log.debug("GET Request - /phoneAlert"
+				+ " for station number {}"
+				+ " - 200 OK", station);
 		return new ResponseEntity<>(phoneAlertDTO, HttpStatus.OK);
 	}
 
@@ -106,10 +115,11 @@ public class AlertsUrlsController {
 	public ResponseEntity<FireDTO> getPersonsByAddress(
 			@RequestParam("address")
 			@Valid @NotBlank final String address) {
-
+		log.debug("GET Request - /fire for address {}", address);
 		FireDTO fireDTO = alertsUrlsService
 				.getPersonsByAddress(address);
-
+		log.debug("GET Request - /fire for address {}"
+				+ " - 200 OK", address);
 		return new ResponseEntity<>(fireDTO, HttpStatus.OK);
 	}
 
@@ -123,10 +133,11 @@ public class AlertsUrlsController {
 	public ResponseEntity<FloodDTO> getHouseholdsByStation(
 			@RequestParam("stations")
 			@Valid @NotEmpty final List<Integer> stations) {
-
+		log.debug("GET Request - /flood for stations {}", stations);
 		FloodDTO floodDTO = alertsUrlsService
 				.getHousesCoveredByStation(stations);
-
+		log.debug("GET Request - /flood for stations {}"
+				+ " - 200 OK", stations);
 		return new ResponseEntity<>(floodDTO, HttpStatus.OK);
 	}
 
@@ -143,10 +154,13 @@ public class AlertsUrlsController {
 			@Valid @NotBlank final String firstName,
 			@RequestParam("lastName")
 			@Valid @NotBlank final String lastName) {
-
+		log.debug("GET Request - /personInfo for first name {}"
+				+ " and last name {}", firstName, lastName);
 		PersonInfoDTO personInfoDTO = alertsUrlsService
 				.getInfoPersonByIdentity(firstName, lastName);
-
+		log.debug("GET Request - /personInfo for first name {}"
+				+ " and last name {}"
+				+ " - 200 OK", firstName, lastName);
 		return new ResponseEntity<>(personInfoDTO, HttpStatus.OK);
 	}
 
@@ -160,10 +174,11 @@ public class AlertsUrlsController {
 	public ResponseEntity<CommunityEmailDTO> getEmailsByCity(
 			@RequestParam("city")
 			@Valid @NotBlank final String city) {
-
+		log.debug("GET Request - /communityEmail for city {}", city);
 		CommunityEmailDTO communityEmailDTO = alertsUrlsService
 				.getEmailsByCity(city);
-
+		log.debug("GET Request - /communityEmail for city {}"
+				+ " - 200 OK", city);
 		return new ResponseEntity<>(communityEmailDTO, HttpStatus.OK);
 	}
 }

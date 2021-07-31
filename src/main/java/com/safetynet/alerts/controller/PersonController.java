@@ -19,6 +19,8 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IPersonService;
 
+import lombok.extern.log4j.Log4j2;
+
 
 /**
  * Provides methods for CRUD operations on Person data resource
@@ -26,6 +28,7 @@ import com.safetynet.alerts.service.IPersonService;
  * @author Senthil
  *
  */
+@Log4j2
 @RestController
 @Validated
 public class PersonController {
@@ -59,10 +62,11 @@ public class PersonController {
 			@Valid @NotBlank final String firstName,
 			@RequestParam("lastName")
 			@Valid @NotBlank final String lastName) {
-
+		log.debug("Person GET Request : {} {}", firstName, lastName);
 		PersonDTO personDTO = personService
 				.getPersonById(firstName, lastName);
-
+		log.debug("Person GET Request : {} {}"
+				+ "- 200 OK", firstName, lastName);
 		return new ResponseEntity<>(personDTO, HttpStatus.OK);
 	}
 
@@ -76,10 +80,13 @@ public class PersonController {
     @PostMapping("/person")
     public ResponseEntity<PersonDTO> addNewPerson(
     		@Valid @RequestBody final PersonDTO person) {
-
+    	log.debug("Person ADD Request : "
+    		+ person.getFirstName() + " " + person.getLastName());
         PersonDTO personAdded = personService
         		.addNewPerson(person);
-
+    	log.debug("Person ADD Request : "
+        		+ person.getFirstName() + " " + person.getLastName()
+        		+ "- 201 CREATED");
         return new ResponseEntity<>(personAdded, HttpStatus.CREATED);
     }
 
@@ -94,10 +101,13 @@ public class PersonController {
     public ResponseEntity<PersonDTO> updateExistingPerson(
     		@Valid @RequestBody
     		final PersonDTO person) throws BadRequestException {
-
+    	log.debug("Person UPDATE Request : "
+        		+ person.getFirstName() + " " + person.getLastName());
         PersonDTO personUpdated = personService
         		.updateExistingPerson(person);
-
+    	log.debug("Person UPDATE Request : "
+        		+ person.getFirstName() + " " + person.getLastName()
+        		+ "- 200 OK");
         return new ResponseEntity<>(personUpdated, HttpStatus.OK);
     }
 
@@ -114,9 +124,11 @@ public class PersonController {
     		@Valid @NotBlank final String firstName,
     		@RequestParam("lastName")
     		@Valid @NotBlank final String lastName) {
-
+		log.debug("Person DELETE Request : {} {}",
+				firstName, lastName);
         personService.deleteExistingPerson(firstName, lastName);
-
+		log.debug("Person DELETE Request : {} {}"
+				+ "- 200 OK", firstName, lastName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

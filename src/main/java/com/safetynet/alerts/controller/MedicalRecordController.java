@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetynet.alerts.dto.MedicalRecordDTO;
 import com.safetynet.alerts.service.IMedicalRecordService;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * The Class MedicalRecordController.
  */
+@Log4j2
 @RestController
 @Validated
 public class MedicalRecordController {
@@ -52,10 +55,12 @@ public class MedicalRecordController {
 		   @Valid @NotBlank final String firstName,
 		   @RequestParam("lastName")
 		   @Valid @NotBlank final String lastName) {
-
+	   log.debug("MedicalRecord GET Request - {} {}",
+			   firstName, lastName);
        MedicalRecordDTO medDTO = medicalRecordService
     		   .getMedicalRecordById(firstName, lastName);
-
+	   log.debug("MedicalRecord GET Request - {} {} - 200 OK",
+			   firstName, lastName);
        return new ResponseEntity<>(medDTO, HttpStatus.OK);
    }
 
@@ -69,10 +74,15 @@ public class MedicalRecordController {
    public ResponseEntity<MedicalRecordDTO> createMedicalRecord(
 		   @Valid @RequestBody
 		   final MedicalRecordDTO medicalRecord) {
-
+	   log.debug("MedicalRecord ADD Request - "
+		   + medicalRecord.getFirstName()
+		   + " " + medicalRecord.getLastName());
        MedicalRecordDTO medicalRecordCreated = medicalRecordService
     		   .addNewMedicalRecord(medicalRecord);
-
+	   log.debug("MedicalRecord ADD Request - "
+			   + medicalRecord.getFirstName()
+			   + " " + medicalRecord.getLastName()
+			   + " - 201 CREATED");
         return new ResponseEntity<>(medicalRecordCreated, HttpStatus.CREATED);
    }
 
@@ -85,10 +95,15 @@ public class MedicalRecordController {
    @PutMapping("/medicalRecord")
    public ResponseEntity<MedicalRecordDTO> updateMedicalRecord(
 		  @Valid @RequestBody final MedicalRecordDTO medicalRecord) {
-
+	   log.debug("MedicalRecord UPDATE Request - "
+			   + medicalRecord.getFirstName()
+			   + " " + medicalRecord.getLastName());
        MedicalRecordDTO medicalRecordUpdated = medicalRecordService
     		   .updateMedicalRecord(medicalRecord);
-
+	   log.debug("MedicalRecord UPDATE Request - "
+			   + medicalRecord.getFirstName()
+			   + " " + medicalRecord.getLastName()
+			   + " - 200 OK");
          return new ResponseEntity<>(medicalRecordUpdated, HttpStatus.OK);
    }
 
@@ -105,10 +120,12 @@ public class MedicalRecordController {
 		   @Valid @NotBlank final String firstName,
 		   @RequestParam("lastName")
 		   @Valid @NotBlank final String lastName) {
-
+	   log.debug("MedicalRecord DELETE Request - {} {}",
+			   firstName, lastName);
        medicalRecordService
        .deleteMedicalRecord(firstName, lastName);
-
+	   log.debug("MedicalRecord DELETE Request - {} {} - 200 OK",
+			   firstName, lastName);
        return new ResponseEntity<>(HttpStatus.OK);
    }
 }

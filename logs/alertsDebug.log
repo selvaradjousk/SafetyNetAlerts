@@ -1,0 +1,688 @@
+[DEBUG] 2021-07-31 08:58:40 ([main]) DEBUG SafetyNetAlertsApplication:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 08:58:41 ([main]) DEBUG HttpTraceActuatorConfiguration:26 - htttpTraceRepository()
+[DEBUG] 2021-07-31 09:00:28 ([http-nio-8080-exec-9]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 4
+[DEBUG] 2021-07-31 09:00:28 ([http-nio-8080-exec-9]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 4 - 200 OK SUCCESS
+[DEBUG] 2021-07-31 09:01:27 ([http-nio-8080-exec-3]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 1
+[DEBUG] 2021-07-31 09:01:47 ([http-nio-8080-exec-5]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 1509 Culver St
+[DEBUG] 2021-07-31 09:01:47 ([http-nio-8080-exec-5]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 1509 Culver St - 200 OK SUCCESS
+[DEBUG] 2021-07-31 09:53:53 ([main]) DEBUG AlertsUrlsControllerGetPersonsByAddressTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address Fire Address
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address Fire Address - 200 OK
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 1
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 2
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 2 - 200 OK
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city Some city
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG AlertsUrlsController:180 - GET Request - /communityEmail for city Some city - 200 OK
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG FireStationControllerDeleteTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : Test StreetName
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : Test StreetName - 200 OK
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG FireStationController:126 - FireStation DELETE Request : Test StreetName 3
+[DEBUG] 2021-07-31 09:53:55 ([main]) DEBUG FireStationController:129 - FireStation DELETE Request : Test StreetName 3 - 200 OK
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [1, 2]
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [1, 2] - 200 OK
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : Test StreetName
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : Test StreetName - 200 OK
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG FireStationController:78 - FireStation ADD Request - address : 999 and station number : 
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG AlertsUrlsControllerGetPersonInfoByIdTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name John and last name Boyd
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name John and last name Boyd - 200 OK
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG MedicalRecordControllerGetTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - Test FirstName Test Last Name - 200 OK
+[DEBUG] 2021-07-31 09:53:56 ([main]) DEBUG PersonControllerDeleteTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - Test FirstName Test Last Name - 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:104 - Person UPDATE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG PersonController:108 - Person UPDATE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 3 and station number : Test StreetName
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 3 and station number : Test StreetName - 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 999 and station number : 
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address Valid Address
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address Valid Address - 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationControllerGetTest:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:60 - FireStation GET Request : Test StreetName 3
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG FireStationController:64 - FireStation GET Request : Test StreetName 3 - 200 OK
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - Test FirstName Test Last Name - 201 CREATED
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:98 - MedicalRecord UPDATE Request - Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:57 ([main]) DEBUG MedicalRecordController:103 - MedicalRecord UPDATE Request - Test FirstName Test Last Name - 200 OK
+[DEBUG] 2021-07-31 09:53:58 ([main]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:53:58 ([main]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:53:58 ([main]) DEBUG MedicalRecordControllerGetRecordIT:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:53:59 ([main]) DEBUG HttpTraceActuatorConfiguration:26 - htttpTraceRepository()
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name - 201 CREATED
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - Test GET First Name Test GET Last Name - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - Test GET First Name Test GET Last Name - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - Test GET First Name Test GET Last Name - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - Test GET First Name Test GET Last Name
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - UNKNOWN NAME UNKNOWN NAME
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [1, 2]
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [1, 2] - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [2, 3]
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [2, 3] - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [3, 4]
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [3, 4] - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [1, 4]
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [1, 4] - 200 OK
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [2, 4]
+[DEBUG] 2021-07-31 09:54:00 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:139 - GET Request - /flood for stations [2, 4] - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [0, 2]
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [-1, 3]
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [999, 4]
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [1, -100]
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:136 - GET Request - /flood for stations [2, 999]
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 1
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 1 - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 2
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 2 - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 3
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 4
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:102 - GET Request - /phoneAlert for station number 4 - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 0
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number -1
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 999
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number -100
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:98 - GET Request - /phoneAlert for station number 999
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Testxxx Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Testxxx Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Testxxx Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : TestUpdate FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:104 - Person UPDATE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG PersonController:108 - Person UPDATE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:65 - Person GET Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG PersonController:68 - Person GET Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG PersonController:130 - Person DELETE Request : TestUpdate FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : TestUpdate FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 1509 Culver St
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address 1509 Culver St - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 29 15th St
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address 29 15th St - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 834 Binoc Ave
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address 834 Binoc Ave - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 489 Manchester St
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address 489 Manchester St - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 748 Townings Dr
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:121 - GET Request - /fire for address 748 Townings Dr - 200 OK
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address ABCD Culver St
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address XXXXXXX
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address My Address
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address 32456467865
+[DEBUG] 2021-07-31 09:54:01 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:118 - GET Request - /fire for address ^^^^^~~~
+[DEBUG] 2021-07-31 09:54:01 ([main]) DEBUG DataFileReaderIT:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:54:02 ([main]) DEBUG HttpTraceActuatorConfiguration:26 - htttpTraceRepository()
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city ABCD Culver
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city XXXXXXX
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city My City
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city 32456467865
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city ^^^^^~~~
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:177 - GET Request - /communityEmail for city Culver
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:180 - GET Request - /communityEmail for city Culver - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 3 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 3 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 10 and station number : addressToUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:02 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:100 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:106 - FireStation UPDATE Request - address : 5 and station number : addressAddedtoUpdate - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoUpdate 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoUpdate 5
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : fdsqfsdfs sdqfsqfdqsf
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameDel lastNameDel - 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameDel lastNameDel - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameDel lastNameDel - 201 CREATED
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - XXXXXXXXX lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNameDel lastNameDel - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNameDel lastNameDel - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNameDel lastNameDel - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNameDel lastNameDel
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNameDel lastNameDel - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name John and last name Boyd
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name John and last name Boyd - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name Foster and last name Shepard
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name Foster and last name Shepard - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name Reginold and last name Walker
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name Reginold and last name Walker - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name Kendrik and last name Stelzer
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name Kendrik and last name Stelzer - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:157 - GET Request - /personInfo for first name Eric and last name Cadigan
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:161 - GET Request - /personInfo for first name Eric and last name Cadigan - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoBeDeleted
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoBeDeleted - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoBeDeleted 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoBeDeleted 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAddedtoDelete - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:64 - FireStation GET Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAddedtoDelete 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:60 - FireStation GET Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAddedtoDelete 3
+[DEBUG] 2021-07-31 09:54:03 ([main]) DEBUG SafetyNetAlertsApplication:56 - Running with Spring Boot v2.5.0, Spring v5.3.7
+[DEBUG] 2021-07-31 09:54:03 ([main]) DEBUG HttpTraceActuatorConfiguration:26 - htttpTraceRepository()
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:83 - Person ADD Request : Test Delete FirstName Test Delete Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:87 - Person ADD Request : Test Delete FirstName Test Delete Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:65 - Person GET Request : Test Delete FirstName Test Delete Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:68 - Person GET Request : Test Delete FirstName Test Delete Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNameAdd lastNameAdd - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNameAdd lastNameAdd - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 1509 Culver St
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 1509 Culver St - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 29 15th St
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 29 15th St - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 834 Binoc Ave
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 834 Binoc Ave - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 489 Manchester St
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 489 Manchester St - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 748 Townings Dr
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:83 - GET Request - /childAlert for address 748 Townings Dr - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address ABCD Culver St
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address XXXXXXX
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address My Address
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address 32456467865
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG AlertsUrlsController:80 - GET Request - /childAlert for address ^^^^^~~~
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 0
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number -1
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 999
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number -100
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 999
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 1
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 2
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG AlertsUrlsController:61 - GET Request - /fireStation for station number 4
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:60 - FireStation GET Request : sdqfsqfdqsf 99
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : 
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:78 - FireStation ADD Request - address : 3 and station number : addressAdded
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG FireStationController:84 - FireStation ADD Request - address : 3 and station number : addressAdded - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:60 - FireStation GET Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG FireStationController:64 - FireStation GET Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:126 - FireStation DELETE Request : addressAdded 3
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG FireStationController:129 - FireStation DELETE Request : addressAdded 3 - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNamePut lastNamePut - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:98 - MedicalRecord UPDATE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:103 - MedicalRecord UPDATE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNamePut lastNamePut - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNamePut lastNamePut - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:98 - MedicalRecord UPDATE Request - XXXXXXX lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNamePut lastNamePut - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:77 - MedicalRecord ADD Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG MedicalRecordController:82 - MedicalRecord ADD Request - firstNamePut lastNamePut - 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:58 - MedicalRecord GET Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG MedicalRecordController:62 - MedicalRecord GET Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:123 - MedicalRecord DELETE Request - firstNamePut lastNamePut
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG MedicalRecordController:127 - MedicalRecord DELETE Request - firstNamePut lastNamePut - 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:65 - Person GET Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:68 - Person GET Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-1]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-2]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-3]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-5]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-4]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-6]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-7]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-8]) DEBUG PersonController:87 - Person ADD Request : Test FirstName Test Last Name- 201 CREATED
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-9]) DEBUG PersonController:83 - Person ADD Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG PersonController:127 - Person DELETE Request : Test FirstName Test Last Name
+[DEBUG] 2021-07-31 09:54:04 ([http-nio-auto-1-exec-10]) DEBUG PersonController:130 - Person DELETE Request : Test FirstName Test Last Name- 200 OK

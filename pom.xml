@@ -49,6 +49,22 @@
 		</dependency>
 
 		<!-- ===================================================================== -->
+		<!-- spring-boot-starter-logging exclusion is done to to prevent binding 
+			conflict with spring-boot-starter-log4j2 -->
+		<!-- ===================================================================== -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<!-- ===================================================================== -->
 		<!-- LOMBOK annotations used to reduce boilerplate code for model/data 
 			objects -->
 		<!-- ===================================================================== -->
@@ -59,14 +75,16 @@
 		</dependency>
 
 
+		<!-- ============================================================== -->
+		<!-- ====================== VALIDATORS ============================ -->
+		<!-- ============================================================== -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.el</artifactId>
 			<version>4.0.0</version>
 		</dependency>
-		
-				<!-- hibernate-validator -->
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+
+		<!-- hibernate-validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
@@ -74,19 +92,25 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+		<!-- spring-boot-starter-validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
+		<!-- JAVAX validation api -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
-
-
-
+		<!-- ===================================================================== -->
+		<!-- ================ Swagger 2 for a Spring REST web service ============ -->
+		<!-- ===================================================================== -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
 		<!-- ===================================================================== -->
 		<!-- Tests imports - JUnit4, Spring Test, AssertJ, Hamcrest, Mockito, JSONassert 
@@ -115,6 +139,15 @@
 			<artifactId>jsr305</artifactId>
 			<version>3.0.2</version>
 		</dependency>
+
+		<!-- ************** Log4J : logger **************** -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<!-- ======================================================= -->

@@ -20,9 +20,12 @@ import com.safetynet.alerts.dto.FireStationDTO;
 import com.safetynet.alerts.exception.BadRequestException;
 import com.safetynet.alerts.service.IFireStationService;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * The Class FireStationController.
  */
+@Log4j2
 @RestController
 @Validated
 public class FireStationController {
@@ -54,10 +57,12 @@ public class FireStationController {
 		   @Valid @NotNull final Integer station,
 		   @RequestParam("address")
 		   @Valid @NotBlank final String address) {
-
+	   log.debug("FireStation GET Request : {} {}",
+			   address, station);
        FireStationDTO fireDTO = fireStationService
     		   .getFireStationById(station, address);
-
+	   log.debug("FireStation GET Request : {} {} - 200 OK",
+			   address, station );
        return new ResponseEntity<>(fireDTO, HttpStatus.OK);
    }
 
@@ -70,11 +75,16 @@ public class FireStationController {
    @PostMapping("/firestation")
    public ResponseEntity<FireStationDTO> addNewFireStation(
 		   @RequestBody final FireStationDTO fireStation) {
-
+       log.debug("FireStation ADD Request - address :"
+       		+ " {} and station number : {}",
+               fireStation.getStationId(), fireStation.getAddress());
        fireStationValidityCheckForAddAndUpdate(fireStation);
        FireStationDTO fireStationCreated = fireStationService
     		   .addNewFireStation(fireStation);
-
+       log.debug("FireStation ADD Request - address :"
+       		+ " {} and station number : {}",
+               fireStation.getStationId(), fireStation.getAddress()
+               + " - 200 OK");
        return new ResponseEntity<>(fireStationCreated, HttpStatus.CREATED);
    }
 
@@ -87,11 +97,16 @@ public class FireStationController {
    @PutMapping("/firestation")
    public ResponseEntity<FireStationDTO> updateFireStation(
 		   @RequestBody final FireStationDTO fireStation) {
-
+       log.debug("FireStation UPDATE Request - address :"
+          		+ " {} and station number : {}",
+                  fireStation.getStationId(), fireStation.getAddress());
        fireStationValidityCheckForAddAndUpdate(fireStation);
        FireStationDTO fireStationUpdated = fireStationService
     		   .updateExistingStation(fireStation);
-
+       log.debug("FireStation UPDATE Request - address :"
+          		+ " {} and station number : {}",
+                  fireStation.getStationId(), fireStation.getAddress()
+                  + " - 200 OK");
        return new ResponseEntity<>(fireStationUpdated, HttpStatus.OK);
    }
 
@@ -108,9 +123,11 @@ public class FireStationController {
 		   @Valid @NotNull final Integer station,
 		   @RequestParam("address")
 		   @Valid @NotBlank final String address) {
-
+	   log.debug("FireStation DELETE Request : {} {}",
+			   address, station);
        fireStationService.deleteExistingStation(station, address);
-
+	   log.debug("FireStation DELETE Request : {} {} - 200 OK",
+			   address, station);
        return new ResponseEntity<>(HttpStatus.OK);
    }
 
