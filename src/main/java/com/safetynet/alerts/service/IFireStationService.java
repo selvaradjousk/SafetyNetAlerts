@@ -12,22 +12,22 @@ import com.safetynet.alerts.model.FireStation;
  */
 public interface IFireStationService {
 
-    /**
-     * Gets firestation by Id.
-     *
-     * @param stationId the station id
-     * @param address the address
-     * @return fireStationMapper.toFireStationDTO(fireStation)
-     */
+	/**
+	 * Gets the fire station by id.
+	 *
+	 * @param stationId the station id
+	 * @param address the address
+	 * @return the fire station by id
+	 */
 	FireStationDTO getFireStationById(
 			Integer stationId, String address);
 
-    /**
-     * Gets firestation by addresses.
-     *
-     * @param address the address
-     * @return fireStation
-     */
+	/**
+	 * Gets the fire station by address.
+	 *
+	 * @param address the address
+	 * @return the fire station by address
+	 */
 	FireStation getFireStationByAddress(
 			String address);
 
@@ -40,21 +40,21 @@ public interface IFireStationService {
 	List<String> getAddressesByStation(
 			int stationId);
 
-    /**
-     * adds new firestation.
-     *
-     * @param newFireStation the new fire station
-     * @return fireStationMapper.toFireStationDTO(fireSaved)
-     */
+	/**
+	 * Adds the new fire station.
+	 *
+	 * @param newFireStation the new fire station
+	 * @return the fire station DTO
+	 */
 	FireStationDTO addNewFireStation(
 			FireStationDTO newFireStation);
 
-    /**
-     * updates existing firestation.
-     *
-     * @param existingFireStation the existing fire station
-     * @return fireStationMapper.toFireStationDTO(fireToUpdate)
-     */
+	/**
+	 * Update existing station.
+	 *
+	 * @param existingFireStation the existing fire station
+	 * @return the fire station DTO
+	 */
 	FireStationDTO updateExistingStation(
 			FireStationDTO existingFireStation);
 

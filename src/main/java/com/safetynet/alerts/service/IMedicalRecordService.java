@@ -8,19 +8,19 @@ import com.safetynet.alerts.dto.MedicalRecordDTO;
 public interface IMedicalRecordService {
 
     /**
-     * Adds new medical Record.
+     * Adds the new medical record.
      *
      * @param newMedicalRecord the new medical record
-     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordSaved)
+     * @return the medical record DTO
      */
     MedicalRecordDTO addNewMedicalRecord(
     		MedicalRecordDTO newMedicalRecord);
 
     /**
-     * updates medical Record.
+     * Update medical record.
      *
      * @param existingMedicalRecord the existing medical record
-     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound)
+     * @return the medical record DTO
      */
     MedicalRecordDTO updateMedicalRecord(
     		MedicalRecordDTO existingMedicalRecord);
@@ -34,12 +34,13 @@ public interface IMedicalRecordService {
     void deleteMedicalRecord(
     		String firstName, String lastName);
 
+
     /**
-     * get medical Record by id.
+     * Gets the medical record by id.
      *
      * @param firstName the first name
      * @param lastName the last name
-     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecord)
+     * @return the medical record by id
      */
     MedicalRecordDTO getMedicalRecordById(
     		String firstName, String lastName);

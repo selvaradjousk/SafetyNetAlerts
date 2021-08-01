@@ -47,11 +47,11 @@ public class FireStationService implements IFireStationService {
     }
 
     /**
-     * Gets firestation by Id.
+     * Gets the fire station by id.
      *
      * @param stationId the station id
      * @param address the address
-     * @return fireStationMapper.toFireStationDTO(fireStation)
+     * @return the fire station by id
      */
     public FireStationDTO getFireStationById(
     		final Integer stationId,
@@ -114,10 +114,10 @@ public class FireStationService implements IFireStationService {
     }
 
     /**
-     * adds new firestation.
+     * Adds the new fire station.
      *
      * @param fireStationDTO the fire station DTO
-     * @return fireStationMapper.toFireStationDTO(fireSaved)
+     * @return the fire station DTO
      */
     public FireStationDTO addNewFireStation(
     		final FireStationDTO fireStationDTO) {
@@ -140,10 +140,10 @@ public class FireStationService implements IFireStationService {
     }
 
     /**
-     * updates existing firestation.
+     * Update existing station.
      *
      * @param fireStationDTO the fire station DTO
-     * @return fireStationMapper.toFireStationDTO(fireToUpdate)
+     * @return the fire station DTO
      */
     public FireStationDTO updateExistingStation(
     		final FireStationDTO fireStationDTO) {

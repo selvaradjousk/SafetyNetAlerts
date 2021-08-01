@@ -44,13 +44,13 @@ public class MedicalRecordService implements IMedicalRecordService {
     }
 
 
-    /**
-     * get medical Record by id.
-     *
-     * @param firstName the first name
-     * @param lastName the last name
-     * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecord)
-     */
+     /**
+      * Gets the medical record by id.
+      *
+      * @param firstName the first name
+      * @param lastName the last name
+      * @return the medical record by id
+      */
      public MedicalRecordDTO getMedicalRecordById(
     		 final String firstName,
     		 final String lastName) {
@@ -93,12 +93,13 @@ public class MedicalRecordService implements IMedicalRecordService {
     }
 
 
-     /**
-      * updates medical Record.
-      *
-      * @param medicalRecord the medical record
-      * @return medicalRecordMapper.toMedicalRecordDTO(medicalRecordFound)
-      */
+
+    /**
+     * Update medical record.
+     *
+     * @param medicalRecord the medical record
+     * @return the medical record DTO
+     */
     public MedicalRecordDTO updateMedicalRecord(
     		final MedicalRecordDTO medicalRecord) {
         MedicalRecord medicalRecordFound = medicalRecordDAO

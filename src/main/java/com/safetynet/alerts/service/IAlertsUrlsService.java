@@ -58,22 +58,22 @@ public interface IAlertsUrlsService {
     FloodDTO getHousesCoveredByStation(List<Integer> stations);
 
     /**
-     * Get person info by id.
+     * Gets the info person by identity.
      *
      * @param firstName the first name
      * @param lastName the last name
-     * @return PersonInfoDTO(personsInfo)
+     * @return the info person by identity
      */
     PersonInfoDTO getInfoPersonByIdentity(String firstName, String lastName);
 
 	// http://localhost:8080/communityEmail?city=<city>
 	// i.e. communityEmail(city)
     /**
-	 * Get community email by city.
+	 * Gets the emails by city.
 	 *
 	 * @param city the city
-	 * @return CommunityEmailDTO(emails)
+	 * @return the emails by city
 	 */
-    CommunityEmailDTO getEmailsByCity(
+	CommunityEmailDTO getEmailsByCity(
     		String city);
 }
