@@ -23,7 +23,7 @@ public class HttpTraceActuatorConfiguration {
      */
     @Bean
     public HttpTraceRepository httpTraceRepository() {
-    	log.debug( "htttpTraceRepository()" );
+    	log.debug("htttpTraceRepository()");
         return new InMemoryHttpTraceRepository();
     }
 }

@@ -55,7 +55,6 @@ public class PersonDAO implements IPersonDAO {
 	 *
 	 * @return the person list
 	 */
-	@Override
 	public List<Person> getPersonList() {
         Collection personList = personsMap.values();
         return new ArrayList<>(personList);

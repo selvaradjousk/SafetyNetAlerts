@@ -62,7 +62,7 @@ public class FireStationController {
        FireStationDTO fireDTO = fireStationService
     		   .getFireStationById(station, address);
 	   log.debug("FireStation GET Request : {} {} - 200 OK",
-			   address, station );
+			   address, station);
        return new ResponseEntity<>(fireDTO, HttpStatus.OK);
    }
 

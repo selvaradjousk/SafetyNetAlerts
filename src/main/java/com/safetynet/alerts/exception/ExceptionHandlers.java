@@ -33,7 +33,7 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     public ResponseEntity handleConstraintViolationException(
     		final ConstraintViolationException ex,
     		final WebRequest request) {
-    	log.error("Exception occured as Request Failed: {}",ex);
+    	log.error("Exception occured as Request Failed: {}", ex);
         ExceptionDetails exceptionDetails = new ExceptionDetails(
                 LocalDateTime.now(),
                 ex.getMessage(),
@@ -53,7 +53,7 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     public ResponseEntity handleBadRequest(
     		final BadRequestException ex,
     		final WebRequest request) {
-    	log.error("Exception occured as Request Failed: {}",ex);
+    	log.error("Exception occured as Request Failed: {}", ex);
         ExceptionDetails exceptionDetails = new ExceptionDetails(
         		LocalDateTime.now(),
         		ex.getMessage(),
@@ -73,7 +73,7 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     public ResponseEntity handleNotFound(
     		final DataNotFoundException ex,
     		final WebRequest request) {
-    	log.error("Exception occured as Request Failed: {}",ex);
+    	log.error("Exception occured as Request Failed: {}", ex);
     	ExceptionDetails exceptionDetails = new ExceptionDetails(
     			LocalDateTime.now(),
     			ex.getMessage(),
@@ -93,7 +93,7 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     public ResponseEntity handleConflict(
     		final DataAlreadyRegisteredException ex,
     		final WebRequest request) {
-    	log.error("Exception occured as Request Failed: {}",ex);
+    	log.error("Exception occured as Request Failed: {}", ex);
     	ExceptionDetails exceptionDetails = new ExceptionDetails(
         		LocalDateTime.now(),
         		ex.getMessage(),
