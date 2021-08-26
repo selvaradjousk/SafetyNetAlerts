@@ -97,7 +97,7 @@ Swagger API documentation
 STAN Design metrics (SOLID principle based development)
 ===
 
-![STAN Design metrics ](assets/stan.png "STAN Design analysis ")
+![STAN Design metrics ](assets/stan.PNG "STAN Design analysis ")
 
 
 
