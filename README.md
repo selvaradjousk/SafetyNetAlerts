@@ -53,9 +53,6 @@ JSON data file ![JSON & API](https://img.shields.io/badge/%F0%9F%93%81-JSON-blue
 
 Project Milestones
 ===
-
-Project Milestones
-===
 Outputs
 -------
 ![Endpoints]( https://img.shields.io/badge/%E2%9C%85-ENDPOINTS-blueviolet) providing ALERTS with pertinent information to various emergency services in time.<br />
@@ -64,37 +61,37 @@ Outputs
 Preliminary Design Sketches
 ===
 
-![Schema MVC](assets/schema_mvc.png "Schema MVC")
+![Schema MVC](assets/schema_mvc.PNG "Schema MVC")
 
 
 Class Design - MCD
 ===
 
-![MCD Class Diagram](assets/mcd.png "MCD Class Diagram")
+![MCD Class Diagram](assets/mcd.PNG "MCD Class Diagram")
 
 
 Maven Unit tests
 ===
 
-![Maven Unit tests](assets/juit_tests.png "Maven Unit tests")
+![Maven Unit tests](assets/juit_tests.PNG "Maven Unit tests")
 
 
 Jacoco tests coverage report
 ===
 
-![Jacoco tests report](assets/jacoco_coverage.png "Jacoco tests report")
+![Jacoco tests report](assets/jacoco_coverage.PNG "Jacoco tests report")
 
 
 SureFire tests report
 ===
 
-![SureFire tests report](assets/surefire_report.png "SureFire tests report")
+![SureFire tests report](assets/surefire_report.PNG "SureFire tests report")
 
 
 Swagger API documentation
 ===
 
-![Swagger API documentation](assets/swagger.png "Swagger API documentation")
+![Swagger API documentation](assets/swagger.PNG "Swagger API documentation")
 
 
 STAN Design metrics (SOLID principle based development)
