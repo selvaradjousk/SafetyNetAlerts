@@ -217,3 +217,85 @@
 [INFO ] 2021-08-10 17:01:14.701 ([main]) [main] PersonControllerAddTest - Starting PersonControllerAddTest using Java 1.8.0_272 on Senthil with PID 21568 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
 [INFO ] 2021-08-10 17:01:14.703 ([main]) [main] PersonControllerAddTest - No active profile set, falling back to default profiles: default
 [INFO ] 2021-08-10 17:01:15.035 ([main]) [main] PersonControllerAddTest - Started PersonControllerAddTest in 0.347 seconds (JVM running for 9.482)
+[INFO ] 2021-08-10 18:48:22.775 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - Starting AlertsUrlsControllerGetPersonsByAddressTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:22.781 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:24.287 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - Started AlertsUrlsControllerGetPersonsByAddressTest in 1.915 seconds (JVM running for 7.115)
+[INFO ] 2021-08-10 18:48:24.739 ([main]) [main] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
+[INFO ] 2021-08-10 18:48:24.891 ([main]) [main] FireStationControllerDeleteTest - Starting FireStationControllerDeleteTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:24.892 ([main]) [main] FireStationControllerDeleteTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:25.353 ([main]) [main] FireStationControllerDeleteTest - Started FireStationControllerDeleteTest in 0.503 seconds (JVM running for 8.18)
+[INFO ] 2021-08-10 18:48:25.658 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - Starting AlertsUrlsControllerGetPersonInfoByIdTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:25.660 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:26.110 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - Started AlertsUrlsControllerGetPersonInfoByIdTest in 0.471 seconds (JVM running for 8.938)
+[INFO ] 2021-08-10 18:48:26.198 ([main]) [main] MedicalRecordControllerGetTest - Starting MedicalRecordControllerGetTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:26.199 ([main]) [main] MedicalRecordControllerGetTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:26.619 ([main]) [main] MedicalRecordControllerGetTest - Started MedicalRecordControllerGetTest in 0.446 seconds (JVM running for 9.447)
+[INFO ] 2021-08-10 18:48:26.719 ([main]) [main] PersonControllerDeleteTest - Starting PersonControllerDeleteTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:26.721 ([main]) [main] PersonControllerDeleteTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:27.144 ([main]) [main] PersonControllerDeleteTest - Started PersonControllerDeleteTest in 0.445 seconds (JVM running for 9.971)
+[INFO ] 2021-08-10 18:48:27.492 ([main]) [main] FireStationControllerGetTest - Starting FireStationControllerGetTest using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:27.495 ([main]) [main] FireStationControllerGetTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:27.877 ([main]) [main] FireStationControllerGetTest - Started FireStationControllerGetTest in 0.404 seconds (JVM running for 10.704)
+[INFO ] 2021-08-10 18:48:28.154 ([main]) [main] MedicalRecordControllerGetRecordIT - Starting MedicalRecordControllerGetRecordIT using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:28.156 ([main]) [main] MedicalRecordControllerGetRecordIT - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:30.196 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-10 18:48:31.336 ([main]) [main] MedicalRecordControllerGetRecordIT - Started MedicalRecordControllerGetRecordIT in 3.216 seconds (JVM running for 14.163)
+[INFO ] 2021-08-10 18:48:32.544 ([main]) [main] DataFileReaderIT - Starting DataFileReaderIT using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:32.545 ([main]) [main] DataFileReaderIT - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:33.097 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-10 18:48:33.985 ([main]) [main] DataFileReaderIT - Started DataFileReaderIT in 1.459 seconds (JVM running for 16.813)
+[INFO ] 2021-08-10 18:48:34.920 ([main]) [main] SafetyNetAlertsApplication - Application intizialised ..args.
+[INFO ] 2021-08-10 18:48:34.940 ([main]) [main] SafetyNetAlertsApplication - Starting SafetyNetAlertsApplication using Java 15.0.1 on Senthil with PID 20936 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-10 18:48:34.940 ([main]) [main] SafetyNetAlertsApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-10 18:48:35.430 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-10 18:48:35.710 ([main]) [main] SafetyNetAlertsApplication - Started SafetyNetAlertsApplication in 0.789 seconds (JVM running for 18.538)
+[INFO ] 2021-08-10 18:48:35.712 ([main]) [main] SafetyNetAlertsApplication - App lauched and is running now ...
+[INFO ] 2021-08-10 18:48:36.123 ([http-nio-auto-1-exec-1]) [http-nio-auto-1-exec-1] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
+[INFO ] 2021-08-10 18:48:36.131 ([http-nio-auto-1-exec-3]) [http-nio-auto-1-exec-3] AlertsUrlsController - GET Request - /fireStation for station number 2 - 200 OK
+[INFO ] 2021-08-10 18:48:36.138 ([http-nio-auto-1-exec-4]) [http-nio-auto-1-exec-4] AlertsUrlsController - GET Request - /fireStation for station number 3 - 200 OK
+[INFO ] 2021-08-10 18:48:36.145 ([http-nio-auto-1-exec-2]) [http-nio-auto-1-exec-2] AlertsUrlsController - GET Request - /fireStation for station number 4 - 200 OK
+[INFO ] 2021-08-15 20:56:05.726 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - Starting AlertsUrlsControllerGetPersonsByAddressTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:05.774 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:07.207 ([main]) [main] AlertsUrlsControllerGetPersonsByAddressTest - Started AlertsUrlsControllerGetPersonsByAddressTest in 1.88 seconds (JVM running for 11.877)
+[INFO ] 2021-08-15 20:56:07.593 ([main]) [main] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
+[INFO ] 2021-08-15 20:56:07.719 ([main]) [main] FireStationControllerDeleteTest - Starting FireStationControllerDeleteTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:07.720 ([main]) [main] FireStationControllerDeleteTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:08.120 ([main]) [main] FireStationControllerDeleteTest - Started FireStationControllerDeleteTest in 0.426 seconds (JVM running for 12.789)
+[INFO ] 2021-08-15 20:56:08.383 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - Starting AlertsUrlsControllerGetPersonInfoByIdTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:08.385 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:08.756 ([main]) [main] AlertsUrlsControllerGetPersonInfoByIdTest - Started AlertsUrlsControllerGetPersonInfoByIdTest in 0.393 seconds (JVM running for 13.426)
+[INFO ] 2021-08-15 20:56:08.833 ([main]) [main] MedicalRecordControllerGetTest - Starting MedicalRecordControllerGetTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:08.834 ([main]) [main] MedicalRecordControllerGetTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:09.177 ([main]) [main] MedicalRecordControllerGetTest - Started MedicalRecordControllerGetTest in 0.364 seconds (JVM running for 13.847)
+[INFO ] 2021-08-15 20:56:09.265 ([main]) [main] PersonControllerDeleteTest - Starting PersonControllerDeleteTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:09.267 ([main]) [main] PersonControllerDeleteTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:09.589 ([main]) [main] PersonControllerDeleteTest - Started PersonControllerDeleteTest in 0.342 seconds (JVM running for 14.259)
+[INFO ] 2021-08-15 20:56:09.879 ([main]) [main] FireStationControllerGetTest - Starting FireStationControllerGetTest using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:09.881 ([main]) [main] FireStationControllerGetTest - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:10.204 ([main]) [main] FireStationControllerGetTest - Started FireStationControllerGetTest in 0.34 seconds (JVM running for 14.873)
+[INFO ] 2021-08-15 20:56:10.471 ([main]) [main] MedicalRecordControllerGetRecordIT - Starting MedicalRecordControllerGetRecordIT using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:10.473 ([main]) [main] MedicalRecordControllerGetRecordIT - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:12.448 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-15 20:56:13.465 ([main]) [main] MedicalRecordControllerGetRecordIT - Started MedicalRecordControllerGetRecordIT in 3.049 seconds (JVM running for 18.134)
+[INFO ] 2021-08-15 20:56:14.418 ([main]) [main] DataFileReaderIT - Starting DataFileReaderIT using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:14.419 ([main]) [main] DataFileReaderIT - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:14.870 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-15 20:56:15.585 ([main]) [main] DataFileReaderIT - Started DataFileReaderIT in 1.182 seconds (JVM running for 20.254)
+[INFO ] 2021-08-15 20:56:16.385 ([main]) [main] SafetyNetAlertsApplication - Application intizialised ..args.
+[INFO ] 2021-08-15 20:56:16.404 ([main]) [main] SafetyNetAlertsApplication - Starting SafetyNetAlertsApplication using Java 15.0.1 on Senthil with PID 13692 (started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 20:56:16.404 ([main]) [main] SafetyNetAlertsApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 20:56:16.784 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-15 20:56:17.005 ([main]) [main] SafetyNetAlertsApplication - Started SafetyNetAlertsApplication in 0.62 seconds (JVM running for 21.675)
+[INFO ] 2021-08-15 20:56:17.007 ([main]) [main] SafetyNetAlertsApplication - App lauched and is running now ...
+[INFO ] 2021-08-15 20:56:17.345 ([http-nio-auto-1-exec-8]) [http-nio-auto-1-exec-8] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
+[INFO ] 2021-08-15 20:56:17.353 ([http-nio-auto-1-exec-7]) [http-nio-auto-1-exec-7] AlertsUrlsController - GET Request - /fireStation for station number 2 - 200 OK
+[INFO ] 2021-08-15 20:56:17.359 ([http-nio-auto-1-exec-9]) [http-nio-auto-1-exec-9] AlertsUrlsController - GET Request - /fireStation for station number 3 - 200 OK
+[INFO ] 2021-08-15 20:56:17.367 ([http-nio-auto-1-exec-10]) [http-nio-auto-1-exec-10] AlertsUrlsController - GET Request - /fireStation for station number 4 - 200 OK
+[INFO ] 2021-08-15 21:06:32.014 ([main]) [main] SafetyNetAlertsApplication - Application intizialised ..args.
+[INFO ] 2021-08-15 21:06:32.299 ([main]) [main] SafetyNetAlertsApplication - Starting SafetyNetAlertsApplication using Java 15.0.1 on Senthil with PID 8592 (F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts\target\classes started by Senthil in F:\_openClassrooms\GitOCProjects\P5_project_working\SafetyNetAlerts)
+[INFO ] 2021-08-15 21:06:32.301 ([main]) [main] SafetyNetAlertsApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-08-15 21:06:33.644 ([main]) [main] SwaggerConfig - Swagger UI requested...
+[INFO ] 2021-08-15 21:06:34.361 ([main]) [main] SafetyNetAlertsApplication - Started SafetyNetAlertsApplication in 2.293 seconds (JVM running for 3.085)
+[INFO ] 2021-08-15 21:06:34.366 ([main]) [main] SafetyNetAlertsApplication - App lauched and is running now ...
+[INFO ] 2021-08-15 21:06:48.154 ([http-nio-8080-exec-1]) [http-nio-8080-exec-1] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
+[INFO ] 2021-08-15 21:29:25.069 ([http-nio-8080-exec-8]) [http-nio-8080-exec-8] AlertsUrlsController - GET Request - /fireStation for station number 1 - 200 OK
